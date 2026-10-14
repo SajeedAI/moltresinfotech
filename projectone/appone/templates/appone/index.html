@@ -12,37 +12,47 @@
 
   <style>
     :root {
-      --red: #e11d2e;
-      --ink: #0e1014;
-      --muted: rgba(255, 255, 255, 0.68);
+      --sea: #20b2aa;
+      --sea-dark: #178f88;
+      --ink: #163331;
+      --muted: #5c6f6d;
+      --line: rgba(32, 178, 170, 0.22);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--ink);
-      color: #fff;
+      background: #ffffff;
+      color: var(--ink);
       font-family: "Segoe UI", system-ui, sans-serif;
       overflow-x: hidden;
     }
 
     .ai-grid {
+      background-color: #ffffff;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+        linear-gradient(rgba(32, 178, 170, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32, 178, 170, 0.08) 1px, transparent 1px);
       background-size: 64px 64px;
     }
 
     .navbar {
-      background: rgba(8, 8, 10, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid var(--line);
     }
 
-    .nav-link { letter-spacing: 0.08em; font-size: 0.78rem; }
+    .navbar .nav-link {
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus { color: var(--sea-dark); }
 
     .btn-red {
-      background: var(--red);
+      background: var(--sea);
       color: #fff;
       border-radius: 999px;
       padding: 12px 26px;
@@ -51,26 +61,28 @@
       transition: 0.25s ease;
     }
 
-    .btn-red:hover { background: #c41625; color: #fff; transform: translateY(-1px); }
+    .btn-red:hover { background: var(--sea-dark); color: #fff; transform: translateY(-1px); }
 
     .btn-ghost {
-      border: 1.5px solid rgba(255, 255, 255, 0.75);
-      color: #fff;
+      border: 1.5px solid var(--sea);
+      color: var(--sea-dark);
       border-radius: 999px;
       padding: 12px 26px;
       font-weight: 650;
-      background: transparent;
+      background: #fff;
     }
 
-    .btn-ghost:hover { background: #fff; color: #111; }
+    .btn-ghost:hover { background: var(--sea); color: #fff; }
 
     .kicker {
-      color: var(--red);
+      color: var(--sea-dark);
       letter-spacing: 0.22em;
       font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
     }
+
+    .text-sea { color: var(--sea-dark) !important; }
 
     .hero {
       padding: 150px 0 90px;
@@ -84,33 +96,35 @@
     }
 
     .stat-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #ffffff;
+      border: 1px solid var(--line);
       border-radius: 16px;
       padding: 16px 18px;
+      box-shadow: 0 8px 24px rgba(32, 178, 170, 0.08);
     }
 
     .section { padding: 96px 0; }
 
     .product-card {
-      background: #16181d;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      border: 1px solid var(--line);
       border-radius: 22px;
       overflow: hidden;
       height: 100%;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 10px 30px rgba(22, 51, 49, 0.05);
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
     .product-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.2);
+      border-color: var(--sea);
     }
 
     .product-head {
       padding: 22px 22px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid var(--line);
     }
 
     .product-body { padding: 18px 22px 22px; flex: 1; display: flex; flex-direction: column; }
@@ -128,7 +142,7 @@
 
     .feature-list li {
       font-size: 0.86rem;
-      color: rgba(255, 255, 255, 0.82);
+      color: #2d4442;
       display: flex;
       gap: 8px;
       align-items: flex-start;
@@ -140,13 +154,13 @@
       border-radius: 999px;
       padding: 4px 10px;
       margin: 0 6px 6px 0;
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.8);
+      background: #e7f7f6;
+      color: #146e69;
     }
 
     .soft-card {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #ffffff;
+      border: 1px solid var(--line);
       border-radius: 18px;
       padding: 28px 24px;
       height: 100%;
@@ -160,7 +174,10 @@
       font-weight: 700;
     }
 
-    footer { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    footer { border-top: 1px solid var(--line); color: var(--muted); }
+
+    a.link-sea { color: var(--sea-dark); text-decoration: none; }
+    a.link-sea:hover { color: var(--sea); }
 
     @media (max-width: 576px) {
       .feature-list { grid-template-columns: 1fr; }
@@ -171,7 +188,7 @@
 
 <body class="ai-grid">
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light">
     <div class="container">
       <a class="navbar-brand" href="#top">
         <img src="https://moltrescrm.s3.ap-south-1.amazonaws.com/Moltres_Infotech.png" alt="Moltres Infotech" style="width:190px;">
@@ -255,27 +272,27 @@
 
         <div class="col-lg-6" id="hospital-crm">
           <article class="product-card">
-            <div class="accent-bar" style="background:#e11d2e;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#ff6b78;">Hospitals &amp; clinics</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Hospitals &amp; clinics</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">Custom CRM for Hospitals</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Patients, enquiries, appointments, and marketing in one platform.</p>
                 </div>
-                <i class="bi bi-hospital fs-3" style="color:#ff6b78;"></i>
+                <i class="bi bi-hospital fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Patient enquiry capture</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Doctor appointment scheduling</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> WhatsApp reminders &amp; tips</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Email campaigns &amp; offers</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Calling and follow-up logs</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Doctors &amp; departments</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Patient history &amp; treatment</li>
-                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Revenue and enquiry reports</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Patient enquiry capture</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Doctor appointment scheduling</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> WhatsApp reminders &amp; tips</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Email campaigns &amp; offers</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Calling and follow-up logs</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Doctors &amp; departments</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Patient history &amp; treatment</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Revenue and enquiry reports</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Multi-specialty</span>
@@ -291,27 +308,27 @@
 
         <div class="col-lg-6" id="real-estate-crm">
           <article class="product-card">
-            <div class="accent-bar" style="background:#e11d78;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#ff7eb3;">Real estate</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Real estate</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">Real Estate CRM</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Property leads, site visits, bookings, and sales in one system.</p>
                 </div>
-                <i class="bi bi-house-door fs-3" style="color:#ff7eb3;"></i>
+                <i class="bi bi-house-door fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Website, ads &amp; walk-in leads</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Facebook &amp; Google Ads leads</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Call logs and follow-ups</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> WhatsApp brochures &amp; updates</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Email project newsletters</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Projects, units &amp; availability</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Site visits and bookings</li>
-                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Source and sales reports</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Website, ads &amp; walk-in leads</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Facebook &amp; Google Ads leads</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Call logs and follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> WhatsApp brochures &amp; updates</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Email project newsletters</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Projects, units &amp; availability</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Site visits and bookings</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Source and sales reports</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Residential</span>
@@ -326,27 +343,27 @@
 
         <div class="col-lg-6" id="showroom-crm">
           <article class="product-card">
-            <div class="accent-bar" style="background:#0d9488;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#5eead4;">Automotive</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Automotive</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">CRM for Car Showrooms</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Leads, test drives, bookings, and delivery status together.</p>
                 </div>
-                <i class="bi bi-car-front fs-3" style="color:#5eead4;"></i>
+                <i class="bi bi-car-front fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Lead capture from ads &amp; walk-ins</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Test drive scheduling</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Vehicle bookings to sales</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Delivery status tracking</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> WhatsApp offers &amp; follow-ups</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Call reminders</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Customer &amp; vehicle interest</li>
-                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Sales and campaign reports</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Lead capture from ads &amp; walk-ins</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Test drive scheduling</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Vehicle bookings to sales</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Delivery status tracking</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> WhatsApp offers &amp; follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Call reminders</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Customer &amp; vehicle interest</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Sales and campaign reports</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Car dealers</span>
@@ -361,27 +378,27 @@
 
         <div class="col-lg-6" id="education-crm">
           <article class="product-card">
-            <div class="accent-bar" style="background:#f97316;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#fdba74;">Education</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Education</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">CRM for Schools &amp; Colleges</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Admissions, fees, student records, and parent communication.</p>
                 </div>
-                <i class="bi bi-mortarboard fs-3" style="color:#fdba74;"></i>
+                <i class="bi bi-mortarboard fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Enquiry from web, ads &amp; walk-ins</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Admission status tracking</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Tasks and follow-up reminders</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> WhatsApp and email updates</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Courses, batches &amp; faculty</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Fee dues and receipts</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Student history &amp; documents</li>
-                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Admission and fee reports</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Enquiry from web, ads &amp; walk-ins</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Admission status tracking</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Tasks and follow-up reminders</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> WhatsApp and email updates</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Courses, batches &amp; faculty</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Fee dues and receipts</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Student history &amp; documents</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Admission and fee reports</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Schools K–12</span>
@@ -396,27 +413,27 @@
 
         <div class="col-lg-6" id="fitness-crm">
           <article class="product-card">
-            <div class="accent-bar" style="background:#7c3aed;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#c4b5fd;">Fitness</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Fitness</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">CRM for Gyms &amp; Fitness Centers</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Memberships, trials, classes, and member communication.</p>
                 </div>
-                <i class="bi bi-activity fs-3" style="color:#c4b5fd;"></i>
+                <i class="bi bi-activity fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Lead and campaign tracking</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Trial session scheduling</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Plans, renewals &amp; expiry alerts</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> WhatsApp offers and tips</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Email promotions</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Call follow-ups</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Classes, trainers &amp; attendance</li>
-                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Membership and growth reports</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Lead and campaign tracking</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Trial session scheduling</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Plans, renewals &amp; expiry alerts</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> WhatsApp offers and tips</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Email promotions</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Call follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Classes, trainers &amp; attendance</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Membership and growth reports</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Gyms</span>
@@ -431,27 +448,27 @@
 
         <div class="col-lg-6" id="gallery-app">
           <article class="product-card">
-            <div class="accent-bar" style="background:#16a34a;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-head">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
-                  <div class="small fw-bold text-uppercase" style="color:#86efac;">Studios</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Studios</div>
                   <h3 class="h4 fw-bold mb-1 mt-1">Video Gallery App</h3>
                   <p class="mb-0 small" style="color: var(--muted);">A branded gallery where clients watch, download, and share photos and videos.</p>
                 </div>
-                <i class="bi bi-camera fs-3" style="color:#86efac;"></i>
+                <i class="bi bi-camera fs-3" style="color:#20b2aa;"></i>
               </div>
             </div>
             <div class="product-body">
               <ul class="feature-list">
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Video streaming</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> High-quality photo albums</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Secure cloud storage</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Easy sharing with family</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Mobile, tablet &amp; desktop</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Client downloads</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Private album login</li>
-                <li><i class="bi bi-check2" style="color:#86efac;"></i> Your logo, theme &amp; domain</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Video streaming</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> High-quality photo albums</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Secure cloud storage</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Easy sharing with family</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Mobile, tablet &amp; desktop</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Client downloads</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Private album login</li>
+                <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Your logo, theme &amp; domain</li>
               </ul>
               <div class="mt-auto">
                 <span class="chip">Weddings</span>
@@ -466,11 +483,11 @@
 
         <div class="col-12" id="accesspro">
           <article class="product-card">
-            <div class="accent-bar" style="background:#2563eb;"></div>
+            <div class="accent-bar" style="background:#20b2aa;"></div>
             <div class="product-body">
               <div class="row g-4 align-items-center">
                 <div class="col-lg-5">
-                  <div class="small fw-bold text-uppercase" style="color:#93c5fd;">Assessments</div>
+                  <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Assessments</div>
                   <h3 class="h4 fw-bold mb-2 mt-1">Moltres AccessPro</h3>
                   <p style="color: var(--muted);">
                     An online examination platform for institutes: timed tests, multiple-choice papers,
@@ -479,12 +496,12 @@
                 </div>
                 <div class="col-lg-7">
                   <ul class="feature-list">
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Free and live tests</li>
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Question navigation &amp; timer</li>
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Online compiler</li>
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Student and tenant access</li>
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Reports and dashboards</li>
-                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Admin roles</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Free and live tests</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Question navigation &amp; timer</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Online compiler</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Student and tenant access</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Reports and dashboards</li>
+                    <li><i class="bi bi-check2" style="color:#20b2aa;"></i> Admin roles</li>
                   </ul>
                 </div>
               </div>
@@ -496,17 +513,17 @@
     </div>
   </section>
 
-  <section id="industries" class="section" style="background: rgba(255,255,255,0.02);">
+  <section id="industries" class="section" style="background: #f3fbfa;">
     <div class="container">
       <p class="kicker mb-2">Who it is for</p>
       <h2 class="display-6 fw-bold mb-4">One engineering team, many industries</h2>
       <div class="row g-3">
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fecdd3;">Hospitals</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fbcfe8;">Real estate</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#99f6e4;">Showrooms</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fed7aa;">Schools</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#ddd6fe;">Fitness</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#bbf7d0;">Studios</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#d8f4f2;">Hospitals</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#c9efec;">Real estate</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#b7e8e4;">Showrooms</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#e5f7f6;">Schools</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#d2f1ee;">Fitness</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#c3ece9;">Studios</div></div>
       </div>
     </div>
   </section>
@@ -521,10 +538,10 @@
         </div>
         <div class="col-lg-7">
           <div class="row g-3">
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-code-slash fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Custom development</h3><p class="small mb-0" style="color: var(--muted);">Workflows, fields, and reports shaped around your team.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-shield-check fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Scalable &amp; secure</h3><p class="small mb-0" style="color: var(--muted);">Role-based access and architecture that can grow with branches.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-headset fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Dedicated support</h3><p class="small mb-0" style="color: var(--muted);">We stay after go-live for training, fixes, and new modules.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-tag fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Affordable pricing</h3><p class="small mb-0" style="color: var(--muted);">A practical build for clinics, dealers, institutes, and studios.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-code-slash fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Custom development</h3><p class="small mb-0" style="color: var(--muted);">Workflows, fields, and reports shaped around your team.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-shield-check fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Scalable &amp; secure</h3><p class="small mb-0" style="color: var(--muted);">Role-based access and architecture that can grow with branches.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-headset fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Dedicated support</h3><p class="small mb-0" style="color: var(--muted);">We stay after go-live for training, fixes, and new modules.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-tag fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Affordable pricing</h3><p class="small mb-0" style="color: var(--muted);">A practical build for clinics, dealers, institutes, and studios.</p></div></div>
           </div>
         </div>
       </div>
@@ -538,19 +555,19 @@
       <div class="row g-4">
         <div class="col-md-4">
           <div class="soft-card">
-            <h3 class="h5 fw-bold text-danger">Industry CRM builds</h3>
+            <h3 class="h5 fw-bold text-sea">Industry CRM builds</h3>
             <p class="mb-0" style="color: var(--muted);">New CRM modules for leads, follow-ups, WhatsApp, payments, and analytics when an off-the-shelf tool does not fit.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="soft-card">
-            <h3 class="h5 fw-bold text-danger">Web &amp; mobile apps</h3>
+            <h3 class="h5 fw-bold text-sea">Web &amp; mobile apps</h3>
             <p class="mb-0" style="color: var(--muted);">Full stack web platforms and Android, iOS, and cross-platform apps connected to the same business data.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="soft-card">
-            <h3 class="h5 fw-bold text-danger">LMS, HRMS &amp; automation</h3>
+            <h3 class="h5 fw-bold text-sea">LMS, HRMS &amp; automation</h3>
             <p class="mb-0" style="color: var(--muted);">Learning systems, HR operations, classroom monitoring, and process automation for institutes and companies.</p>
           </div>
         </div>
@@ -580,7 +597,7 @@
       <p class="mb-4" style="color: var(--muted);">
         Tell us the industry and we will walk through the CRM or app that fits.
       </p>
-      <p class="mb-1"><i class="bi bi-envelope text-danger"></i> <a class="link-light" href="mailto:contact@moltres-infotech.com">contact@moltres-infotech.com</a></p>
+      <p class="mb-1"><i class="bi bi-envelope text-sea"></i> <a class="link-sea" href="mailto:contact@moltres-infotech.com">contact@moltres-infotech.com</a></p>
       <p class="mb-4" style="color: var(--muted);">
         LVS Arcade, 71, Jubilee Enclave, Hitech City,<br>
         Madhapur, Hyderabad, Telangana 500081
@@ -589,7 +606,7 @@
     </div>
   </section>
 
-  <footer class="text-center py-4 small" style="color: rgba(255,255,255,0.5);">
+  <footer class="text-center py-4 small">
     © 2026 Moltres Innovations. All rights reserved.<br>
     Moltres Infotech is a technology brand of Moltres Innovations.
   </footer>
