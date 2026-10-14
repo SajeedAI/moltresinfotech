@@ -27,7 +27,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['3.7.56.84', 'www.moltres-infotech.com', 'moltres-infotech.com']
+ALLOWED_HOSTS = ['3.7.56.84', 'www.moltres-infotech.com', 'moltres-infotech.com', '127.0.0.1', 'localhost']
 
 # Application definition
 

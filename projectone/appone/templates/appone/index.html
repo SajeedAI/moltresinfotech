@@ -4,364 +4,594 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moltres Infotech | Software Engineering Company</title>
-  <!-- Favicon -->
+  <title>Moltres Infotech | Custom CRM & Software Applications</title>
+  <meta name="description" content="Moltres Infotech builds custom CRM software and business applications for hospitals, real estate, car showrooms, schools, gyms, and photography studios.">
   <link rel="icon" type="image/png" href="https://moltrescrm.s3.ap-south-1.amazonaws.com/moltresinfotech_favicon.png">
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
   <style>
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --red: #e11d2e;
+      --ink: #0e1014;
+      --muted: rgba(255, 255, 255, 0.68);
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      background: #121010;
+      background: var(--ink);
+      color: #fff;
+      font-family: "Segoe UI", system-ui, sans-serif;
       overflow-x: hidden;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
     }
 
-    /* Animated Grid */
     .ai-grid {
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      animation: moveGrid 30s linear infinite;
+        linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
     }
 
-    @keyframes moveGrid {
-      from {
-        background-position: 0 0;
-      }
-
-      to {
-        background-position: 200px 200px;
-      }
+    .navbar {
+      background: rgba(8, 8, 10, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    /* Glass Card */
-    .glass {
-      backdrop-filter: blur(25px);
+    .nav-link { letter-spacing: 0.08em; font-size: 0.78rem; }
+
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-weight: 650;
+      border: 0;
+      transition: 0.25s ease;
+    }
+
+    .btn-red:hover { background: #c41625; color: #fff; transform: translateY(-1px); }
+
+    .btn-ghost {
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 26px;
+      font-weight: 650;
+      background: transparent;
+    }
+
+    .btn-ghost:hover { background: #fff; color: #111; }
+
+    .kicker {
+      color: var(--red);
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 150px 0 90px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-pill {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 16px 18px;
     }
 
-    /* Buttons */
-    .btn-red {
-      background-color: #dc3545;
-      color: white;
-      border-radius: 50px;
-      padding: 12px 30px;
-      font-weight: 600;
-      transition: 0.3s ease;
+    .section { padding: 96px 0; }
+
+    .product-card {
+      background: #16181d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .btn-red:hover {
-      background-color: #bb2d3b;
-      transform: scale(1.05);
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .btn-outline-light-custom {
-      border: 2px solid white;
-      color: white;
-      border-radius: 50px;
-      padding: 12px 30px;
-      font-weight: 600;
-      transition: 0.3s ease;
+    .product-head {
+      padding: 22px 22px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .btn-outline-light-custom:hover {
-      background: white;
-      color: black;
+    .product-body { padding: 18px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+
+    .accent-bar { height: 4px; width: 100%; }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 12px;
     }
 
-    .section-padding {
-      padding: 120px 0;
+    .feature-list li {
+      font-size: 0.86rem;
+      color: rgba(255, 255, 255, 0.82);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .chip {
+      display: inline-block;
+      font-size: 0.72rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin: 0 6px 6px 0;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .soft-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 28px 24px;
+      height: 100%;
+    }
+
+    .industry-tile {
+      border-radius: 16px;
+      padding: 18px 16px;
+      height: 100%;
+      color: #111;
+      font-weight: 700;
+    }
+
+    footer { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+
+    @media (max-width: 576px) {
+      .feature-list { grid-template-columns: 1fr; }
+      .hero { padding-top: 120px; }
     }
   </style>
 </head>
 
 <body class="ai-grid">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
-
-      <a class="navbar-brand" href="#">
-        <img src="https://moltrescrm.s3.ap-south-1.amazonaws.com/Moltres_Infotech.png" alt="Moltres Logo"
-          style="width:200px;">
+      <a class="navbar-brand" href="#top">
+        <img src="https://moltrescrm.s3.ap-south-1.amazonaws.com/Moltres_Infotech.png" alt="Moltres Infotech" style="width:190px;">
       </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Open menu">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav me-4 text-uppercase small">
+        <ul class="navbar-nav me-3 text-uppercase">
+          <li class="nav-item"><a class="nav-link" href="#software">Software</a></li>
+          <li class="nav-item"><a class="nav-link" href="#industries">Industries</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li> 
-          <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="btn btn-red">Get Quote</a>
+        <a href="#contact" class="btn btn-red">Free Demo</a>
       </div>
     </div>
   </nav>
 
-  <div style="height:120px;"></div>
-
-  <!-- HERO -->
-  <section class="min-vh-100 d-flex align-items-center text-center">
+  <header id="top" class="hero">
     <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <p class="kicker mb-3">Software applications · Custom CRM</p>
+          <h1 class="mb-4">We build the software your business runs on.</h1>
+          <p class="lead mb-4" style="color: var(--muted); max-width: 640px;">
+            Moltres Infotech designs and develops custom CRM platforms and business applications
+            for hospitals, real estate, car showrooms, schools, gyms, and studios —
+            plus web and mobile products tailored to how you work.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a href="#software" class="btn btn-red btn-lg">Explore our software</a>
+            <a href="#contact" class="btn btn-ghost btn-lg">Book a free demo</a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="stat-pill h-100">
+                <div class="fs-3 fw-bold">7</div>
+                <div class="small" style="color: var(--muted);">Industry software products</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-pill h-100">
+                <div class="fs-3 fw-bold">CRM</div>
+                <div class="small" style="color: var(--muted);">Leads, follow-ups, sales</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-pill h-100">
+                <div class="fs-3 fw-bold">WhatsApp</div>
+                <div class="small" style="color: var(--muted);">Reminders and campaigns</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="stat-pill h-100">
+                <div class="fs-3 fw-bold">Custom</div>
+                <div class="small" style="color: var(--muted);">Built around your workflow</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-      <p class="text-danger text-uppercase fw-semibold mb-3" style="letter-spacing:3px;">
-        Full Stack & Mobile App Development Company
+  <section id="software" class="section pt-2">
+    <div class="container">
+      <div class="mb-5" style="max-width: 720px;">
+        <p class="kicker mb-2">Our software</p>
+        <h2 class="display-5 fw-bold mb-3">Custom applications for real businesses</h2>
+        <p style="color: var(--muted);">
+          Each product is a working system: enquiries, appointments, memberships, admissions,
+          bookings, and reports in one place. We also build it custom when your process is different.
+        </p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-lg-6" id="hospital-crm">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#e11d2e;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#ff6b78;">Hospitals &amp; clinics</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Custom CRM for Hospitals</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">Patients, enquiries, appointments, and marketing in one platform.</p>
+                </div>
+                <i class="bi bi-hospital fs-3" style="color:#ff6b78;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Patient enquiry capture</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Doctor appointment scheduling</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> WhatsApp reminders &amp; tips</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Email campaigns &amp; offers</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Calling and follow-up logs</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Doctors &amp; departments</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Patient history &amp; treatment</li>
+                <li><i class="bi bi-check2" style="color:#ff6b78;"></i> Revenue and enquiry reports</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Multi-specialty</span>
+                <span class="chip">Clinics</span>
+                <span class="chip">Dental</span>
+                <span class="chip">Maternity</span>
+                <span class="chip">Diagnostics</span>
+                <span class="chip">Eye &amp; veterinary</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6" id="real-estate-crm">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#e11d78;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#ff7eb3;">Real estate</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Real Estate CRM</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">Property leads, site visits, bookings, and sales in one system.</p>
+                </div>
+                <i class="bi bi-house-door fs-3" style="color:#ff7eb3;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Website, ads &amp; walk-in leads</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Facebook &amp; Google Ads leads</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Call logs and follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> WhatsApp brochures &amp; updates</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Email project newsletters</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Projects, units &amp; availability</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Site visits and bookings</li>
+                <li><i class="bi bi-check2" style="color:#ff7eb3;"></i> Source and sales reports</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Residential</span>
+                <span class="chip">Commercial</span>
+                <span class="chip">Plots &amp; land</span>
+                <span class="chip">Agencies</span>
+                <span class="chip">Brokers</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6" id="showroom-crm">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#0d9488;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#5eead4;">Automotive</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Car Showrooms</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">Leads, test drives, bookings, and delivery status together.</p>
+                </div>
+                <i class="bi bi-car-front fs-3" style="color:#5eead4;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Lead capture from ads &amp; walk-ins</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Test drive scheduling</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Vehicle bookings to sales</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Delivery status tracking</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> WhatsApp offers &amp; follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Call reminders</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Customer &amp; vehicle interest</li>
+                <li><i class="bi bi-check2" style="color:#5eead4;"></i> Sales and campaign reports</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Car dealers</span>
+                <span class="chip">Multi-brand</span>
+                <span class="chip">EV</span>
+                <span class="chip">Two-wheelers</span>
+                <span class="chip">Service centers</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6" id="education-crm">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#f97316;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#fdba74;">Education</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Schools &amp; Colleges</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">Admissions, fees, student records, and parent communication.</p>
+                </div>
+                <i class="bi bi-mortarboard fs-3" style="color:#fdba74;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Enquiry from web, ads &amp; walk-ins</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Admission status tracking</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Tasks and follow-up reminders</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> WhatsApp and email updates</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Courses, batches &amp; faculty</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Fee dues and receipts</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Student history &amp; documents</li>
+                <li><i class="bi bi-check2" style="color:#fdba74;"></i> Admission and fee reports</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Schools K–12</span>
+                <span class="chip">Colleges</span>
+                <span class="chip">Coaching</span>
+                <span class="chip">Hostels</span>
+                <span class="chip">Skill centers</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6" id="fitness-crm">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#7c3aed;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#c4b5fd;">Fitness</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Gyms &amp; Fitness Centers</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">Memberships, trials, classes, and member communication.</p>
+                </div>
+                <i class="bi bi-activity fs-3" style="color:#c4b5fd;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Lead and campaign tracking</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Trial session scheduling</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Plans, renewals &amp; expiry alerts</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> WhatsApp offers and tips</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Email promotions</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Call follow-ups</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Classes, trainers &amp; attendance</li>
+                <li><i class="bi bi-check2" style="color:#c4b5fd;"></i> Membership and growth reports</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Gyms</span>
+                <span class="chip">Yoga</span>
+                <span class="chip">CrossFit</span>
+                <span class="chip">Studios</span>
+                <span class="chip">Personal training</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6" id="gallery-app">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#16a34a;"></div>
+            <div class="product-head">
+              <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                  <div class="small fw-bold text-uppercase" style="color:#86efac;">Studios</div>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Video Gallery App</h3>
+                  <p class="mb-0 small" style="color: var(--muted);">A branded gallery where clients watch, download, and share photos and videos.</p>
+                </div>
+                <i class="bi bi-camera fs-3" style="color:#86efac;"></i>
+              </div>
+            </div>
+            <div class="product-body">
+              <ul class="feature-list">
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Video streaming</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> High-quality photo albums</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Secure cloud storage</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Easy sharing with family</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Mobile, tablet &amp; desktop</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Client downloads</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Private album login</li>
+                <li><i class="bi bi-check2" style="color:#86efac;"></i> Your logo, theme &amp; domain</li>
+              </ul>
+              <div class="mt-auto">
+                <span class="chip">Weddings</span>
+                <span class="chip">Maternity</span>
+                <span class="chip">Family</span>
+                <span class="chip">Events</span>
+                <span class="chip">Drone &amp; product</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-12" id="accesspro">
+          <article class="product-card">
+            <div class="accent-bar" style="background:#2563eb;"></div>
+            <div class="product-body">
+              <div class="row g-4 align-items-center">
+                <div class="col-lg-5">
+                  <div class="small fw-bold text-uppercase" style="color:#93c5fd;">Assessments</div>
+                  <h3 class="h4 fw-bold mb-2 mt-1">Moltres AccessPro</h3>
+                  <p style="color: var(--muted);">
+                    An online examination platform for institutes: timed tests, multiple-choice papers,
+                    and an in-browser coding compiler so students can run programs during the exam.
+                  </p>
+                </div>
+                <div class="col-lg-7">
+                  <ul class="feature-list">
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Free and live tests</li>
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Question navigation &amp; timer</li>
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Online compiler</li>
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Student and tenant access</li>
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Reports and dashboards</li>
+                    <li><i class="bi bi-check2" style="color:#93c5fd;"></i> Admin roles</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="industries" class="section" style="background: rgba(255,255,255,0.02);">
+    <div class="container">
+      <p class="kicker mb-2">Who it is for</p>
+      <h2 class="display-6 fw-bold mb-4">One engineering team, many industries</h2>
+      <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fecdd3;">Hospitals</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fbcfe8;">Real estate</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#99f6e4;">Showrooms</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#fed7aa;">Schools</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#ddd6fe;">Fitness</div></div>
+        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#bbf7d0;">Studios</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-5">
+          <p class="kicker mb-2">Why teams choose us</p>
+          <h2 class="display-6 fw-bold mb-3">Built for daily operations, then supported after launch.</h2>
+          <p style="color: var(--muted);">Every product includes custom development, a scalable and secure setup, dedicated support, and pricing that fits growing businesses.</p>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-code-slash fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Custom development</h3><p class="small mb-0" style="color: var(--muted);">Workflows, fields, and reports shaped around your team.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-shield-check fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Scalable &amp; secure</h3><p class="small mb-0" style="color: var(--muted);">Role-based access and architecture that can grow with branches.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-headset fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Dedicated support</h3><p class="small mb-0" style="color: var(--muted);">We stay after go-live for training, fixes, and new modules.</p></div></div>
+            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-tag fs-4 text-danger"></i><h3 class="h6 fw-bold mt-3">Affordable pricing</h3><p class="small mb-0" style="color: var(--muted);">A practical build for clinics, dealers, institutes, and studios.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section pt-0">
+    <div class="container">
+      <p class="kicker mb-2">Services</p>
+      <h2 class="display-6 fw-bold mb-4">Software engineering beyond the products</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="soft-card">
+            <h3 class="h5 fw-bold text-danger">Industry CRM builds</h3>
+            <p class="mb-0" style="color: var(--muted);">New CRM modules for leads, follow-ups, WhatsApp, payments, and analytics when an off-the-shelf tool does not fit.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card">
+            <h3 class="h5 fw-bold text-danger">Web &amp; mobile apps</h3>
+            <p class="mb-0" style="color: var(--muted);">Full stack web platforms and Android, iOS, and cross-platform apps connected to the same business data.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="soft-card">
+            <h3 class="h5 fw-bold text-danger">LMS, HRMS &amp; automation</h3>
+            <p class="mb-0" style="color: var(--muted);">Learning systems, HR operations, classroom monitoring, and process automation for institutes and companies.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section pt-0">
+    <div class="container">
+      <div class="soft-card" style="padding: 40px 32px;">
+        <p class="kicker mb-2">About</p>
+        <h2 class="display-6 fw-bold mb-3">Moltres Infotech</h2>
+        <p class="mb-0" style="color: var(--muted); max-width: 860px;">
+          Moltres Infotech is the software engineering brand of Moltres Innovations, based in Hyderabad.
+          We started as a web and mobile development company. We now also ship our own applications:
+          industry CRMs, a photography gallery, and AccessPro for online exams.
+          From the first workflow workshop to deployment and support, we stay as the technology partner.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section pt-0">
+    <div class="container text-center">
+      <p class="kicker mb-2">Contact</p>
+      <h2 class="display-5 fw-bold mb-3">Ask for a free demo</h2>
+      <p class="mb-4" style="color: var(--muted);">
+        Tell us the industry and we will walk through the CRM or app that fits.
       </p>
-
-      <h1 class="display-3 fw-bold mb-4">
-        We Build Scalable Web & Mobile <br>
-        Solutions That Power Businesses
-      </h1>
-
-      <p class="lead text-light opacity-75 mx-auto mb-5" style="max-width:800px;">
-        Moltres Infotech helps startups and enterprises transform ideas
-        into high-performance digital products using modern technologies,
-        clean architecture, and scalable engineering practices.
-      </p>
-
-      <div class="d-flex justify-content-center gap-3 flex-wrap">
-        <a href="#contact" class="btn btn-red btn-lg">Start Your Project</a>
-        <a href="#services" class="btn btn-outline-light-custom btn-lg">View Services</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about" class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-5">About Moltres Infotech</h2>
-
-      <p class="lead text-light opacity-75 mx-auto" style="max-width:900px;">
-        Moltres Infotech is a full stack software engineering company
-        delivering secure, scalable and high-performance digital solutions.
-
-        <br><br>
-
-        Headquartered in Hyderabad, we operate as the technology brand
-        of Moltres Innovations, serving startups and enterprises.
-
-        <br><br>
-
-        Our expertise includes enterprise web applications, mobile apps,
-        SaaS platforms, CRM systems, LMS solutions and intelligent automation systems.
-
-        <br><br>
-
-        From idea validation to deployment and long-term support —
-        we become your strategic technology partner.
-      </p>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-5">Our Core Services</h2>
-
-      <div class="row g-4">
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">Full Stack Development</h4>
-            <p class="text-light opacity-75">
-              Custom web applications using modern frameworks
-              and cloud infrastructure.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">Mobile App Development</h4>
-            <p class="text-light opacity-75">
-              Android, iOS, Flutter and cross-platform apps
-              built for performance and scalability.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">SaaS & Enterprise Systems</h4>
-            <p class="text-light opacity-75">
-              CRM, ERP, LMS and automation systems
-              for growing businesses.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS (Reordered Professionally) -->
-  <section id="products" class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-5">Our Products</h2>
-
-      <div class="row g-4">
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">LMS</h4>
-            <p class="text-light opacity-75">
-              Complete Learning Management System for
-              schools, colleges and training institutes.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">Smart Monitoring</h4>
-            <p class="text-light opacity-75">
-              Secure classroom monitoring platform
-              with real-time video access.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">AccessPro</h4>
-            <p class="text-light opacity-75">
-              Smart access control and security monitoring system.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">CRM</h4>
-            <p class="text-light opacity-75">
-              Lead tracking, sales automation,
-              campaign management and analytics.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="glass p-5 rounded-4 h-100">
-            <h4 class="text-danger fw-bold mb-3">HRMS</h4>
-            <p class="text-light opacity-75">
-              Attendance, payroll, recruitment,
-              leave management and HR analytics.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY CHOOSE US -->
-  <section class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-5">Why Choose Moltres Infotech?</h2>
-      <div class="row g-4">
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">Modern Tech Stack</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">Secure Architecture</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">On-Time Delivery</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">Long-Term Support</h6>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- DEVELOPMENT PROCESS -->
-  <section class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-5">Our Development Process</h2>
-      <div class="row g-4">
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">01. Requirement Analysis</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">02. Architecture Planning</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">03. Development & Testing</h6>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-6">
-          <div class="glass p-4 rounded">
-            <h6 class="text-danger fw-bold">04. Deployment & Support</h6>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CONTACT -->
-  <section id="contact" class="section-padding text-center">
-    <div class="container">
-      <h2 class="display-5 fw-bold mb-4">Let’s Build Your Next Digital Product</h2>
-
-      <p class="text-light opacity-75 mb-4">
-        📧 <span class="text-danger">contact@moltres-infotech.com</span>
-
-        <br><br>
-
-        📍 LVS Arcade, 71, Hitech, Madhapur Road,<br>
-        Jubilee Enclave, Hitech City,<br>
+      <p class="mb-1"><i class="bi bi-envelope text-danger"></i> <a class="link-light" href="mailto:contact@moltres-infotech.com">contact@moltres-infotech.com</a></p>
+      <p class="mb-4" style="color: var(--muted);">
+        LVS Arcade, 71, Jubilee Enclave, Hitech City,<br>
         Madhapur, Hyderabad, Telangana 500081
       </p>
-
-      <a href="mailto:contact@moltres-infotech.com" class="btn btn-red btn-lg">
-        Contact Us
-      </a>
+      <a href="mailto:contact@moltres-infotech.com?subject=Free%20demo%20request" class="btn btn-red btn-lg">Contact us for a free demo</a>
     </div>
   </section>
 
-  <footer class="text-center py-4 border-top border-secondary text-light opacity-50">
-    © 2026 Moltres Innovations. All Rights Reserved.
-    <br>
-    <small>Moltres Infotech is a technology brand of Moltres Innovations.</small>
+  <footer class="text-center py-4 small" style="color: rgba(255,255,255,0.5);">
+    © 2026 Moltres Innovations. All rights reserved.<br>
+    Moltres Infotech is a technology brand of Moltres Innovations.
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
