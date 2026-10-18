@@ -22,7 +22,7 @@
       --line: rgba(32, 178, 170, 0.22);
     }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
 
     h1, h2, h3, h4, h5, h6, .navbar-brand {
       font-family: "Manrope", "DM Sans", system-ui, sans-serif;
@@ -117,7 +117,7 @@
       box-shadow: 0 8px 24px rgba(32, 178, 170, 0.08);
     }
 
-    .section { padding: 96px 0; }
+    .section { padding: 42px 0; }
 
     .product-card {
       background: #ffffff;
@@ -304,8 +304,8 @@
     }
     .hero-highlights i { color: #159e96; font-size: .82rem; }
 
-    .hero-form-only { padding: 94px 0 24px; min-height: calc(100vh - 84px); }
-    .hero-form-intro { max-width: 780px; margin: 0 auto 28px; }
+    .hero-form-only { padding: 8px 0 4px; min-height: auto; }
+    .hero-form-intro { max-width: 780px; margin: 0 auto 14px; }
     .hero-form-intro h1 {
       font-size: clamp(2rem, 4vw, 3.15rem); line-height: 1.12;
       font-weight: 800; letter-spacing: -.045em; margin: 0 0 12px;
@@ -397,8 +397,8 @@
 
     @media (min-width: 992px) and (max-height: 850px) {
       .hero-form-only { padding-top: 88px; padding-bottom: 16px; }
-      .hero-form-card-wide { padding: 17px 24px; }
-      .form-card-heading { padding-bottom: 9px; margin-bottom: 10px; }
+      .hero-form-card-wide { padding: 12px 20px; }
+      .form-card-heading { padding-bottom: 6px; margin-bottom: 7px; }
       .form-card-heading h2 { font-size: 1.35rem; }
       .hero-form-card-wide .form-control { min-height: 38px; padding-top: 6px; padding-bottom: 6px; }
       .industry-options-wide .industry-option label { min-height: 38px; padding-top: 5px; padding-bottom: 5px; }
@@ -410,9 +410,9 @@
     }
 
     @media (max-width: 767.98px) {
-      .hero-form-only { padding: 96px 0 36px; }
+      .hero-form-only { padding: 8px 0 4px; min-height: auto; }
       .hero-form-intro { margin-bottom: 22px; }
-      .hero-form-card-wide { border-radius: 20px; padding: 20px 16px; }
+      .hero-form-card-wide { border-radius: 20px; padding: 14px 16px; }
       .industry-options-wide { grid-template-columns: repeat(2, minmax(0,1fr)); }
       .form-submit-row { align-items: stretch; flex-direction: column; }
       .form-submit-row .btn { width: 100%; }
@@ -618,31 +618,69 @@
       #industries .industry-tile-icon { width: 42px; height: 42px; border-radius: 12px; font-size: 1.45rem; }
     }
 
-</style>
+
+    /* Compact layout: reduce blank space around the enquiry form and between sections */
+    .hero-form-only { padding-top: 92px !important; padding-bottom: 12px !important; min-height: auto !important; }
+    .section { padding-top: 42px; padding-bottom: 42px; }
+    #software.section { padding-top: 8px !important; }
+    .hero-form-card-wide { padding-top: 18px; padding-bottom: 18px; background: #f0fbf9; border: 1px solid #ccefeb; box-shadow: 0 18px 48px rgba(32,178,170,.13); }
+    .form-card-heading { padding-bottom: 7px; margin-bottom: 8px; border-bottom-color: #ccefeb !important; }
+    .hero-form-card-wide .form-card-heading h2 { color: #178f88 !important; }
+    .hero-form-card-wide .form-heading-icon { background: #d9f5f1 !important; color: #178f88 !important; box-shadow: 0 6px 16px rgba(32,178,170,.12) !important; }
+    .hero-form-card-wide .form-control { background: #ffffff; border-color: #ccefeb; box-shadow: 0 4px 12px rgba(32,178,170,.06); }
+    .hero-form-card-wide .form-control:focus { border-color: #20b2aa; box-shadow: 0 0 0 .2rem rgba(32,178,170,.14); }
+    .hero-form-card-wide .industry-option label { background: #ffffff; border-color: #ccefeb; color: #315e5a; box-shadow: 0 4px 12px rgba(32,178,170,.07); }
+    .hero-form-card-wide .industry-option input:checked + label { background: #dff7f3; color: #147c75; border-color: #20b2aa; box-shadow: 0 0 0 2px rgba(32,178,170,.1); }
+    .hero-form-card-wide .industry-option input:checked + label .check-visual { background: #20b2aa; border-color: #20b2aa; }
+    .hero-form-card-wide .form-submit-row { border-top-color: #ccefeb; }
+    @media (max-width: 767.98px) {
+      .hero-form-only { padding-top: 84px !important; padding-bottom: 10px !important; }
+      .section { padding-top: 30px; padding-bottom: 30px; }
+      .hero-form-card-wide { padding: 12px 14px; }
+    }
+
+  
+    /* Soft pastel palette for the industry cards */
+    #industries .industry-tile,
+    #industries .industry-tile:hover {
+      color: #24413e !important;
+      border: 1px solid rgba(55, 110, 100, .12) !important;
+      box-shadow: 0 10px 24px rgba(37, 80, 75, .08) !important;
+      transform: none !important;
+    }
+    #industries .industry-tile::before,
+    #industries .industry-tile::after {
+      content: none !important;
+      display: none !important;
+    }
+    #industries .industry-tile:nth-child(1) { background: #d9f5ef !important; }
+    #industries .industry-tile:nth-child(2) { background: #ffe2df !important; }
+    #industries .industry-tile:nth-child(3) { background: #fff3c9 !important; }
+    #industries .industry-tile:nth-child(4) { background: #ffe5e1 !important; }
+    #industries .industry-tile:nth-child(5) { background: #dff5ed !important; }
+    #industries .industry-tile:nth-child(6) { background: #fff0cc !important; }
+    #industries .industry-tile-icon {
+      color: #287f76 !important;
+      background: rgba(255,255,255,.72) !important;
+      border: 1px solid rgba(40,127,118,.16) !important;
+      text-shadow: none !important;
+      box-shadow: 0 4px 12px rgba(40,127,118,.07) !important;
+    }
+    #industries .industry-tile span,
+    #industries .industry-tile .industry-title { color: #24413e !important; }
+    #industries .industry-tile:hover .industry-tile-icon {
+      transform: none !important;
+      background: rgba(255,255,255,.82) !important;
+    }
+
+  </style>
 </head>
 
 <body class="ai-grid">
 
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+  <nav class="navbar fixed-top navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="#top">
-        <img class="brand-logo" src="https://moltrescrm.s3.ap-south-1.amazonaws.com/Moltres_Infotech.png" alt="Moltres Infotech">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Open menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav me-3 text-uppercase">
-          <li class="nav-item"><a class="nav-link" href="#software">Software</a></li>
-          <li class="nav-item"><a class="nav-link" href="#marketing">Marketing</a></li>
-          <li class="nav-item"><a class="nav-link" href="#stack">Technology</a></li>
-          <li class="nav-item"><a class="nav-link" href="#industries">Industries</a></li>
-          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-        <a href="#contact" class="btn btn-red">Free Demo</a>
-      </div>
+      <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Moltres+Infotech+Logo+on+White.png" alt="Moltres Infotech">
     </div>
   </nav>
 
@@ -725,7 +763,7 @@
     </div>
   </header>
 
-  <section id="software" class="section pt-2">
+  <section id="software" class="section pt-0" style="padding-top: 8px;">
     <div class="container">
       <div class="mb-5" style="max-width: 720px;">
         <p class="kicker mb-2" section-kicker>Our software</p>
