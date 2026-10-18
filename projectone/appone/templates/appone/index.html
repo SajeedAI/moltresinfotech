@@ -691,7 +691,7 @@
     /* Fixed scrolling announcement bar */
     .development-marquee {
       position: fixed;
-      top: 0;
+      top: 68px;
       left: 0;
       right: 0;
       z-index: 1040;
@@ -727,13 +727,11 @@
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
-    /* Notice stays fixed above the fixed logo header */
-    .navbar.fixed-top { top: 34px; }
+    /* Keep the form and page content below the fixed logo header + notice */
     body { padding-top: 102px; }
     .hero-form-only { padding-top: 10px !important; }
     @media (max-width: 575.98px) {
-      .development-marquee { top: 0; height: 32px; font-size: 11px; }
-      .navbar.fixed-top { top: 32px; }
+      .development-marquee { top: 60px; height: 32px; font-size: 11px; }
       body { padding-top: 92px; }
     }
     @media (prefers-reduced-motion: reduce) {
