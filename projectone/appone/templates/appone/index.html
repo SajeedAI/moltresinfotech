@@ -686,10 +686,79 @@
       border-color: #20b2aa;
       box-shadow: 0 0 0 .2rem rgba(32,178,170,.14);
     }
-\n  </style>
+\n  
+
+    /* Fixed scrolling announcement bar */
+    .development-marquee {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      z-index: 1040;
+      overflow: hidden;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      color: #145b55;
+      background: linear-gradient(90deg, #dff8f3, #effcf9, #d9f4ee);
+      border-top: 1px solid #c3e9e1;
+      border-bottom: 1px solid #b8e4db;
+      box-shadow: 0 4px 12px rgba(20, 112, 102, .06);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .035em;
+      white-space: nowrap;
+    }
+    .development-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      width: max-content;
+      padding-left: 100%;
+      animation: development-marquee-scroll 28s linear infinite;
+    }
+    .development-marquee-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .development-marquee-track i { color: #168f83; }
+    @keyframes development-marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    /* Keep the form and page content below the fixed logo header + notice */
+    body { padding-top: 102px; }
+    .hero-form-only { padding-top: 10px !important; }
+    @media (max-width: 575.98px) {
+      .development-marquee { top: 60px; height: 32px; font-size: 11px; }
+      body { padding-top: 92px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .development-marquee-track { animation: none; padding-left: 12px; }
+      .development-marquee-track span:nth-child(n+5) { display: none; }
+    }
+
+</style>
 </head>
 
 <body class="ai-grid">
+
+  <!-- Fixed scrolling development notice -->
+  <div class="development-marquee" role="status" aria-label="Website under development">
+    <div class="development-marquee-track">
+      <span><i class="bi bi-tools" aria-hidden="true"></i> WEBSITE UNDER DEVELOPMENT</span>
+      <span aria-hidden="true">✦</span>
+      <span>We’re building something better. Some features may change.</span>
+      <span aria-hidden="true">✦</span>
+      <span><i class="bi bi-tools" aria-hidden="true"></i> WEBSITE UNDER DEVELOPMENT</span>
+      <span aria-hidden="true">✦</span>
+      <span>We’re building something better. Some features may change.</span>
+      <span aria-hidden="true">✦</span>
+    </div>
+  </div>
+
+
 
   <nav class="navbar fixed-top navbar-light">
     <div class="container">
