@@ -673,14 +673,27 @@
       background: rgba(255,255,255,.82) !important;
     }
 
-  </style>
+  
+    .hero-form-card-wide input[type="date"],
+    .hero-form-card-wide select.form-control {
+      color: #315e5a;
+      border-color: #ccefeb;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    .hero-form-card-wide input[type="date"]:focus,
+    .hero-form-card-wide select.form-control:focus {
+      border-color: #20b2aa;
+      box-shadow: 0 0 0 .2rem rgba(32,178,170,.14);
+    }
+\n  </style>
 </head>
 
 <body class="ai-grid">
 
   <nav class="navbar fixed-top navbar-light">
     <div class="container">
-      <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Moltres+Infotech+Logo+on+White.png" alt="Moltres Infotech">
+      <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Sea-Green+Moltres+Infotech+Logo.png" alt="Moltres Infotech">
     </div>
   </nav>
 
@@ -689,7 +702,7 @@
       <div class="hero-form-card hero-form-card-wide" id="hero-enquiry">
         <div class="form-card-heading">
           <div>
-            <p class="form-eyebrow mb-1">Free consultation</p>
+            <p class="form-eyebrow mb-1">Book demo</p>
             <h2 class="mb-1">WELCOME!</h2>
             <p class="small mb-0" style="color:var(--muted)">Tell us what you need. We’ll help bring your idea to life!</p>
           </div>
@@ -717,6 +730,26 @@
             <div class="col-md-6">
               <label for="leadBusiness" class="form-label small fw-semibold">Business name</label>
               <input class="form-control" id="leadBusiness" name="business" type="text" placeholder="Company or business name" autocomplete="organization">
+            </div>
+            <div class="col-md-6">
+              <label for="demoDate" class="form-label small fw-semibold">Preferred demo date *</label>
+              <input class="form-control" id="demoDate" name="demo_date" type="date" required>
+            </div>
+            <div class="col-md-6">
+              <label for="demoTime" class="form-label small fw-semibold">Preferred demo time *</label>
+              <select class="form-control" id="demoTime" name="demo_time" required>
+                <option value="">Choose a time (IST)</option>
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">01:00 PM</option>
+                <option value="14:00">02:00 PM</option>
+                <option value="15:00">03:00 PM</option>
+                <option value="16:00">04:00 PM</option>
+                <option value="17:00">05:00 PM</option>
+                <option value="18:00">06:00 PM</option>
+              </select>
             </div>
             <div class="col-12">
               <fieldset class="border-0 p-0 m-0">
@@ -1236,7 +1269,19 @@
       }
     });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    (() => {
+      const dateField = document.getElementById('demoDate');
+      if (dateField) {
+        const today = new Date();
+        const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+          .toISOString().split('T')[0];
+        dateField.min = localToday;
+      }
+    })();
+  </script>
+\n  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
