@@ -692,8 +692,11 @@
     .development-marquee {
       position: fixed;
       top: 68px;
-      left: 0;
-      right: 0;
+      left: 50%;
+      right: auto;
+      width: min(360px, calc(100% - 24px));
+      transform: translateX(-50%);
+      border-radius: 0 0 12px 12px;
       z-index: 1040;
       overflow: hidden;
       height: 34px;
@@ -1212,11 +1215,7 @@
     <div class="development-marquee-track">
       <span><i class="bi bi-tools" aria-hidden="true"></i> WEBSITE UNDER DEVELOPMENT</span>
       <span aria-hidden="true">✦</span>
-      <span>We’re building something better. Some features may change.</span>
-      <span aria-hidden="true">✦</span>
       <span><i class="bi bi-tools" aria-hidden="true"></i> WEBSITE UNDER DEVELOPMENT</span>
-      <span aria-hidden="true">✦</span>
-      <span>We’re building something better. Some features may change.</span>
       <span aria-hidden="true">✦</span>
     </div>
   </div>
