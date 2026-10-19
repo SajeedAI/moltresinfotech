@@ -1218,7 +1218,710 @@
       box-shadow: none !important;
     }
 
+
+
+    /* Blue + light sea-green linear gradient for the industry folder cards */
+    #industries .folder-back {
+      background: linear-gradient(135deg, #0879ed 0%, #168fba 48%, #20b2aa 100%) !important;
+      box-shadow: 0 20px 28px rgba(20, 126, 139, .22) !important;
+    }
+    #industries .folder-back::before {
+      background: linear-gradient(115deg, #0868c9 0%, #159f9a 100%) !important;
+    }
+    #industries .folder-front {
+      background: linear-gradient(135deg, #1687f5 0%, #087bc3 48%, #20b2aa 100%) !important;
+      border-color: rgba(198, 255, 246, .55) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 4px 0 rgba(13,132,157,.2) !important;
+    }
+    #industries .folder-front::after {
+      background: linear-gradient(115deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,.04) 52%, rgba(182,255,236,.18) 100%) !important;
+    }
+    #industries .folder-paper {
+      background: linear-gradient(135deg, #8ddcf2 0%, #67d7c4 55%, #b8f4df 100%) !important;
+      box-shadow: 0 8px 16px rgba(13, 104, 124, .2) !important;
+    }
+    #industries .folder-file.f1 {
+      background: linear-gradient(135deg, #0f9eaa, #20b2aa 65%, #74e2c4) !important;
+    }
+    #industries .folder-file.f2 {
+      background: linear-gradient(135deg, #1687e8, #20b2aa) !important;
+    }
+    #industries .folder-file.f3 {
+      background: linear-gradient(135deg, #b8f4e4, #74d9e8 55%, #72b8ff) !important;
+      color: #164b5b !important;
+    }
+    #industries .folder-count {
+      background: linear-gradient(120deg, #1687e8, #20b2aa) !important;
+      box-shadow: 0 8px 15px rgba(12, 115, 135, .2) !important;
+    }
+    #industries .folder-industry-name { color: #24413e !important; }
+    #industries .folder-hint { color: #168fba !important; }
+
+
+    /* Animated pale sea-green geometric background inspired by the supplied video */
+    #industries {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e8f8f4 0%, #dff3ed 38%, #e5f6f3 68%, #d7eee8 100%) !important;
+      background-size: 180% 180% !important;
+      animation: industryMintDrift 18s ease-in-out infinite alternate;
+    }
+    #industries::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: .58;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='130' viewBox='0 0 150 130'%3E%3Cg fill='none' stroke='%2338a99a' stroke-width='1.1' stroke-opacity='.28'%3E%3Cpath d='M37 1 73 22 73 64 37 85 1 64 1 22Z'/%3E%3Cpath d='M112 1 148 22 148 64 112 85 76 64 76 22Z'/%3E%3Cpath d='M75 66 111 87 111 129 75 150 39 129 39 87Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 150px 130px;
+      background-position: 0 0;
+      animation: industryPatternDrift 36s linear infinite;
+    }
+    #industries::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(ellipse at 15% 10%, rgba(255,255,255,.42), transparent 44%), radial-gradient(ellipse at 88% 85%, rgba(32,178,170,.20), transparent 42%);
+    }
+    #industries > .container { position: relative; z-index: 1; }
+    @keyframes industryMintDrift {
+      0% { background-position: 0% 45%; }
+      100% { background-position: 100% 55%; }
+    }
+    @keyframes industryPatternDrift {
+      from { background-position: 0 0; }
+      to { background-position: 150px 130px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #industries, #industries::before { animation: none !important; }
+    }
+
+
+
+    /* Software development workflow showcase inspired by the supplied reference video */
+    #dev-workflow {
+      position: relative;
+      overflow: hidden;
+      padding: 58px 0 64px;
+      background: radial-gradient(circle at 12% 10%, rgba(185,246,235,.72), transparent 38%),
+                  linear-gradient(135deg, #e8fbf8 0%, #f3fffd 52%, #dcf8f3 100%);
+      isolation: isolate;
+    }
+    #dev-workflow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .28;
+      background-image: linear-gradient(rgba(32,178,170,.14) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(32,178,170,.14) 1px, transparent 1px);
+      background-size: 42px 42px;
+      animation: devGridDrift 30s linear infinite;
+      pointer-events: none;
+    }
+    #dev-workflow .dev-kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px;
+      color: #147c75; background: rgba(255,255,255,.64);
+      border: 1px solid rgba(32,178,170,.28);
+      font-size: .76rem; font-weight: 800; letter-spacing: .04em;
+    }
+    #dev-workflow .dev-section-title {
+      margin: 15px auto 28px; max-width: 900px;
+      color: #102b2a; text-align: center;
+      font-family: "Manrope", "DM Sans", sans-serif;
+      font-size: clamp(1.9rem, 3.3vw, 3rem);
+      line-height: 1.12; font-weight: 800; letter-spacing: -.045em;
+    }
+    #dev-workflow .dev-showcase {
+      max-width: 1120px; margin: 0 auto;
+      padding: 18px; border-radius: 26px;
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(32,178,170,.3);
+      box-shadow: 0 22px 60px rgba(20,105,97,.10), inset 0 1px 0 #fff;
+      backdrop-filter: blur(10px);
+    }
+    #dev-workflow .dev-showcase-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap; padding: 2px 2px 15px;
+      color: #1d3434; font-weight: 800;
+    }
+    #dev-workflow .dev-showcase-brand { display: flex; align-items: center; gap: 9px; }
+    #dev-workflow .dev-showcase-brand i { color: #168f88; font-size: 1.2rem; }
+    #dev-workflow .dev-live {
+      display: inline-flex; align-items: center; gap: 7px;
+      border: 1px solid #a9e7d8; border-radius: 999px;
+      padding: 7px 11px; color: #137a68; background: #e9fbf4;
+      font-size: .72rem; font-weight: 800;
+    }
+    #dev-workflow .dev-live::before { content:""; width:7px; height:7px; border-radius:50%; background:#19b69a; box-shadow:0 0 0 4px rgba(25,182,154,.12); }
+    #dev-workflow .dev-canvas {
+      position: relative; min-height: 300px; overflow: hidden;
+      border: 1px solid #ccefeb; border-radius: 19px;
+      background-color: #f1fffc;
+      background-image: linear-gradient(rgba(32,178,170,.075) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(32,178,170,.075) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    #dev-workflow .dev-avatar-stack { position:absolute; top:18px; right:20px; display:flex; }
+    #dev-workflow .dev-avatar { display:grid; place-items:center; width:34px; height:34px; margin-left:-7px; border:2px solid #fff; border-radius:50%; background:#d9f7f1; color:#237b73; font-size:.62rem; font-weight:900; }
+    #dev-workflow .dev-message {
+      position: absolute; width: min(34%, 330px); padding: 15px 16px;
+      border-radius: 17px; background: rgba(255,255,255,.97);
+      border: 1px solid #bfe9e4; box-shadow: 0 12px 26px rgba(26,111,104,.09);
+      color: #5b6d6c; font-size: .84rem; line-height: 1.5;
+      animation: devMessageFloat 5.5s ease-in-out infinite;
+    }
+    #dev-workflow .dev-message strong { display:block; margin-bottom:5px; color:#203b39; font-size:.84rem; }
+    #dev-workflow .dev-message i { margin-right:6px; color:#168f88; }
+    #dev-workflow .dev-message.req { left:5%; top:18%; }
+    #dev-workflow .dev-message.build { right:6%; top:43%; animation-delay:-1.8s; }
+    #dev-workflow .dev-message.done { left:17%; bottom:9%; width:min(28%,280px); background:#e9fbf8; animation-delay:-3.4s; }
+    #dev-workflow .dev-pointer { position:absolute; color:#56b8ad; font-size:1.15rem; opacity:.72; animation: devPointerFloat 4s ease-in-out infinite; }
+    #dev-workflow .dev-pointer.p1 { left:48%; top:34%; }
+    #dev-workflow .dev-pointer.p2 { right:29%; bottom:17%; animation-delay:-2s; }
+    #dev-workflow .dev-capabilities { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    #dev-workflow .dev-capability {
+      display:flex; justify-content:center; align-items:center; gap:8px;
+      min-height:43px; padding:10px 12px; border-radius:13px;
+      border:1px solid #c6eae6; background:linear-gradient(120deg,#effdfa,#e7f9f6);
+      color:#16766f; text-align:center; font-size:.79rem; font-weight:800;
+    }
+    #dev-workflow .dev-capability i { font-size:.92rem; }
+    @keyframes devGridDrift { from { transform:translateY(0); } to { transform:translateY(42px); } }
+    @keyframes devMessageFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-5px); } }
+    @keyframes devPointerFloat { 0%,100% { transform:translate(0,0); } 50% { transform:translate(7px,-6px); } }
+    @media(max-width:767.98px) {
+      #dev-workflow { padding:42px 0; }
+      #dev-workflow .dev-showcase { padding:11px; border-radius:20px; }
+      #dev-workflow .dev-canvas { min-height:330px; }
+      #dev-workflow .dev-message { width:75%; padding:12px; font-size:.78rem; }
+      #dev-workflow .dev-message.req { left:4%; top:17%; }
+      #dev-workflow .dev-message.build { right:4%; top:43%; }
+      #dev-workflow .dev-message.done { left:8%; bottom:7%; width:68%; }
+      #dev-workflow .dev-avatar-stack { top:10px; right:10px; }
+      #dev-workflow .dev-capabilities { grid-template-columns:1fr; gap:7px; }
+      #dev-workflow .dev-capability { justify-content:flex-start; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      #dev-workflow::before, #dev-workflow .dev-message, #dev-workflow .dev-pointer { animation:none!important; }
+    }
+
+
+
+    /* Software, cloud and AI capability showcase */
+    #dev-workflow { padding: 66px 0 62px; background: linear-gradient(135deg,#e8f8f4 0%,#f7fffd 48%,#e3f7f2 100%); }
+    #dev-workflow::before { opacity:.20; background-size:38px 38px; }
+    #dev-workflow .dev-intro { max-width: 940px; margin: 0 auto 34px; }
+    #dev-workflow .dev-section-title { max-width: 920px; margin: 15px auto 12px; }
+    #dev-workflow .dev-section-subtitle { max-width: 720px; margin: 0 auto; color:#5c7471; font-size:1.03rem; line-height:1.7; }
+    #dev-workflow .dev-solution-grid { display:grid; grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr); align-items:stretch; gap:12px; }
+    #dev-workflow .dev-solution-card { min-width:0; padding:22px; border:1px solid rgba(32,178,170,.24); border-radius:24px; background:rgba(255,255,255,.88); box-shadow:0 16px 38px rgba(24,104,97,.08),inset 0 1px 0 #fff; position:relative; overflow:hidden; transition:transform .25s ease,box-shadow .25s ease; }
+    #dev-workflow .dev-solution-card:hover { transform:translateY(-4px); box-shadow:0 22px 46px rgba(24,104,97,.13); }
+    #dev-workflow .dev-card-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:16px; }
+    #dev-workflow .dev-solution-icon { display:grid; place-items:center; width:48px; height:48px; border-radius:15px; color:#fff; font-size:1.35rem; background:linear-gradient(135deg,#1687e8,#20b2aa); box-shadow:0 8px 18px rgba(22,135,232,.18); }
+    #dev-workflow .dev-card-tag { color:#168f88; font-size:.68rem; font-weight:900; letter-spacing:.12em; }
+    #dev-workflow .dev-solution-card h3 { color:#173b38; font-size:1.18rem; font-weight:800; letter-spacing:-.025em; margin:0 0 8px; }
+    #dev-workflow .dev-solution-card p { color:#647a77; font-size:.88rem; line-height:1.6; min-height:68px; margin:0 0 14px; }
+    #dev-workflow .dev-solution-card ul { list-style:none; padding:0; margin:17px 0 0; display:grid; gap:9px; }
+    #dev-workflow .dev-solution-card li { display:flex; gap:8px; color:#42615d; font-size:.79rem; line-height:1.45; }
+    #dev-workflow .dev-solution-card li i { color:#17a58f; flex:0 0 auto; margin-top:2px; }
+    #dev-workflow .dev-flow-connector { display:grid; place-items:center; color:#159e96; }
+    #dev-workflow .dev-flow-connector span { display:grid; place-items:center; width:30px; height:30px; border:1px solid #a7e2d9; border-radius:50%; background:#effdfa; animation:devConnectorPulse 2.4s ease-in-out infinite; }
+    #dev-workflow .dev-mini-window { height:132px; position:relative; overflow:hidden; border:1px solid #cce7e5; border-radius:13px; background:linear-gradient(135deg,#f4fbff,#e9fbf7); padding:0 12px 12px; }
+    #dev-workflow .dev-window-bar { height:29px; margin:0 -12px 12px; padding:0 10px; display:flex; align-items:center; gap:4px; background:#e5f1f3; border-bottom:1px solid #d4e8e8; }
+    #dev-workflow .dev-window-bar i { width:6px; height:6px; border-radius:50%; background:#67c9b8; }
+    #dev-workflow .dev-window-bar span { margin-left:8px; color:#73918d; font-size:.62rem; }
+    #dev-workflow .dev-code-lines { width:52%; display:grid; gap:7px; padding-top:2px; }
+    #dev-workflow .dev-code-lines b { display:block; height:5px; border-radius:5px; background:linear-gradient(90deg,#3a9bdc,#8edfd0); animation:devLineGlow 3s ease-in-out infinite alternate; }
+    #dev-workflow .dev-code-lines b:nth-child(2) { width:76%; margin-left:10px; animation-delay:-.7s; }
+    #dev-workflow .dev-code-lines b:nth-child(3) { width:90%; margin-left:5px; animation-delay:-1.2s; }
+    #dev-workflow .dev-code-lines b:nth-child(4) { width:65%; margin-left:14px; animation-delay:-.4s; }
+    #dev-workflow .dev-code-lines b:nth-child(5) { width:82%; animation-delay:-1.7s; }
+    #dev-workflow .dev-ui-preview { position:absolute; right:12px; top:47px; width:34%; display:grid; gap:6px; }
+    #dev-workflow .dev-ui-preview span { height:15px; border-radius:4px; border:1px solid #c0e9e3; background:linear-gradient(90deg,#fff,#d9f5ef); }
+    #dev-workflow .dev-ui-preview span:nth-child(2) { width:80%; }
+    #dev-workflow .dev-cloud-visual,#dev-workflow .dev-ai-visual { height:132px; position:relative; overflow:hidden; border:1px solid #cce7e5; border-radius:13px; background:radial-gradient(circle at 50% 48%,#d7f8f0 0%,#f1fbff 52%,#edf9f5 100%); }
+    #dev-workflow .dev-cloud-orbit { position:absolute; left:50%; top:50%; border:1px dashed rgba(22,135,232,.45); border-radius:50%; transform:translate(-50%,-50%); }
+    #dev-workflow .orbit-one { width:130px; height:75px; animation:devOrbit 12s linear infinite; }
+    #dev-workflow .orbit-two { width:175px; height:100px; border-color:rgba(32,178,170,.45); animation:devOrbit 16s linear infinite reverse; }
+    #dev-workflow .dev-cloud-core { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:58px; height:48px; border-radius:16px; color:#fff; font-size:1.6rem; background:linear-gradient(135deg,#1687e8,#20b2aa); box-shadow:0 9px 20px rgba(22,135,232,.22); }
+    #dev-workflow .dev-cloud-node { position:absolute; display:grid; place-items:center; width:29px; height:29px; border:1px solid #b7e8e0; border-radius:10px; background:#fff; color:#168f88; box-shadow:0 5px 12px rgba(32,178,170,.12); }
+    #dev-workflow .node-one { top:17px; left:19%; }.node-two { right:17%; top:24px; }.node-three { bottom:12px; left:48%; }
+    #dev-workflow .dev-ai-visual { background:radial-gradient(circle at 50% 52%,#d7f8f0 0%,#effbff 46%,#f8f5ff 100%); color:#159b91; }
+    #dev-workflow .dev-ai-visual svg { position:absolute; inset:0; width:100%; height:100%; opacity:.5; }
+    #dev-workflow .dev-ai-glow { position:absolute; width:100px; height:100px; left:calc(50% - 50px); top:16px; border-radius:50%; background:rgba(32,178,170,.18); filter:blur(15px); animation:devAIGlow 3s ease-in-out infinite alternate; }
+    #dev-workflow .dev-ai-core { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center; gap:6px; width:78px; height:48px; border:1px solid #a8e5dc; border-radius:15px; background:rgba(255,255,255,.94); box-shadow:0 8px 18px rgba(32,178,170,.15); font-weight:900; }
+    #dev-workflow .dev-ai-core i { font-size:1.1rem; }
+    #dev-workflow .dev-ai-chip { position:absolute; z-index:1; padding:4px 7px; border:1px solid #c4e9e3; border-radius:7px; background:rgba(255,255,255,.92); color:#42716b; font-size:.61rem; font-weight:800; }
+    #dev-workflow .chip-a { top:16px; left:12px; }.dev-ai-chip.chip-b { top:17px; right:12px; }.dev-ai-chip.chip-c { bottom:12px; right:15px; }
+    #dev-workflow .dev-bottom-note { display:flex; align-items:center; justify-content:center; gap:9px; margin:23px auto 0; color:#47716b; font-size:.84rem; font-weight:700; text-align:center; }
+    #dev-workflow .dev-note-pulse { width:8px; height:8px; border-radius:50%; background:#20b2aa; box-shadow:0 0 0 5px rgba(32,178,170,.12); }
+    @keyframes devConnectorPulse { 0%,100% { box-shadow:0 0 0 0 rgba(32,178,170,.05); } 50% { box-shadow:0 0 0 7px rgba(32,178,170,.12); } }
+    @keyframes devLineGlow { from { opacity:.55; transform:scaleX(.88); transform-origin:left; } to { opacity:1; transform:scaleX(1); transform-origin:left; } }
+    @keyframes devOrbit { to { transform:translate(-50%,-50%) rotate(360deg); } }
+    @keyframes devAIGlow { from { opacity:.55; transform:scale(.9); } to { opacity:1; transform:scale(1.12); } }
+    @media(max-width:991.98px) { #dev-workflow .dev-solution-grid { grid-template-columns:1fr; gap:12px; } #dev-workflow .dev-flow-connector { height:20px; transform:rotate(90deg); } #dev-workflow .dev-solution-card p { min-height:0; } }
+    @media(max-width:575.98px) { #dev-workflow { padding:44px 0; } #dev-workflow .dev-solution-card { padding:17px; border-radius:19px; } #dev-workflow .dev-section-subtitle { font-size:.93rem; } }
+    @media(prefers-reduced-motion:reduce) { #dev-workflow .dev-solution-card,#dev-workflow .dev-cloud-orbit,#dev-workflow .dev-ai-glow,#dev-workflow .dev-code-lines b,#dev-workflow .dev-flow-connector span { animation:none!important; transition:none!important; } }
+
+
+    /* VISUALIZATION VISIBILITY FIX: clearer software, cloud and AI diagrams */
+    #dev-workflow .dev-mini-window,
+    #dev-workflow .dev-cloud-visual,
+    #dev-workflow .dev-ai-visual {
+      height: 170px !important;
+      min-height: 170px;
+      border: 1.5px solid #a8ded6 !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.95), 0 8px 22px rgba(22,135,160,.08);
+    }
+    #dev-workflow .dev-mini-window {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(32,178,170,.22), transparent 38%),
+        linear-gradient(135deg, #edfaff 0%, #e2faf3 100%) !important;
+    }
+    #dev-workflow .dev-window-bar {
+      background: linear-gradient(90deg, #d6f1ee, #dcefff) !important;
+    }
+    #dev-workflow .dev-code-lines b {
+      height: 7px !important;
+      background: linear-gradient(90deg, #1687e8, #20b2aa) !important;
+      box-shadow: 0 0 9px rgba(22,135,232,.18);
+    }
+    #dev-workflow .dev-ui-preview span {
+      height: 19px !important;
+      background: linear-gradient(100deg, #ffffff, #b9eee3) !important;
+      border-color: #8bd9ce !important;
+      box-shadow: 0 3px 8px rgba(32,178,170,.09);
+    }
+    #dev-workflow .dev-cloud-visual {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(32,178,170,.27), transparent 35%),
+        linear-gradient(135deg, #eaf7ff 0%, #d9f8ef 100%) !important;
+    }
+    #dev-workflow .dev-cloud-orbit {
+      border-width: 2px !important;
+      border-style: dashed !important;
+      border-color: rgba(22,135,232,.68) !important;
+      box-shadow: 0 0 12px rgba(32,178,170,.12);
+    }
+    #dev-workflow .orbit-two {
+      border-color: rgba(20,160,143,.72) !important;
+    }
+    #dev-workflow .dev-cloud-core {
+      width: 72px !important;
+      height: 64px !important;
+      font-size: 2rem !important;
+      border: 2px solid rgba(255,255,255,.9);
+      box-shadow: 0 10px 25px rgba(22,135,232,.28), 0 0 0 8px rgba(32,178,170,.10) !important;
+    }
+    #dev-workflow .dev-cloud-node {
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 1rem;
+      border: 1.5px solid #83d8cc !important;
+      color: #087f79 !important;
+      box-shadow: 0 6px 15px rgba(32,178,170,.18) !important;
+    }
+    #dev-workflow .dev-ai-visual {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(32,178,170,.28) 0%, transparent 36%),
+        linear-gradient(135deg, #eaf7ff 0%, #e0faf2 52%, #f1edff 100%) !important;
+      border-color: #9bded4 !important;
+    }
+    #dev-workflow .dev-ai-visual svg {
+      opacity: .95 !important;
+      overflow: visible;
+    }
+    #dev-workflow .dev-ai-visual svg path {
+      stroke-width: 2.8 !important;
+      stroke: #22a9a0 !important;
+      stroke-dasharray: 7 6 !important;
+      animation: devVisiblePath 7s linear infinite;
+      filter: drop-shadow(0 1px 2px rgba(32,178,170,.2));
+    }
+    @keyframes devVisiblePath {
+      to { stroke-dashoffset: -78; }
+    }
+    #dev-workflow .dev-ai-glow {
+      width: 145px !important;
+      height: 145px !important;
+      left: calc(50% - 72px) !important;
+      top: 12px !important;
+      background: rgba(32,178,170,.25) !important;
+      filter: blur(20px) !important;
+    }
+    #dev-workflow .dev-ai-core {
+      width: 104px !important;
+      height: 66px !important;
+      border: 2px solid #8cddd2 !important;
+      border-radius: 20px !important;
+      color: #078f87 !important;
+      font-size: 1.3rem !important;
+      box-shadow: 0 12px 28px rgba(32,178,170,.22), 0 0 0 7px rgba(255,255,255,.45) !important;
+      z-index: 2;
+    }
+    #dev-workflow .dev-ai-core i { font-size: 1.45rem !important; }
+    #dev-workflow .dev-ai-chip {
+      padding: 7px 11px !important;
+      border: 1.5px solid #9bded4 !important;
+      border-radius: 10px !important;
+      background: rgba(255,255,255,.97) !important;
+      color: #246b65 !important;
+      font-size: .72rem !important;
+      box-shadow: 0 5px 12px rgba(32,178,170,.10);
+    }
+    #dev-workflow .chip-a { top: 20px !important; left: 16px !important; }
+    #dev-workflow .dev-ai-chip.chip-b { top: 20px !important; right: 16px !important; }
+    #dev-workflow .dev-ai-chip.chip-c { bottom: 16px !important; right: 18px !important; }
+    @media (max-width: 575.98px) {
+      #dev-workflow .dev-mini-window,
+      #dev-workflow .dev-cloud-visual,
+      #dev-workflow .dev-ai-visual { height: 155px !important; min-height: 155px; }
+      #dev-workflow .dev-ai-chip { font-size: .64rem !important; padding: 5px 7px !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #dev-workflow .dev-ai-visual svg path { animation: none !important; }
+    }
+
+
+    /* Industry cards: clean macOS Finder-inspired folders */
+    #industries .industry-folder-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 20px;
+    }
+    #industries .industry-folder-card {
+      min-height: 238px;
+      padding: 20px 6px 4px;
+    }
+    #industries .folder-hint,
+    #industries .folder-count,
+    #industries .folder-label {
+      display: none !important;
+    }
+    #industries .folder-art {
+      width: min(100%, 205px);
+      height: 150px;
+      perspective: 900px;
+      filter: drop-shadow(0 13px 15px rgba(36, 115, 150, .13));
+    }
+    #industries .folder-back {
+      bottom: 5px;
+      height: 112px;
+      border-radius: 12px 15px 13px 13px;
+      background: linear-gradient(180deg, #91d7ff 0%, #64baf5 42%, #3d9be7 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.85), 0 2px 0 rgba(34,132,198,.22);
+      border: 1px solid rgba(54,143,201,.32);
+    }
+    #industries .folder-back:before {
+      top: -17px;
+      height: 25px;
+      width: 47%;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #a8e1ff, #83cefa);
+      border: 1px solid rgba(54,143,201,.25);
+      border-bottom: 0;
+      clip-path: polygon(0 0, 78% 0, 100% 100%, 0 100%);
+    }
+    #industries .folder-back:after { display:none; }
+    #industries .folder-paper {
+      left: 10%;
+      bottom: 18px;
+      width: 80%;
+      height: 79px;
+      border-radius: 7px 7px 4px 4px;
+      background: linear-gradient(180deg, #ffffff 0%, #f3faff 100%);
+      border: 1px solid #c5e6f8;
+      box-shadow: 0 4px 8px rgba(43,111,151,.10);
+    }
+    #industries .folder-paper:before {
+      content: "";
+      top: 13px;
+      left: 12px;
+      right: auto;
+      width: 45%;
+      height: 4px;
+      border: 0;
+      border-radius: 4px;
+      background: #d0e5f3;
+      box-shadow: 0 10px 0 #e0edf5, 0 20px 0 #e0edf5;
+    }
+    #industries .folder-front {
+      bottom: 0;
+      height: 94px;
+      border-radius: 9px 12px 13px 13px;
+      background: linear-gradient(180deg, #8fd4ff 0%, #6bbcf5 45%, #4da7ed 100%);
+      border: 1px solid rgba(45,137,199,.45);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9), inset 0 -2px 0 rgba(32,118,181,.15);
+      transform-origin: bottom;
+    }
+    #industries .folder-front:after {
+      inset: 1px;
+      border-radius: inherit;
+      background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0) 55%);
+    }
+    #industries .folder-file {
+      left: 13%;
+      bottom: 13px;
+      width: 74%;
+      height: 65px;
+      padding: 10px 8px;
+      border-radius: 5px 5px 3px 3px;
+      color: #42647b;
+      background: linear-gradient(180deg, #fff, #f2f9ff) !important;
+      border: 1px solid #d0e7f7;
+      box-shadow: 0 5px 9px rgba(49,104,141,.10);
+      font-size: 9px;
+      font-weight: 700;
+    }
+    #industries .folder-file:after {
+      height: 3px;
+      margin-top: 7px;
+      border-radius: 3px;
+      background: #d7e9f5;
+      color: transparent;
+      content: "";
+      width: 58%;
+    }
+    #industries .folder-file.f1,
+    #industries .folder-file.f2,
+    #industries .folder-file.f3 {
+      background: linear-gradient(180deg, #fff, #f2f9ff) !important;
+    }
+    #industries .folder-industry-name {
+      margin-top: 13px;
+      color: #234743;
+      font-size: 1rem;
+      font-weight: 750;
+      letter-spacing: -.01em;
+    }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-front {
+      transform: rotateX(-38deg);
+    }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-paper {
+      transform: translateY(-28px);
+    }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f1 {
+      transform: translate(-10px,-48px) rotate(-5deg);
+    }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f2 {
+      transform: translate(8px,-38px) rotate(4deg);
+    }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f3 {
+      transform: translate(0,-26px) rotate(-1deg);
+    }
+    @media (max-width: 1199.98px) {
+      #industries .industry-folder-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    }
+    @media (max-width: 575.98px) {
+      #industries .industry-folder-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+      #industries .industry-folder-card { min-height: 205px; }
+      #industries .folder-art { height: 128px; }
+      #industries .folder-back { height: 98px; }
+      #industries .folder-front { height: 80px; }
+      #industries .folder-industry-name { font-size: .92rem; }
+    }
+
+
+    /* Restore clear industry icons inside the macOS-style folder documents */
+    #industries .folder-doc-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 7px;
+      font-size: 1.05em;
+      color: #078f91;
+      opacity: 1;
+      vertical-align: -1px;
+      text-shadow: 0 1px 0 rgba(255,255,255,.85);
+    }
+    #industries .folder-file {
+      color: #315f78 !important;
+      font-weight: 750 !important;
+      letter-spacing: .01em;
+    }
+    #industries .folder-file.f1 .folder-doc-icon {
+      color: #087fca;
+      font-size: 1.12em;
+    }
+    #industries .folder-file.f2 .folder-doc-icon { color: #0b9f91; }
+    #industries .folder-file.f3 .folder-doc-icon { color: #3989cf; }
+
+
+/* Modern technology and AI logo showcase */
+.tech-showcase-section { position: relative; overflow: hidden; }
+.tech-showcase-heading { max-width: 780px; margin-bottom: 34px; }
+.tech-showcase-subtitle { margin: 0; color: #627b7a; font-size: 1.05rem; }
+.tech-showcase-card {
+  height: 100%;
+  padding: clamp(22px, 2.5vw, 34px);
+  border: 1px solid rgba(32,178,170,.23);
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 95% 0%, rgba(32,178,170,.10), transparent 34%),
+    linear-gradient(145deg, #ffffff 0%, #f7fffd 100%);
+  box-shadow: 0 14px 38px rgba(20,92,94,.065), inset 0 1px 0 rgba(255,255,255,.95);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.tech-showcase-card:hover { transform: translateY(-4px); border-color: rgba(32,178,170,.42); box-shadow: 0 20px 46px rgba(20,92,94,.10); }
+.tech-card-heading { display:flex; align-items:center; gap:14px; margin-bottom:25px; }
+.tech-heading-icon { width:48px; height:48px; display:grid; place-items:center; flex:0 0 48px; border-radius:15px; color:#087f79; background:linear-gradient(135deg,#dff9f2,#e5f3ff); font-size:1.35rem; box-shadow:inset 0 0 0 1px rgba(32,178,170,.15); }
+.tech-card-heading h3 { margin:0 0 4px; font-size:1.2rem; font-weight:800; letter-spacing:-.025em; color:#173a38; }
+.tech-card-heading p { margin:0; font-size:.9rem; color:#708582; }
+.tech-heading-count { margin-left:auto; align-self:flex-start; white-space:nowrap; border-radius:999px; padding:6px 10px; color:#087f79; background:#e6f8f4; font-size:.72rem; font-weight:800; }
+.tech-logo-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:11px; }
+.tech-logo-item, .ai-logo-item { min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:9px; padding:13px 6px 11px; border:1px solid #e4f2ef; border-radius:16px; background:rgba(255,255,255,.82); color:#365a57; font-size:.79rem; font-weight:700; text-align:center; transition:transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease; }
+.tech-logo-item:hover, .ai-logo-item:hover { transform:translateY(-3px); border-color:#a5e2d8; background:#f5fffc; box-shadow:0 8px 18px rgba(21,143,136,.09); }
+.tech-logo { width:46px; height:43px; display:grid; place-items:center; border-radius:13px; background:linear-gradient(145deg,#f2fbff,#e7faf4); font-size:1.9rem; color:#247f8a; }
+.tech-logo i { line-height:1; }
+.dev-django i, .dev-linux i { color:#174f43; }
+.dev-js { color:#bd9411; }
+.dev-api { color:#128e87; }
+.dev-api i { font-size:1.55rem; }
+.dev-aws i { font-size:1.55rem; }
+.ai-tools-card { background:radial-gradient(circle at 100% 0%,rgba(123,97,255,.08),transparent 35%),linear-gradient(145deg,#fff 0%,#fbfffe 100%); }
+.ai-heading-icon { color:#5b5bd6; background:linear-gradient(135deg,#eeedff,#e0f8f2); }
+.ai-count { color:#5653bb; background:#f0efff; }
+.ai-logo-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:11px; }
+.ai-logo-item { padding:14px 5px 12px; font-size:.78rem; }
+.ai-brand-logo { width:48px; height:45px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(145deg,#f5fbff,#f0faf7); border:1px solid #e5f1ef; }
+.ai-brand-logo img { display:block; width:27px; height:27px; object-fit:contain; }
+.ai-fallback { display:none; align-items:center; justify-content:center; width:29px; height:29px; border-radius:9px; color:#fff; background:#168f88; font-weight:900; font-size:.8rem; }
+.openai-fallback { background:#10a37f; font-size:1.45rem; }
+.claude-fallback { background:#222; }
+.gemini-fallback { background:linear-gradient(135deg,#4285f4,#a142f4,#34a853); }
+.copilot-fallback { background:#222; }
+.hf-fallback { background:#ff9d00; }
+.langchain-fallback { background:#1c3c3c; }
+.ai-card-note { display:flex; align-items:center; gap:8px; margin-top:20px; padding:12px 14px; border-radius:13px; color:#4c6f6b; background:linear-gradient(90deg,#eafaf5,#f2f0ff); font-size:.83rem; font-weight:650; }
+.ai-card-note i { color:#159c91; }
+@media (max-width: 991.98px) {
+  .tech-logo-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .tech-showcase-card { padding:24px; }
+}
+@media (max-width: 575.98px) {
+  .tech-showcase-heading { margin-bottom:24px; }
+  .tech-card-heading { gap:10px; flex-wrap:wrap; }
+  .tech-heading-icon { width:42px; height:42px; flex-basis:42px; }
+  .tech-heading-count { margin-left:auto; }
+  .tech-logo-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+  .ai-logo-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+  .tech-logo-item, .ai-logo-item { font-size:.72rem; }
+  .tech-showcase-card { border-radius:20px; padding:19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-showcase-card, .tech-logo-item, .ai-logo-item { transition:none; }
+  .tech-showcase-card:hover, .tech-logo-item:hover, .ai-logo-item:hover { transform:none; }
+}
+
+
+    /* Compact tech stack layout with "and many more" labels */
+    @media (min-width: 1200px) {
+      #stack.tech-showcase-section > .container {
+        max-width: 1500px;
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+    }
+    #stack .tech-showcase-heading { margin-bottom: 26px; }
+    #stack .tech-showcase-card {
+      padding: clamp(18px, 1.7vw, 26px);
+      border-radius: 22px;
+    }
+    #stack .tech-card-heading { margin-bottom: 18px; }
+    #stack .tech-logo-grid,
+    #stack .ai-logo-grid { gap: 9px; }
+    #stack .tech-logo-item,
+    #stack .ai-logo-item { padding: 10px 5px 9px; }
+    #stack .tech-logo { width: 40px; height: 38px; font-size: 1.65rem; }
+    #stack .ai-brand-logo { width: 42px; height: 40px; }
+    #stack .tech-more-note {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 15px;
+      padding: 10px 13px;
+      border: 1px dashed rgba(32,178,170,.38);
+      border-radius: 13px;
+      color: #567773;
+      background: linear-gradient(90deg, rgba(228,250,244,.8), rgba(237,246,255,.75));
+      font-size: .82rem;
+      line-height: 1.4;
+    }
+    #stack .tech-more-note > i {
+      color: #159b91;
+      font-size: 1rem;
+      flex: 0 0 auto;
+    }
+    #stack .tech-more-note strong { color: #087f79; }
+    #stack .ai-more-note {
+      background: linear-gradient(90deg, rgba(231,250,244,.85), rgba(242,239,255,.8));
+    }
+    @media (max-width: 991.98px) {
+      #stack.tech-showcase-section > .container { max-width: 760px; }
+    }
+    @media (max-width: 575.98px) {
+      #stack .tech-showcase-card { padding: 17px; }
+      #stack .tech-card-heading { gap: 10px; }
+      #stack .tech-heading-count { font-size: .72rem; padding: 6px 9px; }
+    }
+
+
+    /* Expanded technology catalog + more compact centered layout */
+    @media (min-width: 1200px) {
+      #stack.tech-showcase-section > .container {
+        max-width: 1320px !important;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+    #stack .tech-showcase-heading {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    #stack .tech-showcase-card {
+      padding: clamp(17px, 1.5vw, 23px);
+      border-radius: 21px;
+    }
+    #stack .tech-logo-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+    #stack .tech-logo-item {
+      min-height: 92px;
+      padding: 9px 4px 8px;
+      gap: 7px;
+      font-size: .74rem;
+    }
+    #stack .tech-logo {
+      width: 38px;
+      height: 36px;
+      border-radius: 11px;
+      font-size: 1.55rem;
+    }
+    #stack .tech-logo i { line-height: 1; }
+    #stack .tech-logo-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(21,143,136,.11);
+    }
+    @media (max-width: 991.98px) {
+      #stack.tech-showcase-section > .container { max-width: 760px !important; }
+      #stack .tech-logo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 575.98px) {
+      #stack .tech-logo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #stack .tech-logo-item { min-height: 84px; font-size: .7rem; }
+    }
+
 </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 
 <body class="ai-grid">
@@ -1301,7 +2004,7 @@
               </button>
               <input type="hidden" id="demoDate" name="demo_date">
               <input type="hidden" id="demoTime" name="demo_time">
-              <div class="form-helper mt-1">Choose an available date and an upcoming 30-minute slot.</div>
+              <div class="form-helper mt-1">Select a date and available 30-minute time slot.</div>
             </div>
             <div class="col-12">
               <fieldset class="border-0 p-0 m-0">
@@ -1375,8 +2078,8 @@
   <section id="software" class="section pt-0" style="padding-top: 8px;">
     <div class="container">
       <div class="mb-5" style="max-width: 720px;">
-        <p class="kicker mb-2" section-kicker>Our software</p>
-        <h2 class="display-5 fw-bold mb-3">Custom applications</h2>
+        <p class="kicker mb-2" section-kicker>Solutions</p>
+        <h2 class="display-5 fw-bold mb-3">Our Applications</h2>
         <p style="color: var(--muted);">
           Each product is a working system: enquiries, appointments, memberships, admissions,
           bookings, and reports in one place. We also build it custom when your process is different.
@@ -1392,7 +2095,7 @@
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Hospitals &amp; clinics</div>
-                  <h3 class="h4 fw-bold mb-1 mt-1">Hospital Management System (HMS)</h3>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Hospital Management</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Patients, enquiries, appointments, and marketing in one platform.</p>
                 </div>
                 <i class="bi bi-hospital fs-3" style="color:#20b2aa;"></i>
@@ -1463,7 +2166,7 @@
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Automotive</div>
-                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Car Showrooms</h3>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Showroom CRM</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Leads, test drives, bookings, and delivery status together.</p>
                 </div>
                 <i class="bi bi-car-front fs-3" style="color:#20b2aa;"></i>
@@ -1498,7 +2201,7 @@
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Education</div>
-                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Schools &amp; Colleges</h3>
+                  <h3 class="h4 fw-bold mb-1 mt-1">School &amp; College CRM</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Admissions, fees, student records, and parent communication.</p>
                 </div>
                 <i class="bi bi-mortarboard fs-3" style="color:#20b2aa;"></i>
@@ -1533,7 +2236,7 @@
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Fitness</div>
-                  <h3 class="h4 fw-bold mb-1 mt-1">CRM for Gyms &amp; Fitness Centers</h3>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Fitness CRM</h3>
                   <p class="mb-0 small" style="color: var(--muted);">Memberships, trials, classes, and member communication.</p>
                 </div>
                 <i class="bi bi-activity fs-3" style="color:#20b2aa;"></i>
@@ -1568,7 +2271,7 @@
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <div class="small fw-bold text-uppercase" style="color:#20b2aa;">Studios</div>
-                  <h3 class="h4 fw-bold mb-1 mt-1">Video Gallery App</h3>
+                  <h3 class="h4 fw-bold mb-1 mt-1">Studio Gallery</h3>
                   <p class="mb-0 small" style="color: var(--muted);">A branded gallery where clients watch, download, and share photos and videos.</p>
                 </div>
                 <i class="bi bi-camera fs-3" style="color:#20b2aa;"></i>
@@ -1628,114 +2331,208 @@
     </div>
   </section>
 
-  <section id="industries" class="section" style="background: #f3fbfa;">
+  <section id="industries" class="section">
     <div class="container">
-      <p class="kicker mb-2" section-kicker>Who it is for</p>
-      <h2 class="display-6 fw-bold mb-4">One engineering team, many industries</h2>
+      <p class="kicker mb-2" section-kicker>Industries</p>
+      <h2 class="display-6 fw-bold mb-4">Solutions for Every Industry</h2>
       <div class="industry-folder-grid">
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Hospitals folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Patient Portal</div><div class="folder-file f2">Appointments</div><div class="folder-file f1">Hospital CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Hospitals</span></label>
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Real estate folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Lead Dashboard</div><div class="folder-file f2">Site Visits</div><div class="folder-file f1">Property CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Real estate</span></label>
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Showrooms folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Sales Analytics</div><div class="folder-file f2">Test Drives</div><div class="folder-file f1">Showroom CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Showrooms</span></label>
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Schools folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Exam Reports</div><div class="folder-file f2">Attendance</div><div class="folder-file f1">School ERP</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Schools</span></label>
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Fitness folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Member Insights</div><div class="folder-file f2">Class Schedule</div><div class="folder-file f1">Fitness CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Fitness</span></label>
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Studios folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Client Gallery</div><div class="folder-file f2">Bookings</div><div class="folder-file f1">Studio Platform</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Studios</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Hospitals folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-person-vcard folder-doc-icon" aria-hidden="true"></i>Patient Portal</div><div class="folder-file f2"><i class="bi bi-calendar2-check folder-doc-icon" aria-hidden="true"></i>Appointments</div><div class="folder-file f1"><i class="bi bi-hospital folder-doc-icon" aria-hidden="true"></i>Hospital CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Hospitals</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Real estate folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-graph-up-arrow folder-doc-icon" aria-hidden="true"></i>Lead Dashboard</div><div class="folder-file f2"><i class="bi bi-geo-alt folder-doc-icon" aria-hidden="true"></i>Site Visits</div><div class="folder-file f1"><i class="bi bi-buildings folder-doc-icon" aria-hidden="true"></i>Property CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Real estate</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Showrooms folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-bar-chart-line folder-doc-icon" aria-hidden="true"></i>Sales Analytics</div><div class="folder-file f2"><i class="bi bi-car-front folder-doc-icon" aria-hidden="true"></i>Test Drives</div><div class="folder-file f1"><i class="bi bi-car-front-fill folder-doc-icon" aria-hidden="true"></i>Showroom CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Showrooms</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Schools folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-file-earmark-bar-graph folder-doc-icon" aria-hidden="true"></i>Exam Reports</div><div class="folder-file f2"><i class="bi bi-calendar-check folder-doc-icon" aria-hidden="true"></i>Attendance</div><div class="folder-file f1"><i class="bi bi-mortarboard folder-doc-icon" aria-hidden="true"></i>School ERP</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Schools</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Fitness folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-activity folder-doc-icon" aria-hidden="true"></i>Member Insights</div><div class="folder-file f2"><i class="bi bi-calendar-event folder-doc-icon" aria-hidden="true"></i>Class Schedule</div><div class="folder-file f1"><i class="bi bi-heart-pulse folder-doc-icon" aria-hidden="true"></i>Fitness CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Fitness</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Studios folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-images folder-doc-icon" aria-hidden="true"></i>Client Gallery</div><div class="folder-file f2"><i class="bi bi-camera-reels folder-doc-icon" aria-hidden="true"></i>Bookings</div><div class="folder-file f1"><i class="bi bi-camera-fill folder-doc-icon" aria-hidden="true"></i>Studio Platform</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Studios</span></label>
       </div>
     </div>
   </section>
 
-  <section id="why-choose-us" class="section why-choose-section">
+
+
+  <section id="dev-workflow" aria-labelledby="dev-workflow-title">
     <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-5">
-          <p class="kicker mb-2" section-kicker>Why teams choose us</p>
-          <h2 class="display-6 fw-bold mb-3">Built for daily operations, then supported after launch.</h2>
-          <p style="color: var(--muted);">Every product includes custom development, a scalable and secure setup, dedicated support, and pricing that fits growing businesses.</p>
-        </div>
-        <div class="col-lg-7">
-          <div class="row g-3">
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-code-slash fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Custom development</h3><p class="small mb-0" style="color: var(--muted);">Workflows, fields, and reports shaped around your team.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-shield-check fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Scalable &amp; secure</h3><p class="small mb-0" style="color: var(--muted);">Role-based access and architecture that can grow with branches.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-headset fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Dedicated support</h3><p class="small mb-0" style="color: var(--muted);">We stay after go-live for training, fixes, and new modules.</p></div></div>
-            <div class="col-sm-6"><div class="soft-card"><i class="bi bi-tag fs-4 text-sea"></i><h3 class="h6 fw-bold mt-3">Affordable pricing</h3><p class="small mb-0" style="color: var(--muted);">A practical build for clinics, dealers, institutes, and studios.</p></div></div>
-          </div>
-        </div>
+      <div class="text-center dev-intro">
+        <span class="dev-kicker"><i class="bi bi-cpu" aria-hidden="true"></i> SOFTWARE · CLOUD · AI</span>
+        <h2 id="dev-workflow-title" class="dev-section-title">Software. Cloud. AI.</h2>
+        
       </div>
+
+      <div class="dev-solution-grid">
+        <article class="dev-solution-card dev-software">
+          <div class="dev-card-top">
+            <span class="dev-solution-icon"><i class="bi bi-code-slash" aria-hidden="true"></i></span>
+            <span class="dev-card-tag">BUILD</span>
+          </div>
+          <h3>Software Development</h3>
+          <p>Purpose-built applications that simplify operations and support your business goals.</p>
+          <div class="dev-mini-window" aria-hidden="true">
+            <div class="dev-window-bar"><i></i><i></i><i></i><span>app.workspace</span></div>
+            <div class="dev-code-lines"><b></b><b></b><b></b><b></b><b></b></div>
+            <div class="dev-ui-preview"><span></span><span></span><span></span></div>
+          </div>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> Custom web apps, portals &amp; CRM</li>
+            <li><i class="bi bi-check-circle-fill"></i> APIs, integrations &amp; automation</li>
+          </ul>
+        </article>
+
+        <div class="dev-flow-connector" aria-hidden="true"><span><i class="bi bi-arrow-right"></i></span></div>
+
+        <article class="dev-solution-card dev-cloud">
+          <div class="dev-card-top">
+            <span class="dev-solution-icon"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i></span>
+            <span class="dev-card-tag">CLOUD</span>
+          </div>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Reliable infrastructure designed for performance, security, and growth.</p>
+          <div class="dev-cloud-visual" aria-hidden="true">
+            <div class="dev-cloud-orbit orbit-one"></div><div class="dev-cloud-orbit orbit-two"></div>
+            <div class="dev-cloud-core"><i class="bi bi-cloud-check-fill"></i></div>
+            <span class="dev-cloud-node node-one"><i class="bi bi-database"></i></span>
+            <span class="dev-cloud-node node-two"><i class="bi bi-shield-check"></i></span>
+            <span class="dev-cloud-node node-three"><i class="bi bi-lightning-charge"></i></span>
+          </div>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> Cloud deployment &amp; migrations</li>
+            <li><i class="bi bi-check-circle-fill"></i> CI/CD, monitoring &amp; security</li>
+          </ul>
+        </article>
+
+        <div class="dev-flow-connector" aria-hidden="true"><span><i class="bi bi-arrow-right"></i></span></div>
+
+        <article class="dev-solution-card dev-ai">
+          <div class="dev-card-top">
+            <span class="dev-solution-icon"><i class="bi bi-stars" aria-hidden="true"></i></span>
+            <span class="dev-card-tag">AI</span>
+          </div>
+          <h3>AI &amp; Automation</h3>
+          <p>Make everyday work more intelligent with practical AI-powered experiences.</p>
+          <div class="dev-ai-visual" aria-hidden="true">
+            <div class="dev-ai-glow"></div>
+            <div class="dev-ai-core"><i class="bi bi-robot"></i><span>AI</span></div>
+            <span class="dev-ai-chip chip-a">Analyze</span><span class="dev-ai-chip chip-b">Predict</span><span class="dev-ai-chip chip-c">Automate</span>
+            <svg viewBox="0 0 320 130" preserveAspectRatio="none"><path d="M38 76 C75 20 100 110 145 65 S215 15 282 66" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 6"/></svg>
+          </div>
+          <ul>
+            <li><i class="bi bi-check-circle-fill"></i> AI assistants &amp; intelligent workflows</li>
+            <li><i class="bi bi-check-circle-fill"></i> Data insights &amp; process automation</li>
+          </ul>
+        </article>
+      </div>
+
+      
     </div>
   </section>
 
+  <section id="stack" class="section tech-showcase-section">
+  <div class="container">
+    <div class="tech-showcase-heading">
+      <p class="kicker mb-2" section-kicker>TECHNOLOGY</p>
+      <h2 class="display-6 fw-bold mb-3">Our Tech Stack</h2>
+      <p class="tech-showcase-subtitle">The tools behind our software, cloud, and AI solutions.</p>
+    </div>
 
-
-  <section id="stack" class="section pt-0">
-    <div class="container">
-      <div class="mb-5" style="max-width: 760px;">
-        <p class="kicker mb-2" section-kicker>Technology &amp; AI</p>
-        <h2 class="display-6 fw-bold mb-3">The stack and the models we work with</h2>
-        <p style="color: var(--muted);">
-          We build products in these technologies and use these AI models and platforms in development, assessments, and automation.
-        </p>
-      </div>
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="soft-card">
-            <h3 class="h5 fw-bold text-sea mb-3">Technologies</h3>
-            <span class="chip">Python</span>
-            <span class="chip">Django</span>
-            <span class="chip">Java</span>
-            <span class="chip">Spring Boot</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">React</span>
-            <span class="chip">Angular</span>
-            <span class="chip">Node.js</span>
-            <span class="chip">Express</span>
-            <span class="chip">MongoDB</span>
-            <span class="chip">MERN</span>
-            <span class="chip">MEAN</span>
-            <span class="chip">Android</span>
-            <span class="chip">iOS</span>
-            <span class="chip">Flutter</span>
-            <span class="chip">SQL</span>
-            <span class="chip">Power BI</span>
-            <span class="chip">Excel</span>
-            <span class="chip">AWS</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Kubernetes</span>
-            <span class="chip">Linux</span>
-            <span class="chip">Git</span>
-            <span class="chip">REST APIs</span>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="tech-showcase-card">
+          <div class="tech-card-heading">
+            <div class="tech-heading-icon"><i class="bi bi-code-slash" aria-hidden="true"></i></div>
+            <div>
+              <h3>Programming &amp; Platforms</h3>
+              <p>Built with proven technologies.</p>
+            </div>
+            <span class="tech-heading-count">33 tools</span>
           </div>
+          <div class="tech-logo-grid">
+            <div class="tech-logo-item"><span class="tech-logo dev-python"><i class="devicon-python-plain colored"></i></span><span>Python</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-django"><i class="devicon-django-plain"></i></span><span>Django</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-java"><i class="devicon-java-plain colored"></i></span><span>Java</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-js"><i class="devicon-javascript-plain colored"></i></span><span>JavaScript</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-react"><i class="devicon-react-original colored"></i></span><span>React</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-node"><i class="devicon-nodejs-plain colored"></i></span><span>Node.js</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-mongo"><i class="devicon-mongodb-plain colored"></i></span><span>MongoDB</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-sql"><i class="devicon-mysql-plain colored"></i></span><span>SQL</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-aws"><i class="devicon-amazonwebservices-plain-wordmark colored"></i></span><span>AWS</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-docker"><i class="devicon-docker-plain colored"></i></span><span>Docker</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-linux"><i class="devicon-linux-plain"></i></span><span>Linux</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-git"><i class="devicon-git-plain colored"></i></span><span>Git</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-api"><i class="bi bi-braces-asterisk"></i></span><span>REST APIs</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-spring"><i class="devicon-spring-original colored" aria-hidden="true"></i></span><span>Spring Boot</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-hibernate"><i class="devicon-hibernate-plain colored" aria-hidden="true"></i></span><span>Hibernate</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-fastapi"><i class="devicon-fastapi-plain colored" aria-hidden="true"></i></span><span>FastAPI</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-flutter"><i class="devicon-flutter-plain colored" aria-hidden="true"></i></span><span>Flutter</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-android"><i class="devicon-android-plain colored" aria-hidden="true"></i></span><span>Android</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-kotlin"><i class="devicon-kotlin-plain colored" aria-hidden="true"></i></span><span>Kotlin</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-swift"><i class="devicon-swift-plain colored" aria-hidden="true"></i></span><span>Swift</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-php"><i class="devicon-php-plain colored" aria-hidden="true"></i></span><span>PHP</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-laravel"><i class="devicon-laravel-plain colored" aria-hidden="true"></i></span><span>Laravel</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-dotnet"><i class="devicon-dotnetcore-plain colored" aria-hidden="true"></i></span><span>.NET</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-postgres"><i class="devicon-postgresql-plain colored" aria-hidden="true"></i></span><span>PostgreSQL</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-redis"><i class="devicon-redis-plain colored" aria-hidden="true"></i></span><span>Redis</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-kubernetes"><i class="devicon-kubernetes-plain colored" aria-hidden="true"></i></span><span>Kubernetes</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-azure"><i class="devicon-azure-plain colored" aria-hidden="true"></i></span><span>Azure</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-gcp"><i class="devicon-googlecloud-plain colored" aria-hidden="true"></i></span><span>Google Cloud</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-terraform"><i class="devicon-terraform-plain colored" aria-hidden="true"></i></span><span>Terraform</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-jenkins"><i class="devicon-jenkins-plain colored" aria-hidden="true"></i></span><span>Jenkins</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-nginx"><i class="devicon-nginx-original colored" aria-hidden="true"></i></span><span>Nginx</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-ts"><i class="devicon-typescript-plain colored" aria-hidden="true"></i></span><span>TypeScript</span></div>
+            <div class="tech-logo-item"><span class="tech-logo dev-bootstrap"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i></span><span>Bootstrap</span></div>
+          </div>
+          <div class="tech-more-note"><i class="bi bi-plus-circle-fill" aria-hidden="true"></i><span><strong>And many more</strong> tools, frameworks, databases, and cloud services.</span></div>
         </div>
-        <div class="col-lg-6">
-          <div class="soft-card">
-            <h3 class="h5 fw-bold text-sea mb-3">AI models &amp; platforms</h3>
-            <span class="chip">ChatGPT</span>
-            <span class="chip">Claude</span>
-            <span class="chip">Gemini</span>
-            <span class="chip">OpenAI API</span>
-            <span class="chip">GitHub Copilot</span>
-            <span class="chip">Cursor AI</span>
-            <span class="chip">Perplexity</span>
-            <span class="chip">LangChain</span>
-            <span class="chip">LlamaIndex</span>
-            <span class="chip">Hugging Face</span>
-            <span class="chip">MoltBot AI</span>
-            <span class="chip">Microsoft Copilot</span>
-            <span class="chip">Amazon Q</span>
-            <span class="chip">Duet AI</span>
-            <span class="chip">Tabnine</span>
-            <span class="chip">Windsurf AI</span>
-            <span class="chip">Replit AI</span>
-            <span class="chip">Bolt.new</span>
-            <span class="chip">K8sGPT</span>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="tech-showcase-card ai-tools-card">
+          <div class="tech-card-heading">
+            <div class="tech-heading-icon ai-heading-icon"><i class="bi bi-stars" aria-hidden="true"></i></div>
+            <div>
+              <h3>AI Tools</h3>
+              <p>Intelligence for modern workflows.</p>
+            </div>
+            <span class="tech-heading-count ai-count">7 tools</span>
           </div>
+          <div class="ai-logo-grid">
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/openai/10A37F" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback openai-fallback">◎</span></span>
+              <span>OpenAI API</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/chatgpt/10A37F" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback">AI</span></span>
+              <span>ChatGPT</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/anthropic/191919" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback claude-fallback">C</span></span>
+              <span>Claude</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback gemini-fallback">✦</span></span>
+              <span>Gemini</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/githubcopilot/222222" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback copilot-fallback">⌘</span></span>
+              <span>GitHub Copilot</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/huggingface/FF9D00" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback hf-fallback">🤗</span></span>
+              <span>Hugging Face</span>
+            </div>
+            <div class="ai-logo-item">
+              <span class="ai-brand-logo"><img src="https://cdn.simpleicons.org/langchain/1C3C3C" alt="" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"><span class="ai-fallback langchain-fallback">L</span></span>
+              <span>LangChain</span>
+            </div>
+          </div>
+          <div class="tech-more-note ai-more-note"><i class="bi bi-plus-circle-fill" aria-hidden="true"></i><span><strong>And many more</strong> AI models, assistants, and integration tools.</span></div>
+          <div class="ai-card-note"><i class="bi bi-lightning-charge-fill" aria-hidden="true"></i> AI-powered features, thoughtfully integrated.</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section id="services" class="section pt-0">
     <div class="container">
       <p class="kicker mb-2" section-kicker>Services</p>
-      <h2 class="display-6 fw-bold mb-4">Software engineering beyond the products</h2>
+      <h2 class="display-6 fw-bold mb-4">More Services</h2>
       <div class="row g-4">
         <div class="col-md-4">
           <div class="soft-card">
@@ -1763,9 +2560,9 @@
     <div class="container">
       <div class="soft-card" style="padding: 40px 32px;">
         <p class="kicker mb-2" section-kicker>About</p>
-        <h2 class="display-6 fw-bold mb-3">Moltres Infotech</h2>
+        <h2 class="display-6 fw-bold mb-3">About Us</h2>
         <p class="mb-0" style="color: var(--muted); max-width: 860px;">
-          Moltres Infotech is the software development brand of Moltres Innovations, based in Hyderabad. We build industry-specific CRM systems, web and mobile applications, and AccessPro using Python, Java, React, Node.js, cloud technologies, and AI platforms. From planning and development through launch and support, we help businesses build practical digital solutions.
+          Moltres Infotech builds custom business software, CRM systems, web applications, cloud solutions, and AI-powered tools.
         </p>
       </div>
     </div>
@@ -1774,16 +2571,16 @@
   <section id="contact" class="section pt-0">
     <div class="container text-center">
       <p class="kicker mb-2" section-kicker>Contact</p>
-      <h2 class="display-5 fw-bold mb-3">Ask for a free demo</h2>
+      <h2 class="display-5 fw-bold mb-3">Book a Demo</h2>
       <p class="mb-4" style="color: var(--muted);">
-        Tell us the industry. We will walk through the CRM, the app, or the ad plan that fits.
+        Tell us what you need. We’ll discuss the right solution.
       </p>
       <p class="mb-1"><i class="bi bi-envelope text-sea"></i> <a class="link-sea" href="mailto:contact@moltres-infotech.com">contact@moltres-infotech.com</a></p>
       <p class="mb-4" style="color: var(--muted);">
         LVS Arcade, 71, Jubilee Enclave, Hitech City,<br>
         Madhapur, Hyderabad, Telangana 500081
       </p>
-      <a href="mailto:contact@moltres-infotech.com?subject=Free%20demo%20request" class="btn btn-red btn-lg">Contact us for a free demo</a>
+      <a href="mailto:contact@moltres-infotech.com?subject=Demo%20request" class="btn btn-red btn-lg">Book Demo</a>
     </div>
   </section>
 
