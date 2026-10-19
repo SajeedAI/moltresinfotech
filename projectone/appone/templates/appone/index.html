@@ -1920,6 +1920,19 @@
       #stack .tech-logo-item { min-height: 84px; font-size: .7rem; }
     }
 
+
+    /* Auto-open reveal polish for the industry folder showcase */
+    #industries .folder-art { overflow: visible; }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-front {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 12px 22px rgba(16,119,153,.15);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #industries .folder-front,
+      #industries .folder-paper,
+      #industries .folder-file,
+      #industries .folder-back { transition: none !important; }
+    }
+
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
@@ -2336,7 +2349,7 @@
       <p class="kicker mb-2" section-kicker>Industries</p>
       <h2 class="display-6 fw-bold mb-4">Solutions for Every Industry</h2>
       <div class="industry-folder-grid">
-        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Hospitals folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-person-vcard folder-doc-icon" aria-hidden="true"></i>Patient Portal</div><div class="folder-file f2"><i class="bi bi-calendar2-check folder-doc-icon" aria-hidden="true"></i>Appointments</div><div class="folder-file f1"><i class="bi bi-hospital folder-doc-icon" aria-hidden="true"></i>Hospital CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Hospitals</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open HMS folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-person-vcard folder-doc-icon" aria-hidden="true"></i>Patient Portal</div><div class="folder-file f2"><i class="bi bi-calendar2-check folder-doc-icon" aria-hidden="true"></i>Appointments</div><div class="folder-file f1"><i class="bi bi-hospital folder-doc-icon" aria-hidden="true"></i>HMS</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Hospitals</span></label>
         <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Real estate folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-graph-up-arrow folder-doc-icon" aria-hidden="true"></i>Lead Dashboard</div><div class="folder-file f2"><i class="bi bi-geo-alt folder-doc-icon" aria-hidden="true"></i>Site Visits</div><div class="folder-file f1"><i class="bi bi-buildings folder-doc-icon" aria-hidden="true"></i>Property CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Real estate</span></label>
         <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Showrooms folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-bar-chart-line folder-doc-icon" aria-hidden="true"></i>Sales Analytics</div><div class="folder-file f2"><i class="bi bi-car-front folder-doc-icon" aria-hidden="true"></i>Test Drives</div><div class="folder-file f1"><i class="bi bi-car-front-fill folder-doc-icon" aria-hidden="true"></i>Showroom CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Showrooms</span></label>
         <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Schools folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3"><i class="bi bi-file-earmark-bar-graph folder-doc-icon" aria-hidden="true"></i>Exam Reports</div><div class="folder-file f2"><i class="bi bi-calendar-check folder-doc-icon" aria-hidden="true"></i>Attendance</div><div class="folder-file f1"><i class="bi bi-mortarboard folder-doc-icon" aria-hidden="true"></i>School ERP</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Schools</span></label>
@@ -2726,7 +2739,44 @@
       renderCalendar();
     })();
   </script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+\n  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+(() => {
+  const section = document.querySelector('#industries');
+  if (!section) return;
+
+  const folders = Array.from(section.querySelectorAll('.industry-folder-toggle'));
+  if (!folders.length) return;
+
+  const reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const openFolders = () => {
+    folders.forEach((toggle, index) => {
+      window.setTimeout(() => {
+        toggle.checked = true;
+        toggle.dispatchEvent(new Event('change', { bubbles: true }));
+      }, reduceMotion ? 0 : index * 180);
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          openFolders();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.22 });
+    observer.observe(section);
+  } else {
+    openFolders();
+  }
+})();
+</script>
+
 </body>
 
 </html>
