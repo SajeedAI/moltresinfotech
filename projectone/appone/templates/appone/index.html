@@ -739,6 +739,321 @@
       .development-marquee-track span:nth-child(n+5) { display: none; }
     }
 
+
+
+    /* Custom calendar + time-slot popup (the markup and JavaScript already exist below) */
+    .demo-picker-backdrop[hidden] { display: none !important; }
+    .demo-picker-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(15, 35, 42, .34);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+    body.demo-picker-open { overflow: hidden; }
+    .demo-picker {
+      width: min(1040px, 100%);
+      max-height: min(680px, calc(100vh - 40px));
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e0e8ed;
+      border-radius: 30px;
+      box-shadow: 0 28px 90px rgba(17, 43, 55, .22);
+      color: #172033;
+      font-family: "DM Sans", system-ui, sans-serif;
+    }
+    .demo-calendar-panel, .demo-times-panel { min-width: 0; padding: 28px; }
+    .demo-calendar-panel { border-right: 1px solid #e7edf4; }
+    .demo-picker-heading {
+      display: grid;
+      grid-template-columns: 52px 1fr 52px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .demo-picker-heading h3, .demo-times-heading h3 {
+      margin: 0;
+      font-family: "Manrope", "DM Sans", sans-serif;
+      font-size: 1.25rem;
+      line-height: 1.3;
+      font-weight: 800;
+      letter-spacing: -.035em;
+    }
+    .demo-picker-heading h3 { text-align: center; }
+    .demo-month-nav {
+      width: 48px; height: 48px;
+      display: grid; place-items: center;
+      border: 1px solid #d8e6ff;
+      border-radius: 17px;
+      background: #fff;
+      color: #2563eb;
+      font-size: 1.1rem;
+      transition: .18s ease;
+    }
+    .demo-month-nav:hover:not(:disabled) { background: #eff6ff; border-color: #2563eb; }
+    .demo-month-nav:disabled { opacity: .35; cursor: not-allowed; }
+    .demo-weekdays, .demo-days {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 7px;
+      text-align: center;
+    }
+    .demo-weekdays { margin-bottom: 12px; }
+    .demo-weekdays span {
+      color: #94a3b8;
+      font-size: .83rem;
+      font-weight: 800;
+      padding: 4px 0;
+    }
+    .demo-days { grid-auto-rows: 46px; }
+    .demo-days > span { min-width: 0; }
+    .demo-day {
+      width: 100%; height: 46px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      background: transparent;
+      color: #172033;
+      font-size: .96rem;
+      font-weight: 700;
+      transition: .16s ease;
+    }
+    .demo-day:hover:not(:disabled):not(.is-selected) {
+      background: #eff6ff;
+      border-color: #dbeafe;
+      color: #2563eb;
+    }
+    .demo-day.is-today:not(.is-selected) {
+      border-color: #9bc2ff;
+      color: #2563eb;
+    }
+    .demo-day.is-selected {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+      box-shadow: 0 7px 16px rgba(37, 99, 235, .2);
+    }
+    .demo-day:disabled {
+      color: #cbd5e1;
+      background: transparent;
+      cursor: not-allowed;
+    }
+    .demo-times-panel { display: flex; flex-direction: column; }
+    .demo-times-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 3px 0 14px;
+    }
+    .demo-times-heading span {
+      color: #718096;
+      font-size: .75rem;
+      white-space: nowrap;
+    }
+    .demo-selected-date {
+      margin: 0 0 16px;
+      color: #64748b;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .demo-time-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      overflow-y: auto;
+      min-height: 0;
+      max-height: 390px;
+      padding: 1px 5px 4px 1px;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+    }
+    .demo-time-slot {
+      min-height: 50px;
+      padding: 10px 8px;
+      border: 1px solid #e0eaff;
+      border-radius: 16px;
+      background: #fff;
+      color: #172033;
+      font-size: .92rem;
+      font-weight: 750;
+      transition: .16s ease;
+    }
+    .demo-time-slot:hover:not(:disabled):not(.is-selected) {
+      border-color: #2563eb;
+      background: #f5f8ff;
+    }
+    .demo-time-slot.is-selected {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+      box-shadow: 0 7px 16px rgba(37, 99, 235, .18);
+    }
+    .demo-time-slot:disabled {
+      color: #b7bec9;
+      background: #f8fafc;
+      border-color: #edf2f7;
+      cursor: not-allowed;
+      opacity: .85;
+    }
+    .demo-time-empty {
+      grid-column: 1 / -1;
+      margin: 0;
+      padding: 18px 14px;
+      border: 1px dashed #dbe5ed;
+      border-radius: 14px;
+      color: #718096;
+      font-size: .88rem;
+      text-align: center;
+    }
+    .demo-picker-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 18px;
+    }
+    .demo-cancel, .demo-confirm {
+      min-height: 42px;
+      padding: 10px 16px;
+      border-radius: 13px;
+      font-size: .86rem;
+      font-weight: 750;
+      transition: .18s ease;
+    }
+    .demo-cancel { border: 1px solid #dbe5ed; background: #fff; color: #526170; }
+    .demo-cancel:hover { background: #f8fafc; }
+    .demo-confirm { border: 1px solid #2563eb; background: #2563eb; color: #fff; }
+    .demo-confirm:hover:not(:disabled) { background: #1d4ed8; }
+    .demo-confirm:disabled { border-color: #dbe5ed; background: #e9eef5; color: #a3acb9; cursor: not-allowed; }
+    .demo-picker-trigger {
+      min-height: 48px !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      color: #6b7b7a;
+      background: #fff !important;
+      border: 1px solid #ccefeb !important;
+      border-radius: 14px !important;
+    }
+    .demo-picker-trigger.has-selection { color: #315e5a; }
+    .demo-picker-trigger > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .demo-picker-trigger > .bi-chevron-down { color: #178f88; flex: 0 0 auto; }
+    @media (max-width: 700px) {
+      .demo-picker-backdrop { padding: 10px; align-items: center; }
+      .demo-picker {
+        grid-template-columns: minmax(0, 1fr);
+        max-height: calc(100dvh - 20px);
+        overflow-y: auto;
+        border-radius: 22px;
+      }
+      .demo-calendar-panel, .demo-times-panel { padding: 18px; }
+      .demo-calendar-panel { border-right: 0; border-bottom: 1px solid #e7edf4; }
+      .demo-picker-heading { grid-template-columns: 44px 1fr 44px; margin-bottom: 16px; }
+      .demo-month-nav { width: 42px; height: 42px; border-radius: 13px; }
+      .demo-days { grid-auto-rows: 39px; gap: 4px; }
+      .demo-day { height: 39px; border-radius: 11px; }
+      .demo-time-list { max-height: 210px; }
+      .demo-time-slot { min-height: 44px; }
+    }
+    @media (max-width: 380px) {
+      .demo-times-heading { align-items: flex-start; flex-direction: column; }
+      .demo-time-list { gap: 7px; }
+      .demo-time-slot { font-size: .82rem; padding: 8px 4px; }
+      .demo-picker-footer { gap: 7px; }
+      .demo-cancel, .demo-confirm { padding: 9px 11px; }
+    }
+
+
+    /* Consistent icons inside every enquiry-form field */
+    #businessEnquiryForm .field-control-wrap {
+      position: relative;
+      width: 100%;
+    }
+    #businessEnquiryForm .field-control-wrap > .field-leading-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      color: #178f88;
+      font-size: 1rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+    #businessEnquiryForm .field-control-wrap > .form-control {
+      padding-left: 42px !important;
+    }
+    #businessEnquiryForm .field-control-wrap > select.form-control {
+      padding-right: 34px !important;
+    }
+    #businessEnquiryForm .field-control-wrap > input[type="date"].form-control {
+      padding-right: 12px;
+    }
+    #businessEnquiryForm .field-control-wrap > .demo-picker-trigger {
+      padding-left: 42px !important;
+    }
+    #businessEnquiryForm .field-control-wrap > .field-leading-icon.date-icon {
+      z-index: 3;
+    }
+    #businessEnquiryForm .field-control-wrap > input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: .78;
+    }
+    @media (max-width: 575.98px) {
+      #businessEnquiryForm .field-control-wrap > .field-leading-icon { left: 13px; }
+      #businessEnquiryForm .field-control-wrap > .form-control,
+      #businessEnquiryForm .field-control-wrap > .demo-picker-trigger { padding-left: 38px !important; }
+    }
+
+
+    /* Overlap fix: the booking trigger owns its leading icon; hidden values stay invisible. */
+    #businessEnquiryForm .demo-picker-trigger {
+      position: relative !important;
+      padding-left: 44px !important;
+      padding-right: 40px !important;
+    }
+    #businessEnquiryForm .demo-picker-trigger > .field-leading-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      width: 17px;
+      text-align: center;
+      pointer-events: none;
+      color: #178f88;
+    }
+    #businessEnquiryForm .demo-picker-trigger > span {
+      display: block;
+      min-width: 0;
+      flex: 1 1 auto;
+      text-align: left;
+    }
+    #businessEnquiryForm .demo-picker-trigger > .bi-chevron-down {
+      position: static;
+      transform: none;
+      margin-left: auto;
+    }
+    #businessEnquiryForm input[type="hidden"] {
+      display: none !important;
+    }
+    @media (max-width: 575.98px) {
+      #businessEnquiryForm .demo-picker-trigger {
+        padding-left: 40px !important;
+        padding-right: 34px !important;
+      }
+      #businessEnquiryForm .demo-picker-trigger > .field-leading-icon { left: 13px; }
+    }
+
 </style>
 </head>
 
@@ -782,43 +1097,63 @@
           <div class="row g-2">
             <div class="col-md-6 col-lg-4">
               <label for="leadName" class="form-label small fw-semibold">Full name *</label>
-              <input class="form-control" id="leadName" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+              <div class="field-control-wrap">
+
+                <i class="bi bi-person field-leading-icon" aria-hidden="true"></i>
+
+                <input class="form-control" id="leadName" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+
+              </div>
             </div>
             <div class="col-md-6 col-lg-4">
               <label for="leadEmail" class="form-label small fw-semibold">Email address *</label>
-              <input class="form-control" id="leadEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+              <div class="field-control-wrap">
+
+                <i class="bi bi-envelope field-leading-icon" aria-hidden="true"></i>
+
+                <input class="form-control" id="leadEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+
+              </div>
             </div>
             <div class="col-md-6 col-lg-4">
               <label for="leadContact" class="form-label small fw-semibold">Contact number *</label>
-              <input class="form-control" id="leadContact" name="contact" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" pattern="[+0-9() .-]{7,20}" required>
+              <div class="field-control-wrap">
+
+                <i class="bi bi-telephone field-leading-icon" aria-hidden="true"></i>
+
+                <input class="form-control" id="leadContact" name="contact" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" pattern="[+0-9() .-]{7,20}" required>
+
+              </div>
             </div>
             <div class="col-md-6">
               <label for="leadCity" class="form-label small fw-semibold">City *</label>
-              <input class="form-control" id="leadCity" name="city" type="text" placeholder="Your city" autocomplete="address-level2" required>
+              <div class="field-control-wrap">
+
+                <i class="bi bi-geo-alt field-leading-icon" aria-hidden="true"></i>
+
+                <input class="form-control" id="leadCity" name="city" type="text" placeholder="Your city" autocomplete="address-level2" required>
+
+              </div>
             </div>
             <div class="col-md-6">
               <label for="leadBusiness" class="form-label small fw-semibold">Business name</label>
-              <input class="form-control" id="leadBusiness" name="business" type="text" placeholder="Company or business name" autocomplete="organization">
+              <div class="field-control-wrap">
+
+                <i class="bi bi-building field-leading-icon" aria-hidden="true"></i>
+
+                <input class="form-control" id="leadBusiness" name="business" type="text" placeholder="Company or business name" autocomplete="organization">
+
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="demoDate" class="form-label small fw-semibold">Preferred demo date *</label>
-              <input class="form-control" id="demoDate" name="demo_date" type="date" required>
-            </div>
-            <div class="col-md-6">
-              <label for="demoTime" class="form-label small fw-semibold">Preferred demo time *</label>
-              <select class="form-control" id="demoTime" name="demo_time" required>
-                <option value="">Choose a time (IST)</option>
-                <option value="09:00">09:00 AM</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="12:00">12:00 PM</option>
-                <option value="13:00">01:00 PM</option>
-                <option value="14:00">02:00 PM</option>
-                <option value="15:00">03:00 PM</option>
-                <option value="16:00">04:00 PM</option>
-                <option value="17:00">05:00 PM</option>
-                <option value="18:00">06:00 PM</option>
-              </select>
+            <div class="col-12">
+              <label for="demoDateDisplay" class="form-label small fw-semibold">Preferred demo date &amp; time (IST) *</label>
+              <button class="form-control demo-picker-trigger" id="demoDateDisplay" type="button" aria-haspopup="dialog" aria-expanded="false"><i class="bi bi-calendar2-week field-leading-icon" aria-hidden="true"></i>
+                <span id="demoDateTimeText">Select date and time</span>
+                <i class="bi bi-chevron-down"></i>
+              </button>
+              <input type="hidden" id="demoDate" name="demo_date">
+              <input type="hidden" id="demoTime" name="demo_time">
+              <div class="form-helper mt-1">Choose an available date and an upcoming 30-minute slot.</div>
             </div>
             <div class="col-12">
               <fieldset class="border-0 p-0 m-0">
@@ -864,6 +1199,30 @@
       </div>
     </div>
   </header>
+
+  <!-- Custom date + time picker -->
+  <div class="demo-picker-backdrop" id="demoPickerBackdrop" hidden>
+    <section class="demo-picker" role="dialog" aria-modal="true" aria-labelledby="demoPickerMonth">
+      <div class="demo-calendar-panel">
+        <div class="demo-picker-heading">
+          <button type="button" class="demo-month-nav" id="demoPrevMonth" aria-label="Previous month"><i class="bi bi-chevron-left"></i></button>
+          <h3 id="demoPickerMonth">October 2026</h3>
+          <button type="button" class="demo-month-nav" id="demoNextMonth" aria-label="Next month"><i class="bi bi-chevron-right"></i></button>
+        </div>
+        <div class="demo-weekdays"><span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span></div>
+        <div class="demo-days" id="demoDays"></div>
+      </div>
+      <div class="demo-times-panel">
+        <div class="demo-times-heading"><h3>Available times</h3><span>IST (UTC+5:30)</span></div>
+        <p class="demo-selected-date" id="demoSelectedDate">Select a date first</p>
+        <div class="demo-time-list" id="demoTimeList"><p class="demo-time-empty">Choose a date to see available slots.</p></div>
+        <div class="demo-picker-footer">
+          <button type="button" class="demo-cancel" id="demoCancel">Cancel</button>
+          <button type="button" class="demo-confirm" id="demoConfirm" disabled>Confirm selection</button>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section id="software" class="section pt-0" style="padding-top: 8px;">
     <div class="container">
@@ -1341,13 +1700,127 @@
 
   <script>
     (() => {
+      const backdrop = document.getElementById('demoPickerBackdrop');
+      const trigger = document.getElementById('demoDateDisplay');
       const dateField = document.getElementById('demoDate');
-      if (dateField) {
-        const today = new Date();
-        const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-          .toISOString().split('T')[0];
-        dateField.min = localToday;
-      }
+      const timeField = document.getElementById('demoTime');
+      const displayText = document.getElementById('demoDateTimeText');
+      const monthTitle = document.getElementById('demoPickerMonth');
+      const daysGrid = document.getElementById('demoDays');
+      const timeList = document.getElementById('demoTimeList');
+      const selectedDateText = document.getElementById('demoSelectedDate');
+      const prevButton = document.getElementById('demoPrevMonth');
+      const nextButton = document.getElementById('demoNextMonth');
+      const confirmButton = document.getElementById('demoConfirm');
+      const form = document.getElementById('businessEnquiryForm');
+
+      // Use India Standard Time for all booking comparisons and labels.
+      const istParts = (date = new Date()) => {
+        const parts = new Intl.DateTimeFormat('en-CA', {
+          timeZone:'Asia/Kolkata', year:'numeric', month:'2-digit', day:'2-digit',
+          hour:'2-digit', minute:'2-digit', hourCycle:'h23'
+        }).formatToParts(date).reduce((a,p) => (a[p.type]=p.value,a), {});
+        return {year:+parts.year, month:+parts.month, day:+parts.day, hour:+parts.hour, minute:+parts.minute};
+      };
+      const pad = n => String(n).padStart(2,'0');
+      const dateKey = (y,m,d) => `${y}-${pad(m)}-${pad(d)}`;
+      const today = istParts();
+      let viewYear = today.year, viewMonth = today.month - 1;
+      let selectedDate = dateField.value || '';
+      let selectedTime = timeField.value || '';
+      let draftDate = selectedDate, draftTime = selectedTime;
+
+      const prettyDate = key => {
+        if (!key) return '';
+        const [y,m,d] = key.split('-').map(Number);
+        return new Date(Date.UTC(y,m-1,d,12)).toLocaleDateString('en-IN', {
+          timeZone:'UTC', weekday:'short', day:'numeric', month:'long', year:'numeric'
+        });
+      };
+      const isPastDay = key => key < dateKey(today.year,today.month,today.day);
+      const openPicker = () => {
+        draftDate = selectedDate; draftTime = selectedTime;
+        if (draftDate) {
+          const [y,m] = draftDate.split('-').map(Number);
+          viewYear=y; viewMonth=m-1;
+        }
+        backdrop.hidden=false; document.body.classList.add('demo-picker-open');
+        trigger.setAttribute('aria-expanded','true');
+        renderCalendar(); renderTimes();
+        document.getElementById('demoCancel').focus();
+      };
+      const closePicker = () => {
+        backdrop.hidden=true; document.body.classList.remove('demo-picker-open');
+        trigger.setAttribute('aria-expanded','false'); trigger.focus();
+      };
+      const renderCalendar = () => {
+        monthTitle.textContent = new Date(viewYear,viewMonth,1).toLocaleDateString('en-US',{month:'long',year:'numeric'});
+        daysGrid.innerHTML='';
+        const firstDay = new Date(viewYear,viewMonth,1).getDay();
+        const totalDays = new Date(viewYear,viewMonth+1,0).getDate();
+        for(let i=0;i<firstDay;i++) daysGrid.appendChild(document.createElement('span'));
+        for(let day=1;day<=totalDays;day++) {
+          const key=dateKey(viewYear,viewMonth+1,day);
+          const b=document.createElement('button'); b.type='button'; b.className='demo-day'; b.textContent=day;
+          b.setAttribute('aria-label',prettyDate(key));
+          if(key===dateKey(today.year,today.month,today.day)) b.classList.add('is-today');
+          if(key===draftDate) b.classList.add('is-selected');
+          b.disabled=isPastDay(key);
+          b.addEventListener('click',()=>{draftDate=key; draftTime=''; renderCalendar(); renderTimes();});
+          daysGrid.appendChild(b);
+        }
+        const currentMonth = today.year*12 + today.month-1;
+        prevButton.disabled = viewYear*12+viewMonth <= currentMonth;
+        nextButton.disabled = viewYear*12+viewMonth >= currentMonth+11;
+      };
+      const timeLabel = minutes => {
+        const h=Math.floor(minutes/60), m=minutes%60;
+        const suffix=h>=12?'PM':'AM', hour=(h%12)||12;
+        return `${hour}:${pad(m)} ${suffix}`;
+      };
+      const renderTimes = () => {
+        selectedDateText.textContent = draftDate ? prettyDate(draftDate) : 'Select a date first';
+        timeList.innerHTML='';
+        if(!draftDate) {
+          timeList.innerHTML='<p class="demo-time-empty">Choose a date to see available slots.</p>';
+          confirmButton.disabled=true; return;
+        }
+        const [y,m,d]=draftDate.split('-').map(Number);
+        const isToday=d===today.day && m===today.month && y===today.year;
+        let count=0;
+        for(let mins=9*60;mins<=18*60;mins+=30) {
+          const slot=`${pad(Math.floor(mins/60))}:${pad(mins%60)}`;
+          const b=document.createElement('button'); b.type='button'; b.className='demo-time-slot'; b.textContent=timeLabel(mins);
+          const nowMins=today.hour*60+today.minute;
+          // A slot must be in the future; same-day slots must start at least 30 minutes from now.
+          b.disabled=isToday && mins < nowMins+30;
+          if(slot===draftTime) b.classList.add('is-selected');
+          b.addEventListener('click',()=>{draftTime=slot; renderTimes();});
+          timeList.appendChild(b); count++;
+        }
+        if(!count) timeList.innerHTML='<p class="demo-time-empty">No available slots for this date.</p>';
+        confirmButton.disabled=!(draftDate && draftTime && !isPastDay(draftDate));
+      };
+      trigger.addEventListener('click',openPicker);
+      prevButton.addEventListener('click',()=>{if(!prevButton.disabled){viewMonth--;if(viewMonth<0){viewMonth=11;viewYear--;}renderCalendar();}});
+      nextButton.addEventListener('click',()=>{if(!nextButton.disabled){viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}renderCalendar();}});
+      document.getElementById('demoCancel').addEventListener('click',closePicker);
+      confirmButton.addEventListener('click',()=>{
+        if(!draftDate || !draftTime) return;
+        selectedDate=draftDate; selectedTime=draftTime;
+        dateField.value=selectedDate; timeField.value=selectedTime;
+        displayText.textContent=`${prettyDate(selectedDate)} · ${timeLabel(+selectedTime.split(':')[0]*60 + +selectedTime.split(':')[1])}`;
+        displayText.parentElement.parentElement.classList.add('has-selection');
+        closePicker();
+      });
+      backdrop.addEventListener('click',e=>{if(e.target===backdrop) closePicker();});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape' && !backdrop.hidden) closePicker();});
+      form.addEventListener('submit',e=>{
+        if(!dateField.value || !timeField.value) {
+          e.preventDefault(); trigger.focus(); openPicker();
+        }
+      });
+      renderCalendar();
     })();
   </script>
 \n  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
