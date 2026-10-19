@@ -279,6 +279,11 @@
     }
 
     footer { border-top: 1px solid var(--line); color: var(--muted); }
+    .footer-brand-lockup { display:flex; flex-direction:row; align-items:baseline; justify-content:center; flex-wrap:wrap; column-gap:14px; row-gap:4px; }
+    .footer-brand-name { color:var(--ink, #173b38); font-size:clamp(1.35rem, 2.8vw, 2rem); line-height:1.1; font-weight:850; letter-spacing:-.045em; }
+    .footer-brand-name sup { font-size:.34em; font-weight:800; letter-spacing:0; vertical-align:top; position:relative; top:.28em; margin-left:2px; }
+    .footer-legal-name { color:var(--muted); font-size:clamp(.72rem, 1.2vw, .95rem); font-weight:650; letter-spacing:.08em; text-transform:uppercase; white-space:nowrap; }
+    .footer-copyright { margin-top:12px; font-size:.76rem; opacity:.78; }
 
     a.link-sea { color: var(--sea-dark); text-decoration: none; }
     a.link-sea:hover { color: var(--sea); }
@@ -1933,6 +1938,56 @@
       #industries .folder-back { transition: none !important; }
     }
 
+@media (max-width: 480px) { .footer-brand-lockup { column-gap:8px; } .footer-brand-name { font-size:clamp(1.05rem, 5vw, 1.35rem); } .footer-legal-name { font-size:.62rem; letter-spacing:.05em; } }
+
+    /* Premium two-column contact and brand attribution section */
+    .contact-showcase { padding-top: 28px; padding-bottom: 54px; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+      gap: clamp(24px, 4vw, 58px);
+      align-items: stretch;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: clamp(24px, 4vw, 48px);
+      border: 1px solid rgba(20,184,166,.22);
+      border-radius: 30px;
+      background: linear-gradient(125deg, rgba(255,255,255,.98) 0%, rgba(239,251,249,.96) 58%, rgba(238,246,255,.96) 100%);
+      box-shadow: 0 24px 70px rgba(15, 75, 80, .08), inset 0 1px 0 rgba(255,255,255,.95);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-layout::before {
+      content: ""; position:absolute; width:320px; height:320px; border-radius:50%;
+      right:-115px; top:-160px; pointer-events:none;
+      background: radial-gradient(circle, rgba(20,184,166,.13), rgba(37,99,235,0) 70%);
+    }
+    .contact-main { position:relative; z-index:1; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; padding: 8px 0; }
+    .contact-title { color:var(--ink, #173b38); font-size:clamp(2.4rem, 4.5vw, 4.1rem); font-weight:850; letter-spacing:-.055em; line-height:1.04; margin: 6px 0 18px; }
+    .contact-description { max-width:510px; color:var(--muted, #637875); font-size:clamp(1rem, 1.5vw, 1.18rem); line-height:1.7; margin-bottom:26px; }
+    .contact-cta { border:0; border-radius:999px; padding:14px 26px; font-weight:750; box-shadow:0 12px 28px rgba(14,165,180,.23); background:linear-gradient(110deg,#168fe5,#10b9c5); }
+    .contact-cta:hover { transform:translateY(-2px); box-shadow:0 16px 32px rgba(14,165,180,.3); }
+    .contact-side { position:relative; z-index:1; padding:clamp(22px, 3vw, 34px); border-radius:24px; border:1px solid rgba(20,184,166,.2); background:rgba(255,255,255,.83); box-shadow:0 12px 35px rgba(25,90,100,.06); backdrop-filter:blur(12px); }
+    .contact-brand-mark { width:48px; height:48px; display:grid; place-items:center; border-radius:15px; color:white; font-size:1.45rem; background:linear-gradient(135deg,#168fe5,#12b8a6); box-shadow:0 8px 20px rgba(18,166,177,.2); margin-bottom:18px; }
+    .contact-brand-name { margin:0 0 7px; color:var(--ink,#173b38); font-size:clamp(1.6rem, 2.6vw, 2.2rem); line-height:1.1; font-weight:850; letter-spacing:-.045em; }
+    .contact-powered { margin:0; color:var(--muted,#637875); line-height:1.7; font-size:.98rem; }
+    .contact-powered strong { color:#138f88; font-weight:800; }
+    .contact-powered sup { font-size:.72em; }
+    .contact-powered .company-legal-name { display:block; color:#138f88; font-size:1rem; line-height:1.5; font-weight:800; letter-spacing:0; text-transform:none; }
+    .contact-powered .mca-registration { display:block; margin-top:8px; color:var(--muted,#637875); font-size:.82rem; line-height:1.5; font-weight:500; letter-spacing:0; text-transform:none; }
+    #hero-enquiry { scroll-margin-top: 112px; }
+    html { scroll-behavior: smooth; }
+    .contact-divider { height:1px; background:linear-gradient(90deg,rgba(20,184,166,.28),rgba(37,99,235,.12),transparent); margin:22px 0; }
+    .contact-detail { display:flex; align-items:flex-start; gap:12px; color:var(--muted,#637875); text-decoration:none; font-size:.94rem; line-height:1.6; margin-top:14px; overflow-wrap:anywhere; }
+    .contact-detail:hover { color:var(--sea-dark,#087f78); }
+    .contact-detail-icon { width:34px; height:34px; flex:0 0 34px; display:grid; place-items:center; border-radius:11px; color:#078f88; background:#e8f8f5; }
+    @media (max-width: 767.98px) {
+      .contact-showcase { padding-top:12px; padding-bottom:32px; }
+      .contact-layout { grid-template-columns:1fr; padding:22px; gap:26px; border-radius:22px; }
+      .contact-title { font-size:clamp(2.2rem, 10vw, 3.1rem); }
+      .contact-side { padding:22px; border-radius:18px; }
+    }
+
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
@@ -2569,37 +2624,31 @@
     </div>
   </section>
 
-  <section id="about" class="section pt-0">
+
+
+  <section id="contact" class="section pt-0 contact-showcase">
     <div class="container">
-      <div class="soft-card" style="padding: 40px 32px;">
-        <p class="kicker mb-2" section-kicker>About</p>
-        <h2 class="display-6 fw-bold mb-3">About Us</h2>
-        <p class="mb-0" style="color: var(--muted); max-width: 860px;">
-          Moltres Infotech builds custom business software, CRM systems, web applications, cloud solutions, and AI-powered tools.
-        </p>
+      <div class="contact-layout">
+        <div class="contact-main">
+          <p class="kicker mb-2" section-kicker>CONTACT</p>
+          <h2 class="contact-title">Let’s build something<br class="d-none d-lg-block"> great together.</h2>
+          <p class="contact-description">Tell us what your business needs. We’ll help you plan the right software solution.</p>
+          <a href="#hero-enquiry" class="btn btn-red btn-lg contact-cta">Book Demo <i class="bi bi-arrow-up-right ms-2"></i></a>
+        </div>
+        <div class="contact-side">
+          <div class="contact-brand-mark"><i class="bi bi-code-slash"></i></div>
+          <p class="contact-brand-name">Moltres Infotech</p>
+          <p class="contact-powered">Powered by<br><strong class="company-legal-name">Moltres Innovations<sup>™</sup></strong><span class="company-legal-name">OPC Private Limited</span><span class="mca-registration">Registered under the Ministry of Corporate Affairs (MCA), Government of India</span></p>
+          <div class="contact-divider"></div>
+          <a class="contact-detail" href="mailto:contact@moltres-infotech.com"><span class="contact-detail-icon"><i class="bi bi-envelope"></i></span><span>contact@moltres-infotech.com</span></a>
+          <div class="contact-detail"><span class="contact-detail-icon"><i class="bi bi-geo-alt"></i></span><span>LVS Arcade, 71, Jubilee Enclave, Hitech City, Madhapur, Hyderabad, Telangana 500081</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="section pt-0">
-    <div class="container text-center">
-      <p class="kicker mb-2" section-kicker>Contact</p>
-      <h2 class="display-5 fw-bold mb-3">Book a Demo</h2>
-      <p class="mb-4" style="color: var(--muted);">
-        Tell us what you need. We’ll discuss the right solution.
-      </p>
-      <p class="mb-1"><i class="bi bi-envelope text-sea"></i> <a class="link-sea" href="mailto:contact@moltres-infotech.com">contact@moltres-infotech.com</a></p>
-      <p class="mb-4" style="color: var(--muted);">
-        LVS Arcade, 71, Jubilee Enclave, Hitech City,<br>
-        Madhapur, Hyderabad, Telangana 500081
-      </p>
-      <a href="mailto:contact@moltres-infotech.com?subject=Demo%20request" class="btn btn-red btn-lg">Book Demo</a>
-    </div>
-  </section>
-
-  <footer class="text-center py-4 small">
-    © 2026 Moltres Innovations. All rights reserved.<br>
-    Moltres Infotech is a technology brand of Moltres Innovations.
+  <footer class="text-center py-4">
+    <div class="footer-copyright">© 2026 Moltres Innovations. All rights reserved.</div>
   </footer>
 
   <script>
@@ -2776,6 +2825,29 @@
   }
 })();
 </script>
+
+
+<style>
+/* Compact footer spacing: remove unnecessary blank area above and below copyright */
+footer,
+.site-footer,
+.page-footer,
+#footer {
+  margin-top: 0 !important;
+  padding-top: 18px !important;
+  padding-bottom: 12px !important;
+  min-height: 0 !important;
+}
+footer p,
+.site-footer p,
+.page-footer p,
+#footer p,
+.copyright,
+.footer-copyright {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+</style>
 
 </body>
 
