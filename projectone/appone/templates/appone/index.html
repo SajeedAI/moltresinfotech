@@ -49,19 +49,59 @@
     }
 
     .navbar {
-      background: rgba(255, 255, 255, 0.94);
+      background: #050505 !important;
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      min-height: 82px;
+      padding: 10px 0;
     }
 
-    .navbar .nav-link {
-      color: var(--ink);
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
     }
 
-    .navbar .nav-link:hover,
-    .navbar .nav-link:focus { color: var(--sea-dark); }
+    .navbar .brand-logo {
+      width: 190px;
+      height: auto;
+      display: block;
+      padding: 8px 12px;
+      background: #ffffff;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 16px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.16);
+    }
+
+    .navbar .btn-book-demo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 25px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(105deg, #20b2aa, #08aebd);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 750;
+      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(32,178,170,.22);
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .navbar .btn-book-demo:hover {
+      color: #ffffff;
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 575.98px) {
+      .navbar { min-height: 68px; }
+      .navbar .brand-logo { width: 150px; padding: 7px 9px; border-radius: 13px; }
+      .navbar .btn-book-demo { padding: 10px 14px; font-size: .82rem; }
+    }
 
     .btn-red {
       background: linear-gradient(105deg, #108fe0, #10b8d0);
@@ -1995,9 +2035,15 @@
 
 <body class="ai-grid">
 
-  <nav class="navbar fixed-top navbar-light">
+  <nav class="navbar fixed-top navbar-dark" aria-label="Main navigation">
     <div class="container">
-      <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Sea-Green+Moltres+Infotech+Logo.png" alt="Moltres Infotech">
+      <a href="#top" class="d-inline-flex align-items-center" aria-label="Moltres Infotech home">
+        <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Sea-Green+Moltres+Infotech+Logo.png" alt="Moltres Infotech">
+      </a>
+      <a class="btn-book-demo" href="#hero-enquiry">
+        <i class="bi bi-calendar-check" aria-hidden="true"></i>
+        <span>Book Demo</span>
+      </a>
     </div>
   </nav>
 
