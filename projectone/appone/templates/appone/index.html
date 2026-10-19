@@ -973,6 +973,35 @@
     }
 
 
+    /* Clean, compact Why Teams Choose Us section */
+    #why-choose-us {
+      padding: 30px 0 !important;
+      background: #ffffff;
+      background-image: none !important;
+    }
+    #why-choose-us .container { max-width: 1440px; }
+    #why-choose-us h2 {
+      max-width: 680px;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      line-height: 1.12;
+    }
+    #why-choose-us .soft-card {
+      padding: 22px 24px;
+      min-height: 176px;
+      border-radius: 20px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    #why-choose-us .soft-card h3 { margin-top: 12px !important; margin-bottom: 7px; }
+    #why-choose-us .soft-card p { line-height: 1.55; }
+    @media (max-width: 767.98px) {
+      #why-choose-us { padding: 24px 0 !important; }
+      #why-choose-us .soft-card { min-height: 145px; padding: 18px; }
+    }
+
     /* Consistent icons inside every enquiry-form field */
     #businessEnquiryForm .field-control-wrap {
       position: relative;
@@ -1053,6 +1082,41 @@
       }
       #businessEnquiryForm .demo-picker-trigger > .field-leading-icon { left: 13px; }
     }
+
+
+    /* Click-to-open folder cards for the industry showcase */
+    #industries .industry-folder-grid { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:22px; }
+    #industries .industry-folder-card { position:relative; display:flex; min-width:0; min-height:270px; flex-direction:column; align-items:center; justify-content:flex-end; padding:18px 8px 4px; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+    #industries .industry-folder-toggle { position:absolute; opacity:0; width:1px; height:1px; }
+    #industries .folder-art { position:relative; width:min(100%,190px); height:165px; perspective:900px; }
+    #industries .folder-back { position:absolute; bottom:7px; left:0; width:100%; height:125px; border-radius:18px 18px 16px 16px; background:linear-gradient(145deg,#0879ed,#0056b3); box-shadow:0 20px 28px rgba(20,86,126,.20); transition:transform .45s cubic-bezier(.23,1,.32,1); }
+    #industries .folder-back:before { content:""; position:absolute; left:0; top:-19px; width:43%; height:30px; background:#075dbd; border-radius:16px 16px 0 0; clip-path:polygon(0 0,75% 0,100% 100%,0 100%); }
+    #industries .folder-back:after { content:""; position:absolute; top:18px; left:15px; width:42px; height:5px; border-radius:9px; background:rgba(255,255,255,.58); }
+    #industries .folder-paper { position:absolute; left:11%; bottom:18px; width:78%; height:88px; border-radius:11px; background:linear-gradient(140deg,#b9b8ff,#8e8be4); box-shadow:0 8px 16px rgba(21,34,86,.17); transition:transform .45s cubic-bezier(.23,1,.32,1); }
+    #industries .folder-paper:before { content:""; position:absolute; top:14px; right:13px; width:18px; height:14px; border:2px solid rgba(255,255,255,.45); border-radius:3px; }
+    #industries .folder-front { position:absolute; z-index:5; left:0; right:0; bottom:0; height:105px; border-radius:20px 20px 17px 17px; background:linear-gradient(145deg,rgba(0,126,255,.97),rgba(0,91,207,.96)); border:1px solid rgba(255,255,255,.28); box-shadow:inset 0 1px 0 rgba(255,255,255,.35); transform-origin:bottom; transition:transform .45s cubic-bezier(.175,.885,.32,1.275); }
+    #industries .folder-front:after { content:""; position:absolute; inset:1px; border-radius:inherit; background:linear-gradient(120deg,rgba(255,255,255,.13),transparent 55%); pointer-events:none; }
+    #industries .folder-file { position:absolute; z-index:2; left:13%; bottom:16px; width:74%; height:70px; padding:11px 9px; border-radius:8px; color:#fff; font-size:10px; line-height:1.2; font-weight:800; box-shadow:0 5px 12px rgba(0,0,0,.15); opacity:.98; transition:transform .5s cubic-bezier(.68,-.55,.265,1.55); }
+    #industries .folder-file:after { display:block; margin-top:8px; font-size:8px; font-weight:600; opacity:.85; }
+    #industries .folder-file.f1 { background:#ff6478; transition-delay:.08s; } #industries .folder-file.f1:after { content:'WORKFLOW'; }
+    #industries .folder-file.f2 { background:#ffbd69; transition-delay:.05s; } #industries .folder-file.f2:after { content:'REPORTS'; }
+    #industries .folder-file.f3 { background:#35bdf5; transition-delay:.02s; } #industries .folder-file.f3:after { content:'DASHBOARD'; }
+    #industries .folder-label { position:absolute; z-index:6; left:16px; top:17px; width:32px; height:4px; border-radius:9px; background:rgba(255,255,255,.62); }
+    #industries .folder-count { position:absolute; z-index:8; top:-8px; right:-5px; display:flex; align-items:center; gap:5px; padding:6px 9px; border-radius:30px; background:#a18cd1; color:#fff; font-size:9px; font-weight:900; box-shadow:0 8px 15px rgba(0,0,0,.15); transition:transform .3s,opacity .3s; }
+    #industries .folder-count:before { content:""; width:6px; height:6px; border-radius:50%; background:#34d399; box-shadow:0 0 7px #34d399; }
+    #industries .folder-industry-name { margin-top:17px; color:#24413e; font-size:1rem; font-weight:800; text-align:center; }
+    #industries .folder-hint { position:absolute; top:0; right:0; color:#278edb; font-size:10px; font-weight:800; text-decoration:underline; opacity:.8; transition:opacity .25s; }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-front { transform:rotateX(-43deg); }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-paper { transform:translateY(-35px); }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f1 { transform:translate(-14px,-61px) rotate(-9deg); }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f2 { transform:translate(13px,-47px) rotate(8deg); }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-file.f3 { transform:translate(-2px,-32px) rotate(-2deg); }
+    #industries .industry-folder-toggle:checked ~ .folder-art .folder-count { transform:translateY(-8px); }
+    #industries .industry-folder-toggle:checked ~ .folder-hint { opacity:0; }
+    #industries .industry-folder-card:focus-within .folder-front { outline:3px solid rgba(32,178,170,.35); outline-offset:4px; }
+    @media(max-width:1199.98px){#industries .industry-folder-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    @media(max-width:575.98px){#industries .industry-folder-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;} #industries .industry-folder-card{min-height:230px;padding:20px 3px 2px;} #industries .folder-art{height:135px;} #industries .folder-back{height:105px;} #industries .folder-front{height:86px;} #industries .folder-paper{height:70px;} #industries .folder-file{height:56px;font-size:8px;padding:8px;} #industries .folder-industry-name{font-size:.9rem;margin-top:12px;} #industries .folder-hint{font-size:9px;}}
+    @media(prefers-reduced-motion:reduce){#industries .folder-front,#industries .folder-paper,#industries .folder-file,#industries .folder-back{transition:none!important;}}
 
 </style>
 </head>
@@ -1484,20 +1548,20 @@
     <div class="container">
       <p class="kicker mb-2" section-kicker>Who it is for</p>
       <h2 class="display-6 fw-bold mb-4">One engineering team, many industries</h2>
-      <div class="row g-3">
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#d8f4f2;"><i class="bi bi-hospital industry-tile-icon" aria-hidden="true"></i>Hospitals</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#c9efec;"><i class="bi bi-buildings industry-tile-icon" aria-hidden="true"></i>Real estate</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#b7e8e4;"><i class="bi bi-car-front industry-tile-icon" aria-hidden="true"></i>Showrooms</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#e5f7f6;"><i class="bi bi-mortarboard industry-tile-icon" aria-hidden="true"></i>Schools</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#d2f1ee;"><i class="bi bi-heart-pulse industry-tile-icon" aria-hidden="true"></i>Fitness</div></div>
-        <div class="col-6 col-md-4 col-lg-2"><div class="industry-tile" style="background:#c3ece9;"><i class="bi bi-camera-reels industry-tile-icon" aria-hidden="true"></i>Studios</div></div>
+      <div class="industry-folder-grid">
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Hospitals folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Patient Portal</div><div class="folder-file f2">Appointments</div><div class="folder-file f1">Hospital CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Hospitals</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Real estate folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Lead Dashboard</div><div class="folder-file f2">Site Visits</div><div class="folder-file f1">Property CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Real estate</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Showrooms folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Sales Analytics</div><div class="folder-file f2">Test Drives</div><div class="folder-file f1">Showroom CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Showrooms</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Schools folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Exam Reports</div><div class="folder-file f2">Attendance</div><div class="folder-file f1">School ERP</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Schools</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Fitness folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Member Insights</div><div class="folder-file f2">Class Schedule</div><div class="folder-file f1">Fitness CRM</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Fitness</span></label>
+        <label class="industry-folder-card"><input class="industry-folder-toggle" type="checkbox" aria-label="Open Studios folder"><span class="folder-hint">Click to open ↙</span><div class="folder-art"><div class="folder-back"></div><div class="folder-paper"></div><div class="folder-file f3">Client Gallery</div><div class="folder-file f2">Bookings</div><div class="folder-file f1">Studio Platform</div><div class="folder-front"><span class="folder-label"></span></div><span class="folder-count">FILES 03</span></div><span class="folder-industry-name">Studios</span></label>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section id="why-choose-us" class="section why-choose-section">
     <div class="container">
-      <div class="row g-4 align-items-start">
+      <div class="row g-4 align-items-center">
         <div class="col-lg-5">
           <p class="kicker mb-2" section-kicker>Why teams choose us</p>
           <h2 class="display-6 fw-bold mb-3">Built for daily operations, then supported after launch.</h2>
@@ -1781,7 +1845,7 @@
       renderCalendar();
     })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
