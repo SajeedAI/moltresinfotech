@@ -2597,32 +2597,7 @@
   </div>
 </section>
 
-  <section id="services" class="section pt-0">
-    <div class="container">
-      <p class="kicker mb-2" section-kicker>Services</p>
-      <h2 class="display-6 fw-bold mb-4">More Services</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="soft-card">
-            <h3 class="h5 fw-bold text-sea">Industry CRM builds</h3>
-            <p class="mb-0" style="color: var(--muted);">New CRM modules for leads, follow-ups, WhatsApp, payments, and analytics when an off-the-shelf tool does not fit.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="soft-card">
-            <h3 class="h5 fw-bold text-sea">Web &amp; mobile apps</h3>
-            <p class="mb-0" style="color: var(--muted);">Full stack web platforms and Android, iOS, and cross-platform apps connected to the same business data.</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="soft-card">
-            <h3 class="h5 fw-bold text-sea">LMS, HRMS &amp; automation</h3>
-            <p class="mb-0" style="color: var(--muted);">Learning systems, HR operations, classroom monitoring, and process automation for institutes and companies.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
 
 
@@ -2638,7 +2613,7 @@
         <div class="contact-side">
           <div class="contact-brand-mark"><i class="bi bi-code-slash"></i></div>
           <p class="contact-brand-name">Moltres Infotech</p>
-          <p class="contact-powered">Powered by<br><strong class="company-legal-name">Moltres Innovations<sup>™</sup></strong><span class="company-legal-name">OPC Private Limited</span><span class="mca-registration">Registered under the Ministry of Corporate Affairs (MCA), Government of India</span></p>
+          <p class="contact-powered">Powered by<span class="company-brand-line"><strong class="company-legal-name">Moltres Innovations<sup>™</sup></strong><span class="company-legal-name">OPC Private Limited</span></span><span class="mca-registration">Registered under the Ministry of Corporate Affairs (MCA), Government of India</span></p>
           <div class="contact-divider"></div>
           <a class="contact-detail" href="mailto:contact@moltres-infotech.com"><span class="contact-detail-icon"><i class="bi bi-envelope"></i></span><span>contact@moltres-infotech.com</span></a>
           <div class="contact-detail"><span class="contact-detail-icon"><i class="bi bi-geo-alt"></i></span><span>LVS Arcade, 71, Jubilee Enclave, Hitech City, Madhapur, Hyderabad, Telangana 500081</span></div>
@@ -2846,6 +2821,49 @@ footer p,
 .footer-copyright {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+}
+</style>
+
+
+<style>
+/* Contact-card brand colors and one-line legal company name */
+.contact-brand-name {
+  color: #19b7a5 !important;
+}
+.contact-powered .company-brand-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  gap: .42em;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+.contact-powered .company-legal-name {
+  display: inline !important;
+  color: #19b7a5 !important;
+  font-size: clamp(.78rem, 1.25vw, 1rem) !important;
+  line-height: 1.5 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.contact-powered .company-legal-name sup {
+  font-size: .68em;
+  line-height: 0;
+}
+.contact-powered .mca-registration {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted, #637875);
+  font-size: .82rem;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+@media (max-width: 520px) {
+  .contact-powered .company-brand-line { gap: .32em; }
+  .contact-powered .company-legal-name { font-size: clamp(.7rem, 3.3vw, .9rem) !important; }
 }
 </style>
 
