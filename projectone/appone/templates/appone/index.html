@@ -1158,6 +1158,66 @@
       background: linear-gradient(105deg, #0f766e, #0d9488) !important;
     }
 
+
+
+    /* FINAL FIX: compact logo header and prevent the Book Demo card from sitting underneath it */
+    .navbar.fixed-top {
+      min-height: 68px !important;
+      height: 68px !important;
+      padding: 5px 0 !important;
+      background: rgba(255,255,255,.97) !important;
+      border-bottom: 1px solid #d8eeeb !important;
+      box-shadow: 0 4px 16px rgba(10,30,40,.05) !important;
+      z-index: 1100 !important;
+    }
+    .navbar.fixed-top > .container {
+      min-height: 58px !important;
+      height: 58px !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+    .navbar.fixed-top .brand-logo {
+      width: 170px !important;
+      max-height: 54px !important;
+      object-fit: contain !important;
+      border-radius: 10px !important;
+    }
+    body { padding-top: 78px !important; }
+    .hero-form-only {
+      padding-top: 8px !important;
+      margin-top: 0 !important;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 575.98px) {
+      .navbar.fixed-top,
+      .navbar.fixed-top > .container {
+        min-height: 60px !important;
+        height: 60px !important;
+      }
+      .navbar.fixed-top { padding: 4px 0 !important; }
+      .navbar.fixed-top .brand-logo { width: 148px !important; max-height: 48px !important; }
+      body { padding-top: 68px !important; }
+      .hero-form-only { padding-top: 7px !important; }
+    }
+
+
+    /* FINAL FIX: remove the unwanted white line above the dark Book Demo card */
+    .hero-form-card,
+    .hero-form-card-wide {
+      border: 1px solid #263548 !important;
+      outline: none !important;
+    }
+    .hero-form-card::before,
+    .hero-form-card:before {
+      display: none !important;
+      content: none !important;
+    }
+    .navbar.fixed-top {
+      border-bottom: 0 !important;
+      box-shadow: none !important;
+    }
+
 </style>
 </head>
 
@@ -1869,7 +1929,7 @@
       renderCalendar();
     })();
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
