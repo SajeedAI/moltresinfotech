@@ -1207,26 +1207,31 @@
 
     /* FINAL FIX: compact logo header and prevent the Book Demo card from sitting underneath it */
     .navbar.fixed-top {
-      min-height: 68px !important;
-      height: 68px !important;
-      padding: 5px 0 !important;
-      background: rgba(255,255,255,.97) !important;
-      border-bottom: 1px solid #d8eeeb !important;
-      box-shadow: 0 4px 16px rgba(10,30,40,.05) !important;
+      min-height: 96px !important;
+      height: 96px !important;
+      padding: 8px 0 !important;
+      background: #050505 !important;
+      border-bottom: 1px solid rgba(255,255,255,.12) !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,.16) !important;
       z-index: 1100 !important;
     }
     .navbar.fixed-top > .container {
-      min-height: 58px !important;
-      height: 58px !important;
+      min-height: 80px !important;
+      height: 80px !important;
       display: flex !important;
       align-items: center !important;
     }
     .navbar.fixed-top .brand-logo {
-      width: 170px !important;
-      max-height: 54px !important;
+      width: 250px !important;
+      max-height: 76px !important;
       object-fit: contain !important;
-      border-radius: 10px !important;
+      padding: 10px 16px !important;
+      background: #ffffff !important;
+      border: 1px solid rgba(255,255,255,.9) !important;
+      border-radius: 17px !important;
+      box-shadow: 0 5px 20px rgba(255,255,255,.10) !important;
     }
+    .navbar.fixed-top .btn-book-demo { display: none !important; }
     body { padding-top: 78px !important; }
     .hero-form-only {
       padding-top: 8px !important;
@@ -1237,12 +1242,12 @@
     @media (max-width: 575.98px) {
       .navbar.fixed-top,
       .navbar.fixed-top > .container {
-        min-height: 60px !important;
-        height: 60px !important;
+        min-height: 78px !important;
+        height: 78px !important;
       }
-      .navbar.fixed-top { padding: 4px 0 !important; }
-      .navbar.fixed-top .brand-logo { width: 148px !important; max-height: 48px !important; }
-      body { padding-top: 68px !important; }
+      .navbar.fixed-top { padding: 5px 0 !important; }
+      .navbar.fixed-top .brand-logo { width: 205px !important; max-height: 64px !important; padding: 8px 12px !important; border-radius: 14px !important; }
+      body { padding-top: 86px !important; }
       .hero-form-only { padding-top: 7px !important; }
     }
 
@@ -2039,10 +2044,6 @@
     <div class="container">
       <a href="#top" class="d-inline-flex align-items-center" aria-label="Moltres Infotech home">
         <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Sea-Green+Moltres+Infotech+Logo.png" alt="Moltres Infotech">
-      </a>
-      <a class="btn-book-demo" href="#hero-enquiry">
-        <i class="bi bi-calendar-check" aria-hidden="true"></i>
-        <span>Book Demo</span>
       </a>
     </div>
   </nav>
