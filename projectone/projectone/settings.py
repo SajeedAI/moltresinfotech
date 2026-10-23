@@ -16,6 +16,31 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+def _load_env_file(path: Path) -> None:
+    """Load KEY=VALUE lines into os.environ (does not override existing vars)."""
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except OSError:
+        return
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        key = key.strip()
+        if not key or key in os.environ:
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+            value = value[1:-1]
+        os.environ[key] = value
+
+
+# Gunicorn often has no EnvironmentFile; read server + project env before webhook settings.
+_load_env_file(Path("/etc/moltres-infotech-webhook.env"))
+_load_env_file(BASE_DIR / ".env")
+
 try:
     from dotenv import load_dotenv
 
