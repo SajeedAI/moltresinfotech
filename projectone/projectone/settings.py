@@ -17,7 +17,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def _load_env_file(path: Path) -> None:
+def _load_env_file(path: Path, *, override_keys: frozenset[str] | None = None) -> None:
     """Load KEY=VALUE lines into os.environ (does not override existing vars)."""
     try:
         raw = path.read_text(encoding="utf-8")
@@ -29,7 +29,9 @@ def _load_env_file(path: Path) -> None:
             continue
         key, _, value = line.partition("=")
         key = key.strip()
-        if not key or key in os.environ:
+        if not key:
+            continue
+        if key in os.environ and (override_keys is None or key not in override_keys):
             continue
         value = value.strip()
         if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
@@ -37,8 +39,11 @@ def _load_env_file(path: Path) -> None:
         os.environ[key] = value
 
 
-# Gunicorn often has no EnvironmentFile; read server + project env before webhook settings.
-_load_env_file(Path("/etc/moltres-infotech-webhook.env"))
+# Gunicorn systemd may set a stale placeholder; /etc file wins for webhook keys.
+_WEBHOOK_ENV_KEYS = frozenset(
+    {"MOLTRES_CRM_WEBHOOK_SECRET", "MOLTRES_INFOTECH_WEBHOOK_SECRET"}
+)
+_load_env_file(Path("/etc/moltres-infotech-webhook.env"), override_keys=_WEBHOOK_ENV_KEYS)
 _load_env_file(BASE_DIR / ".env")
 
 try:
@@ -161,12 +166,35 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+def _read_env_key_from_file(path: Path, key: str) -> str:
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except OSError:
+        return ""
+    for line in raw.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, value = line.partition("=")
+        if k.strip() != key:
+            continue
+        value = value.strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+            value = value[1:-1]
+        return value
+    return ""
+
+
 # Forward Book Demo leads → moltres-institute.com CRM (same secret as server env)
 MOLTRES_CRM_WEBHOOK_URL = os.environ.get(
     "MOLTRES_CRM_WEBHOOK_URL",
     "https://www.moltres-institute.com/moltres-infotech/api/webhook/",
 )
-MOLTRES_CRM_WEBHOOK_SECRET = os.environ.get(
-    "MOLTRES_CRM_WEBHOOK_SECRET",
-    os.environ.get("MOLTRES_INFOTECH_WEBHOOK_SECRET", ""),
+# Server file beats stale gunicorn/systemd env (fixes 401 when both differ).
+MOLTRES_CRM_WEBHOOK_SECRET = (
+    _read_env_key_from_file(Path("/etc/moltres-infotech-webhook.env"), "MOLTRES_CRM_WEBHOOK_SECRET")
+    or _read_env_key_from_file(BASE_DIR / ".env", "MOLTRES_CRM_WEBHOOK_SECRET")
+    or os.environ.get("MOLTRES_CRM_WEBHOOK_SECRET")
+    or os.environ.get("MOLTRES_INFOTECH_WEBHOOK_SECRET")
+    or ""
 )
