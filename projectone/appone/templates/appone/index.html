@@ -335,7 +335,7 @@
     }
     .hero-form-card-wide .form-control { min-height: 38px; padding: 7px 11px; font-size: .88rem; border-radius: 999px; }
     .industry-options-wide { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 7px 10px; }
-    .industry-options-wide .industry-option label { min-height: 43px; padding: 7px 10px; font-size: .78rem; }
+    .industry-options-wide .industry-option-label { min-height: 43px; padding: 7px 10px; font-size: .78rem; }
     .form-submit-row {
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; border-top: 1px solid #e7f1f0; padding-top: 12px; margin-top: 0;
@@ -372,14 +372,14 @@
       border-color: #8eddf4;
       box-shadow: 0 0 0 .2rem rgba(14,159,232,.12), 0 9px 18px rgba(12,166,220,.09);
     }
-    .hero-form-card-wide .industry-option label {
+    .hero-form-card-wide .industry-option-label {
       border: 1px solid #e2edf1;
       border-radius: 18px;
       box-shadow: 0 5px 14px rgba(42,156,194,.07);
       color: #43545c;
       background: #ffffff;
     }
-    .hero-form-card-wide .industry-option input:checked + label {
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) {
       background: #eef9ff;
       color: #087bc3;
       border-color: #79d2ec;
@@ -390,7 +390,7 @@
       border-radius: 8px;
       color: transparent;
     }
-    .hero-form-card-wide .industry-option input:checked + label .check-visual {
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual {
       background: #0e9fe8;
       border-color: #0e9fe8;
       color: #ffffff;
@@ -406,7 +406,7 @@
       .form-card-heading { padding-bottom: 6px; margin-bottom: 7px; }
       .form-card-heading h2 { font-size: 1.35rem; }
       .hero-form-card-wide .form-control { min-height: 38px; padding-top: 6px; padding-bottom: 6px; }
-      .industry-options-wide .industry-option label { min-height: 38px; padding-top: 5px; padding-bottom: 5px; }
+      .industry-options-wide .industry-option-label { min-height: 38px; padding-top: 5px; padding-bottom: 5px; }
       .form-submit-row { padding-top: 9px; }
       .form-submit-row .btn { min-height: 36px; }
     }
@@ -424,7 +424,7 @@
     }
     @media (max-width: 420px) {
       .industry-options-wide { grid-template-columns: 1fr; }
-      .industry-options-wide .industry-option label { min-height: 48px; }
+      .industry-options-wide .industry-option-label { min-height: 48px; }
       .form-card-heading { align-items: flex-start; }
       .form-heading-icon { width: 40px; height: 40px; flex-basis: 40px; }
     }
@@ -463,30 +463,47 @@
       display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px;
     }
     .industry-option { position: relative; min-width: 0; }
-    .industry-option input {
-      position: absolute; opacity: 0; width: 1px; height: 1px;
-    }
-    .industry-option label {
+    .industry-option-label {
+      position: relative;
       min-height: 52px; height: 100%; display: flex; align-items: center;
       gap: 10px; padding: 8px 10px; border: 1.5px solid #e1e9e8;
       border-radius: 18px; background: rgba(255,255,255,.96); cursor: pointer; box-shadow: 0 5px 14px rgba(42,156,194,.07);
       color: #38514f; font-size: .76rem; font-weight: 650; line-height: 1.3;
       transition: border-color .18s ease, background .18s ease, transform .18s ease;
+      margin: 0;
     }
-    .industry-option label:hover { border-color: #8bd8d3; transform: translateY(-1px); }
+    .industry-option-label:hover { border-color: #8bd8d3; transform: translateY(-1px); }
+    .industry-option-input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .industry-option .check-visual,
+    .industry-option .industry-option-text {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+    }
     .industry-option .check-visual {
       width: 19px; height: 19px; flex: 0 0 19px; border: 2px solid #cbd8d7;
-      border-radius: 7px; display: grid; place-items: center; color: transparent;
+      border-radius: 5px; display: grid; place-items: center; color: transparent;
       transition: all .18s ease; background: #fff;
     }
-    .industry-option input:checked + label {
+    .industry-option-label:has(.industry-option-input:checked) {
       border-color: var(--sea); background: #eef9ff; color: #087bc3;
       box-shadow: 0 0 0 2px rgba(14,159,232,.08);
     }
-    .industry-option input:checked + label .check-visual {
+    .industry-option-label:has(.industry-option-input:checked) .check-visual {
       background: var(--sea); border-color: var(--sea); color: #fff;
     }
-    .industry-option input:focus-visible + label { outline: 3px solid rgba(32,178,170,.3); outline-offset: 2px; }
+    .industry-option-label:has(.industry-option-input:focus-visible) {
+      outline: 3px solid rgba(32,178,170,.3); outline-offset: 2px;
+    }
     .industry-option .check-visual i { font-size: .8rem; }
     .form-helper { font-size: .78rem; color: var(--muted); }
     .hero-form-card .btn-red { min-height: 42px; padding: 9px 16px; font-size: .92rem; }
@@ -502,7 +519,7 @@
     @media (max-width: 575.98px) {
       .hero { padding: 108px 0 48px; }
       .industry-options { grid-template-columns: 1fr; }
-      .industry-option label { min-height: 48px; }
+      .industry-option-label { min-height: 48px; }
       .hero-form-card { border-radius: 28px; padding: 18px 15px; }
       .hero-form-card:before { border-radius: 20px 20px 0 0; }
       .hero-copy h1 { font-size: clamp(2.35rem, 11vw, 3.2rem); }
@@ -634,9 +651,9 @@
     .hero-form-card-wide .form-heading-icon { background: #d9f5f1 !important; color: #178f88 !important; box-shadow: 0 6px 16px rgba(32,178,170,.12) !important; }
     .hero-form-card-wide .form-control { background: #ffffff; border-color: #ccefeb; box-shadow: 0 4px 12px rgba(32,178,170,.06); }
     .hero-form-card-wide .form-control:focus { border-color: #20b2aa; box-shadow: 0 0 0 .2rem rgba(32,178,170,.14); }
-    .hero-form-card-wide .industry-option label { background: #ffffff; border-color: #ccefeb; color: #315e5a; box-shadow: 0 4px 12px rgba(32,178,170,.07); }
-    .hero-form-card-wide .industry-option input:checked + label { background: #dff7f3; color: #147c75; border-color: #20b2aa; box-shadow: 0 0 0 2px rgba(32,178,170,.1); }
-    .hero-form-card-wide .industry-option input:checked + label .check-visual { background: #20b2aa; border-color: #20b2aa; }
+    .hero-form-card-wide .industry-option-label { background: #ffffff; border-color: #ccefeb; color: #315e5a; box-shadow: 0 4px 12px rgba(32,178,170,.07); }
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) { background: #dff7f3; color: #147c75; border-color: #20b2aa; box-shadow: 0 0 0 2px rgba(32,178,170,.1); }
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual { background: #20b2aa; border-color: #20b2aa; }
     .hero-form-card-wide .form-submit-row { border-top-color: #ccefeb; }
     @media (max-width: 767.98px) {
       .hero-form-only { padding-top: 84px !important; padding-bottom: 10px !important; }
@@ -1129,17 +1146,17 @@
     .hero-form-card-wide .demo-picker-trigger.has-selection { color: #f3f4f6 !important; }
     .hero-form-card-wide .demo-picker-trigger > .bi-chevron-down,
     .hero-form-card-wide .field-leading-icon { color: #5eead4 !important; }
-    .hero-form-card-wide .industry-option label {
+    .hero-form-card-wide .industry-option-label {
       background: #182231 !important;
       color: #dbe5ef !important;
       border: 1px solid #354357 !important;
       box-shadow: none !important;
     }
-    .hero-form-card-wide .industry-option label:hover {
+    .hero-form-card-wide .industry-option-label:hover {
       background: #202d3e !important;
       border-color: #3c827b !important;
     }
-    .hero-form-card-wide .industry-option input:checked + label {
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) {
       background: #123b39 !important;
       color: #99f6e4 !important;
       border-color: #2dd4bf !important;
@@ -1149,11 +1166,19 @@
       background: #111a27 !important;
       border-color: #64748b !important;
     }
-    .hero-form-card-wide .industry-option input:checked + label .check-visual {
+    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual {
       background: #14b8a6 !important;
       border-color: #14b8a6 !important;
       color: #071b1a !important;
     }
+    .application-bulk-actions .btn-link {
+      font-size: .78rem;
+      font-weight: 650;
+      text-decoration: none;
+      color: #5eead4;
+    }
+    .hero-form-card-wide .application-bulk-actions .btn-link { color: #5eead4 !important; }
+    .application-bulk-actions .btn-link:hover { text-decoration: underline; }
     .hero-form-card-wide .btn-red {
       background: linear-gradient(105deg, #0d9488, #14b8a6) !important;
       color: #ffffff !important;
@@ -2090,41 +2115,70 @@
             <div class="col-12">
               <fieldset class="border-0 p-0 m-0">
                 <legend class="form-label small fw-semibold mb-2">Which application do you need? *</legend>
-                <div class="industry-options industry-options-wide">
+                <div class="industry-options industry-options-wide" id="applicationOptions">
                   <div class="industry-option">
-                    <input id="industryHospital" name="application" type="checkbox" value="Hospitals & Clinics Application"{% if "Hospitals & Clinics Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryHospital"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Hospitals &amp; Clinics Application</span></label>
+                    <label class="industry-option-label" for="industryHospital">
+                      <input id="industryHospital" class="industry-option-input" name="application" type="checkbox" value="Hospitals & Clinics Application"{% if "Hospitals & Clinics Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Hospitals &amp; Clinics Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryRealEstate" name="application" type="checkbox" value="Real Estate Application"{% if "Real Estate Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryRealEstate"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Real Estate Application</span></label>
+                    <label class="industry-option-label" for="industryRealEstate">
+                      <input id="industryRealEstate" class="industry-option-input" name="application" type="checkbox" value="Real Estate Application"{% if "Real Estate Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Real Estate Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryAuto" name="application" type="checkbox" value="Automotive Application"{% if "Automotive Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryAuto"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Automotive Application</span></label>
+                    <label class="industry-option-label" for="industryAuto">
+                      <input id="industryAuto" class="industry-option-input" name="application" type="checkbox" value="Automotive Application"{% if "Automotive Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Automotive Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEducation" name="application" type="checkbox" value="Schools & Colleges Application"{% if "Schools & Colleges Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryEducation"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Schools &amp; Colleges Application</span></label>
+                    <label class="industry-option-label" for="industryEducation">
+                      <input id="industryEducation" class="industry-option-input" name="application" type="checkbox" value="Schools & Colleges Application"{% if "Schools & Colleges Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Schools &amp; Colleges Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryFitness" name="application" type="checkbox" value="Fitness Application"{% if "Fitness Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryFitness"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Fitness Application</span></label>
+                    <label class="industry-option-label" for="industryFitness">
+                      <input id="industryFitness" class="industry-option-input" name="application" type="checkbox" value="Fitness Application"{% if "Fitness Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Fitness Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryStudio" name="application" type="checkbox" value="Photo Studios Application"{% if "Photo Studios Application" in prefill.applications %} checked{% endif %}>
-                    <label for="industryStudio"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Photo Studios Application</span></label>
+                    <label class="industry-option-label" for="industryStudio">
+                      <input id="industryStudio" class="industry-option-input" name="application" type="checkbox" value="Photo Studios Application"{% if "Photo Studios Application" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">Photo Studios Application</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEdTechCRM" name="application" type="checkbox" value="EdTech CRM"{% if "EdTech CRM" in prefill.applications %} checked{% endif %}>
-                    <label for="industryEdTechCRM"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>EdTech CRM</span></label>
+                    <label class="industry-option-label" for="industryEdTechCRM">
+                      <input id="industryEdTechCRM" class="industry-option-input" name="application" type="checkbox" value="EdTech CRM"{% if "EdTech CRM" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">EdTech CRM</span>
+                    </label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEdTechLMS" name="application" type="checkbox" value="EdTech LMS"{% if "EdTech LMS" in prefill.applications %} checked{% endif %}>
-                    <label for="industryEdTechLMS"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>EdTech LMS</span></label>
+                    <label class="industry-option-label" for="industryEdTechLMS">
+                      <input id="industryEdTechLMS" class="industry-option-input" name="application" type="checkbox" value="EdTech LMS"{% if "EdTech LMS" in prefill.applications %} checked{% endif %}>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-text">EdTech LMS</span>
+                    </label>
                   </div>
                 </div>
-                <p class="form-helper mt-2 mb-0">Choose one or more options.</p>
+                <p class="form-helper mt-2 mb-0 application-bulk-actions">
+                  Choose one or more options.
+                  <button type="button" class="btn btn-link p-0 align-baseline ms-1" id="applicationSelectAll">Select all</button>
+                  <span class="text-muted" aria-hidden="true">·</span>
+                  <button type="button" class="btn btn-link p-0 align-baseline" id="applicationClearAll">Clear all</button>
+                </p>
               </fieldset>
             </div>
             <div class="col-12 form-submit-row">
@@ -2710,15 +2764,36 @@
   </footer>
 
   <script>
-    document.getElementById("businessEnquiryForm").addEventListener("submit", function (event) {
-      const selected = this.querySelectorAll('input[name="application"]:checked').length > 0;
+    (function () {
+      const form = document.getElementById("businessEnquiryForm");
       const error = document.getElementById("industryError");
-      error.style.display = selected ? "none" : "block";
-      if (!selected) {
-        event.preventDefault();
-        this.querySelector('input[name="application"]').focus();
+      const appInputs = () => form.querySelectorAll('input[name="application"]');
+
+      function hideApplicationError() {
+        if (error) error.style.display = "none";
       }
-    });
+
+      appInputs().forEach(function (box) {
+        box.addEventListener("change", hideApplicationError);
+      });
+
+      document.getElementById("applicationSelectAll")?.addEventListener("click", function () {
+        appInputs().forEach(function (box) { box.checked = true; });
+        hideApplicationError();
+      });
+      document.getElementById("applicationClearAll")?.addEventListener("click", function () {
+        appInputs().forEach(function (box) { box.checked = false; });
+      });
+
+      form.addEventListener("submit", function (event) {
+        const selected = form.querySelectorAll('input[name="application"]:checked').length > 0;
+        if (error) error.style.display = selected ? "none" : "block";
+        if (!selected) {
+          event.preventDefault();
+          form.querySelector('input[name="application"]')?.focus();
+        }
+      });
+    })();
   </script>
 
   <script>
