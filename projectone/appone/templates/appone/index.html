@@ -2013,7 +2013,19 @@
           <div class="form-heading-icon" aria-hidden="true"><i class="bi bi-chat-square-text"></i></div>
         </div>
 
-        <form id="businessEnquiryForm" action="#contact" method="get">
+        {% if messages %}
+        <div class="mb-2">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags|default:'info' }} py-2 small mb-1" role="alert">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if submitted %}
+        <div class="alert alert-success py-2 small mb-2" role="status">Thank you! Your demo request was received. We will contact you shortly.</div>
+        {% endif %}
+
+        <form id="businessEnquiryForm" action="{% url 'submit_lead' %}" method="post">
+          {% csrf_token %}
           <div class="row g-2">
             <div class="col-md-6 col-lg-4">
               <label for="leadName" class="form-label small fw-semibold">Full name *</label>
@@ -2021,7 +2033,7 @@
 
                 <i class="bi bi-person field-leading-icon" aria-hidden="true"></i>
 
-                <input class="form-control" id="leadName" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+                <input class="form-control" id="leadName" name="name" type="text" placeholder="Your name" autocomplete="name" required value="{{ prefill.name }}">
 
               </div>
             </div>
@@ -2031,7 +2043,7 @@
 
                 <i class="bi bi-envelope field-leading-icon" aria-hidden="true"></i>
 
-                <input class="form-control" id="leadEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required>
+                <input class="form-control" id="leadEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" required value="{{ prefill.email }}">
 
               </div>
             </div>
@@ -2041,7 +2053,7 @@
 
                 <i class="bi bi-telephone field-leading-icon" aria-hidden="true"></i>
 
-                <input class="form-control" id="leadContact" name="contact" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" pattern="[+0-9() .-]{7,20}" required>
+                <input class="form-control" id="leadContact" name="contact" type="tel" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" pattern="[+0-9() .-]{7,20}" required value="{{ prefill.contact }}">
 
               </div>
             </div>
@@ -2051,7 +2063,7 @@
 
                 <i class="bi bi-geo-alt field-leading-icon" aria-hidden="true"></i>
 
-                <input class="form-control" id="leadCity" name="city" type="text" placeholder="Your city" autocomplete="address-level2" required>
+                <input class="form-control" id="leadCity" name="city" type="text" placeholder="Your city" autocomplete="address-level2" required value="{{ prefill.city }}">
 
               </div>
             </div>
@@ -2061,7 +2073,7 @@
 
                 <i class="bi bi-building field-leading-icon" aria-hidden="true"></i>
 
-                <input class="form-control" id="leadBusiness" name="business" type="text" placeholder="Company or business name" autocomplete="organization">
+                <input class="form-control" id="leadBusiness" name="business" type="text" placeholder="Company or business name" autocomplete="organization" value="{{ prefill.business }}">
 
               </div>
             </div>
@@ -2071,8 +2083,8 @@
                 <span id="demoDateTimeText">Select date and time</span>
                 <i class="bi bi-chevron-down"></i>
               </button>
-              <input type="hidden" id="demoDate" name="demo_date">
-              <input type="hidden" id="demoTime" name="demo_time">
+              <input type="hidden" id="demoDate" name="demo_date" value="{{ prefill.demo_date }}">
+              <input type="hidden" id="demoTime" name="demo_time" value="{{ prefill.demo_time }}">
               <div class="form-helper mt-1">Select a date and available 30-minute time slot.</div>
             </div>
             <div class="col-12">
@@ -2080,35 +2092,35 @@
                 <legend class="form-label small fw-semibold mb-2">Which application do you need? *</legend>
                 <div class="industry-options industry-options-wide">
                   <div class="industry-option">
-                    <input id="industryHospital" name="application" type="checkbox" value="Hospitals & Clinics Application">
+                    <input id="industryHospital" name="application" type="checkbox" value="Hospitals & Clinics Application"{% if "Hospitals & Clinics Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryHospital"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Hospitals &amp; Clinics Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryRealEstate" name="application" type="checkbox" value="Real Estate Application">
+                    <input id="industryRealEstate" name="application" type="checkbox" value="Real Estate Application"{% if "Real Estate Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryRealEstate"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Real Estate Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryAuto" name="application" type="checkbox" value="Automotive Application">
+                    <input id="industryAuto" name="application" type="checkbox" value="Automotive Application"{% if "Automotive Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryAuto"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Automotive Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEducation" name="application" type="checkbox" value="Schools & Colleges Application">
+                    <input id="industryEducation" name="application" type="checkbox" value="Schools & Colleges Application"{% if "Schools & Colleges Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryEducation"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Schools &amp; Colleges Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryFitness" name="application" type="checkbox" value="Fitness Application">
+                    <input id="industryFitness" name="application" type="checkbox" value="Fitness Application"{% if "Fitness Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryFitness"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Fitness Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryStudio" name="application" type="checkbox" value="Photo Studios Application">
+                    <input id="industryStudio" name="application" type="checkbox" value="Photo Studios Application"{% if "Photo Studios Application" in prefill.applications %} checked{% endif %}>
                     <label for="industryStudio"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>Photo Studios Application</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEdTechCRM" name="application" type="checkbox" value="EdTech CRM">
+                    <input id="industryEdTechCRM" name="application" type="checkbox" value="EdTech CRM"{% if "EdTech CRM" in prefill.applications %} checked{% endif %}>
                     <label for="industryEdTechCRM"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>EdTech CRM</span></label>
                   </div>
                   <div class="industry-option">
-                    <input id="industryEdTechLMS" name="application" type="checkbox" value="EdTech LMS">
+                    <input id="industryEdTechLMS" name="application" type="checkbox" value="EdTech LMS"{% if "EdTech LMS" in prefill.applications %} checked{% endif %}>
                     <label for="industryEdTechLMS"><span class="check-visual"><i class="bi bi-check-lg"></i></span><span>EdTech LMS</span></label>
                   </div>
                 </div>
@@ -2686,7 +2698,7 @@
           <p class="contact-brand-name">Moltres Infotech</p>
           <p class="contact-powered">Powered by<span class="company-brand-line"><strong class="company-legal-name">Moltres Innovations<sup>™</sup></strong><span class="company-legal-name">OPC Private Limited</span></span><span class="mca-registration">Registered under the Ministry of Corporate Affairs (MCA), Government of India</span></p>
           <div class="contact-divider"></div>
-          <a class="contact-detail" href="mailto:contact@moltres-infotech.com"><span class="contact-detail-icon"><i class="bi bi-envelope"></i></span><span>contact@moltres-infotech.com</span></a>
+          <a class="contact-detail" href="mailto:info@moltresinnovations.com"><span class="contact-detail-icon"><i class="bi bi-envelope"></i></span><span>info@moltresinnovations.com</span></a>
           <div class="contact-detail"><span class="contact-detail-icon"><i class="bi bi-geo-alt"></i></span><span>LVS Arcade, 71, Jubilee Enclave, Hitech City, Madhapur, Hyderabad, Telangana 500081</span></div>
         </div>
       </div>
