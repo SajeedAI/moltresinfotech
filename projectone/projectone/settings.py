@@ -17,7 +17,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def _load_env_file(path: Path, *, override_keys: frozenset[str] | None = None) -> None:
+def _load_env_file(
+    path: Path,
+    *,
+    override_keys: frozenset[str] | None = None,
+    skip_keys: frozenset[str] | None = None,
+) -> None:
     """Load KEY=VALUE lines into os.environ (does not override existing vars)."""
     try:
         raw = path.read_text(encoding="utf-8")
@@ -29,7 +34,7 @@ def _load_env_file(path: Path, *, override_keys: frozenset[str] | None = None) -
             continue
         key, _, value = line.partition("=")
         key = key.strip()
-        if not key:
+        if not key or (skip_keys and key in skip_keys):
             continue
         if key in os.environ and (override_keys is None or key not in override_keys):
             continue
@@ -44,12 +49,18 @@ _WEBHOOK_ENV_KEYS = frozenset(
     {"MOLTRES_CRM_WEBHOOK_SECRET", "MOLTRES_INFOTECH_WEBHOOK_SECRET"}
 )
 _load_env_file(Path("/etc/moltres-infotech-webhook.env"), override_keys=_WEBHOOK_ENV_KEYS)
-_load_env_file(BASE_DIR / ".env")
+_load_env_file(BASE_DIR / ".env", skip_keys=_WEBHOOK_ENV_KEYS)
 
 try:
     from dotenv import load_dotenv
 
     load_dotenv(BASE_DIR / ".env")
+    for _wk in _WEBHOOK_ENV_KEYS:
+        os.environ.pop(_wk, None)
+    _load_env_file(
+        Path("/etc/moltres-infotech-webhook.env"),
+        override_keys=_WEBHOOK_ENV_KEYS,
+    )
 except ImportError:
     pass
 
@@ -190,11 +201,9 @@ MOLTRES_CRM_WEBHOOK_URL = os.environ.get(
     "MOLTRES_CRM_WEBHOOK_URL",
     "https://www.moltres-institute.com/moltres-infotech/api/webhook/",
 )
-# Server file beats stale gunicorn/systemd env (fixes 401 when both differ).
+# Only /etc (or systemd EnvironmentFile pointing at it) — never project .env.
 MOLTRES_CRM_WEBHOOK_SECRET = (
     _read_env_key_from_file(Path("/etc/moltres-infotech-webhook.env"), "MOLTRES_CRM_WEBHOOK_SECRET")
-    or _read_env_key_from_file(BASE_DIR / ".env", "MOLTRES_CRM_WEBHOOK_SECRET")
     or os.environ.get("MOLTRES_CRM_WEBHOOK_SECRET")
-    or os.environ.get("MOLTRES_INFOTECH_WEBHOOK_SECRET")
     or ""
 )
