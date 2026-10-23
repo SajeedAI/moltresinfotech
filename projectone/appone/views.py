@@ -47,7 +47,8 @@ def _prefill_from_post(request):
     data["business"] = (request.POST.get("business") or "").strip()
     data["demo_date"] = (request.POST.get("demo_date") or "").strip()
     data["demo_time"] = (request.POST.get("demo_time") or "").strip()
-    data["applications"] = request.POST.getlist("application")
+    selected_app = (request.POST.get("application") or "").strip()
+    data["applications"] = [selected_app] if selected_app else []
     return data
 
 
@@ -69,6 +70,8 @@ def index(request):
     prefill = {**_empty_prefill(), **request.session.pop("lead_prefill", {})}
     if "applications" not in prefill or not isinstance(prefill["applications"], list):
         prefill["applications"] = []
+    apps = [a for a in prefill["applications"] if a]
+    prefill["selected_application"] = apps[0] if apps else ""
 
     submitted = bool(request.session.pop("lead_submitted", False))
 
@@ -85,9 +88,10 @@ def index(request):
 @require_http_methods(["POST"])
 def submit_lead(request):
     """Forward Book Demo form to moltres-institute.com CRM webhook."""
-    applications = request.POST.getlist("application")
+    selected_app = (request.POST.get("application") or "").strip()
+    applications = [selected_app] if selected_app else []
     if not applications:
-        messages.error(request, "Please select at least one application.")
+        messages.error(request, "Please select an application.")
         request.session["lead_prefill"] = _prefill_from_post(request)
         return redirect("/#hero-enquiry")
 

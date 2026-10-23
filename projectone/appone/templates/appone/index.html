@@ -387,7 +387,7 @@
     }
     .hero-form-card-wide .industry-option .check-visual {
       border: 2px solid #cbdde5;
-      border-radius: 8px;
+      border-radius: 50%;
       color: transparent;
     }
     .hero-form-card-wide .industry-option-label.is-selected .check-visual {
@@ -493,8 +493,16 @@
     }
     .industry-option .check-visual {
       width: 19px; height: 19px; flex: 0 0 19px; border: 2px solid #cbd8d7;
-      border-radius: 5px; display: grid; place-items: center; color: transparent;
+      border-radius: 50%; display: grid; place-items: center; color: transparent;
       transition: all .18s ease; background: #fff;
+    }
+    .industry-option-label.is-selected .check-visual i { display: none; }
+    .industry-option-label.is-selected .check-visual::after {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: currentColor;
     }
     .industry-option-label.is-selected {
       border-color: var(--sea); background: #eef9ff; color: #087bc3;
@@ -1173,14 +1181,6 @@
       border-color: #14b8a6 !important;
       color: #071b1a !important;
     }
-    .application-bulk-actions .btn-link {
-      font-size: .78rem;
-      font-weight: 650;
-      text-decoration: none;
-      color: #5eead4;
-    }
-    .hero-form-card-wide .application-bulk-actions .btn-link { color: #5eead4 !important; }
-    .application-bulk-actions .btn-link:hover { text-decoration: underline; }
     .hero-form-card-wide .btn-red {
       background: linear-gradient(105deg, #0d9488, #14b8a6) !important;
       color: #ffffff !important;
@@ -2120,74 +2120,69 @@
                 <div class="industry-options industry-options-wide" id="applicationOptions">
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryHospital">
-                      <input id="industryHospital" class="industry-option-input" name="application" type="checkbox" value="Hospitals & Clinics Application"{% if "Hospitals & Clinics Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryHospital" class="industry-option-input" name="application" type="radio" required value="Hospitals & Clinics Application"{% if prefill.selected_application == "Hospitals & Clinics Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Hospitals &amp; Clinics Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryRealEstate">
-                      <input id="industryRealEstate" class="industry-option-input" name="application" type="checkbox" value="Real Estate Application"{% if "Real Estate Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryRealEstate" class="industry-option-input" name="application" type="radio" value="Real Estate Application"{% if prefill.selected_application == "Real Estate Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Real Estate Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryAuto">
-                      <input id="industryAuto" class="industry-option-input" name="application" type="checkbox" value="Automotive Application"{% if "Automotive Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryAuto" class="industry-option-input" name="application" type="radio" value="Automotive Application"{% if prefill.selected_application == "Automotive Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Automotive Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEducation">
-                      <input id="industryEducation" class="industry-option-input" name="application" type="checkbox" value="Schools & Colleges Application"{% if "Schools & Colleges Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryEducation" class="industry-option-input" name="application" type="radio" value="Schools & Colleges Application"{% if prefill.selected_application == "Schools & Colleges Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Schools &amp; Colleges Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryFitness">
-                      <input id="industryFitness" class="industry-option-input" name="application" type="checkbox" value="Fitness Application"{% if "Fitness Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryFitness" class="industry-option-input" name="application" type="radio" value="Fitness Application"{% if prefill.selected_application == "Fitness Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Fitness Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryStudio">
-                      <input id="industryStudio" class="industry-option-input" name="application" type="checkbox" value="Photo Studios Application"{% if "Photo Studios Application" in prefill.applications %} checked{% endif %}>
+                      <input id="industryStudio" class="industry-option-input" name="application" type="radio" value="Photo Studios Application"{% if prefill.selected_application == "Photo Studios Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">Photo Studios Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEdTechCRM">
-                      <input id="industryEdTechCRM" class="industry-option-input" name="application" type="checkbox" value="EdTech CRM"{% if "EdTech CRM" in prefill.applications %} checked{% endif %}>
+                      <input id="industryEdTechCRM" class="industry-option-input" name="application" type="radio" value="EdTech CRM"{% if prefill.selected_application == "EdTech CRM" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">EdTech CRM</span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEdTechLMS">
-                      <input id="industryEdTechLMS" class="industry-option-input" name="application" type="checkbox" value="EdTech LMS"{% if "EdTech LMS" in prefill.applications %} checked{% endif %}>
+                      <input id="industryEdTechLMS" class="industry-option-input" name="application" type="radio" value="EdTech LMS"{% if prefill.selected_application == "EdTech LMS" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                       <span class="industry-option-text">EdTech LMS</span>
                     </label>
                   </div>
                 </div>
-                <p class="form-helper mt-2 mb-0 application-bulk-actions">
-                  Choose one or more options.
-                  <button type="button" class="btn btn-link p-0 align-baseline ms-1" id="applicationSelectAll">Select all</button>
-                  <span class="text-muted" aria-hidden="true">·</span>
-                  <button type="button" class="btn btn-link p-0 align-baseline" id="applicationClearAll">Clear all</button>
-                </p>
+                <p class="form-helper mt-2 mb-0">Choose one option.</p>
               </fieldset>
             </div>
             <div class="col-12 form-submit-row">
               <div class="form-helper"><i class="bi bi-shield-check me-1"></i>Your details will be used to respond to your enquiry.</div>
               <div>
                 <button class="btn btn-red" type="submit">Book Demo <i class="bi bi-arrow-right ms-1"></i></button>
-                <p id="industryError" class="text-danger small mt-2 mb-0" role="alert" style="display:none">Please select at least one application.</p>
+                <p id="industryError" class="text-danger small mt-2 mb-0" role="alert" style="display:none">Please select an application.</p>
               </div>
             </div>
           </div>
@@ -2789,20 +2784,10 @@
         });
       });
 
-      document.getElementById("applicationSelectAll")?.addEventListener("click", function () {
-        appInputs().forEach(function (box) { box.checked = true; });
-        syncApplicationOptionStyles();
-        hideApplicationError();
-      });
-      document.getElementById("applicationClearAll")?.addEventListener("click", function () {
-        appInputs().forEach(function (box) { box.checked = false; });
-        syncApplicationOptionStyles();
-      });
-
       syncApplicationOptionStyles();
 
       form.addEventListener("submit", function (event) {
-        const selected = appOptions.querySelectorAll('input[name="application"]:checked').length > 0;
+        const selected = appOptions.querySelector('input[name="application"]:checked');
         if (error) error.style.display = selected ? "none" : "block";
         if (!selected) {
           event.preventDefault();
