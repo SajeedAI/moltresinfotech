@@ -379,7 +379,7 @@
       color: #43545c;
       background: #ffffff;
     }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) {
+    .hero-form-card-wide .industry-option-label.is-selected {
       background: #eef9ff;
       color: #087bc3;
       border-color: #79d2ec;
@@ -390,7 +390,7 @@
       border-radius: 8px;
       color: transparent;
     }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual {
+    .hero-form-card-wide .industry-option-label.is-selected .check-visual {
       background: #0e9fe8;
       border-color: #0e9fe8;
       color: #ffffff;
@@ -475,13 +475,15 @@
     .industry-option-label:hover { border-color: #8bd8d3; transform: translateY(-1px); }
     .industry-option-input {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      opacity: 0;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
       cursor: pointer;
-      z-index: 2;
     }
     .industry-option .check-visual,
     .industry-option .industry-option-text {
@@ -494,14 +496,14 @@
       border-radius: 5px; display: grid; place-items: center; color: transparent;
       transition: all .18s ease; background: #fff;
     }
-    .industry-option-label:has(.industry-option-input:checked) {
+    .industry-option-label.is-selected {
       border-color: var(--sea); background: #eef9ff; color: #087bc3;
       box-shadow: 0 0 0 2px rgba(14,159,232,.08);
     }
-    .industry-option-label:has(.industry-option-input:checked) .check-visual {
+    .industry-option-label.is-selected .check-visual {
       background: var(--sea); border-color: var(--sea); color: #fff;
     }
-    .industry-option-label:has(.industry-option-input:focus-visible) {
+    .industry-option-label:focus-within {
       outline: 3px solid rgba(32,178,170,.3); outline-offset: 2px;
     }
     .industry-option .check-visual i { font-size: .8rem; }
@@ -652,8 +654,8 @@
     .hero-form-card-wide .form-control { background: #ffffff; border-color: #ccefeb; box-shadow: 0 4px 12px rgba(32,178,170,.06); }
     .hero-form-card-wide .form-control:focus { border-color: #20b2aa; box-shadow: 0 0 0 .2rem rgba(32,178,170,.14); }
     .hero-form-card-wide .industry-option-label { background: #ffffff; border-color: #ccefeb; color: #315e5a; box-shadow: 0 4px 12px rgba(32,178,170,.07); }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) { background: #dff7f3; color: #147c75; border-color: #20b2aa; box-shadow: 0 0 0 2px rgba(32,178,170,.1); }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual { background: #20b2aa; border-color: #20b2aa; }
+    .hero-form-card-wide .industry-option-label.is-selected { background: #dff7f3; color: #147c75; border-color: #20b2aa; box-shadow: 0 0 0 2px rgba(32,178,170,.1); }
+    .hero-form-card-wide .industry-option-label.is-selected .check-visual { background: #20b2aa; border-color: #20b2aa; }
     .hero-form-card-wide .form-submit-row { border-top-color: #ccefeb; }
     @media (max-width: 767.98px) {
       .hero-form-only { padding-top: 84px !important; padding-bottom: 10px !important; }
@@ -1156,7 +1158,7 @@
       background: #202d3e !important;
       border-color: #3c827b !important;
     }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) {
+    .hero-form-card-wide .industry-option-label.is-selected {
       background: #123b39 !important;
       color: #99f6e4 !important;
       border-color: #2dd4bf !important;
@@ -1166,7 +1168,7 @@
       background: #111a27 !important;
       border-color: #64748b !important;
     }
-    .hero-form-card-wide .industry-option-label:has(.industry-option-input:checked) .check-visual {
+    .hero-form-card-wide .industry-option-label.is-selected .check-visual {
       background: #14b8a6 !important;
       border-color: #14b8a6 !important;
       color: #071b1a !important;
@@ -2767,30 +2769,44 @@
     (function () {
       const form = document.getElementById("businessEnquiryForm");
       const error = document.getElementById("industryError");
-      const appInputs = () => form.querySelectorAll('input[name="application"]');
+      const appOptions = document.getElementById("applicationOptions");
+      const appInputs = () => appOptions.querySelectorAll('input[name="application"]');
+
+      function syncApplicationOptionStyles() {
+        appInputs().forEach(function (box) {
+          box.closest(".industry-option-label")?.classList.toggle("is-selected", box.checked);
+        });
+      }
 
       function hideApplicationError() {
         if (error) error.style.display = "none";
       }
 
       appInputs().forEach(function (box) {
-        box.addEventListener("change", hideApplicationError);
+        box.addEventListener("change", function () {
+          syncApplicationOptionStyles();
+          hideApplicationError();
+        });
       });
 
       document.getElementById("applicationSelectAll")?.addEventListener("click", function () {
         appInputs().forEach(function (box) { box.checked = true; });
+        syncApplicationOptionStyles();
         hideApplicationError();
       });
       document.getElementById("applicationClearAll")?.addEventListener("click", function () {
         appInputs().forEach(function (box) { box.checked = false; });
+        syncApplicationOptionStyles();
       });
 
+      syncApplicationOptionStyles();
+
       form.addEventListener("submit", function (event) {
-        const selected = form.querySelectorAll('input[name="application"]:checked').length > 0;
+        const selected = appOptions.querySelectorAll('input[name="application"]:checked').length > 0;
         if (error) error.style.display = selected ? "none" : "block";
         if (!selected) {
           event.preventDefault();
-          form.querySelector('input[name="application"]')?.focus();
+          appOptions.querySelector('input[name="application"]')?.focus();
         }
       });
     })();
