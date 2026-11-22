@@ -288,11 +288,37 @@
     a.link-sea { color: var(--sea-dark); text-decoration: none; }
     a.link-sea:hover { color: var(--sea); }
 
+    .brand-logo-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      padding: 9px 26px;
+      text-decoration: none;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #0c1218 0%, #030508 100%);
+      border: 2px solid #178f88;
+      box-shadow:
+        0 0 0 1px rgba(32, 178, 170, 0.12),
+        0 10px 28px rgba(10, 30, 40, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .brand-logo-wrap:hover,
+    .brand-logo-wrap:focus-visible {
+      border-color: #20b2aa;
+      box-shadow:
+        0 0 0 1px rgba(32, 178, 170, 0.2),
+        0 12px 30px rgba(32, 178, 170, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      outline: none;
+    }
     .brand-logo {
-      width: 190px;
+      width: clamp(210px, 38vw, 400px);
       height: auto;
-      border-radius: 14px;
+      max-height: 46px;
+      object-fit: contain;
       display: block;
+      border-radius: 0;
     }
 
 
@@ -1366,11 +1392,14 @@
       display: flex !important;
       align-items: center !important;
     }
+    .navbar.fixed-top .brand-logo-wrap {
+      padding: 8px 22px !important;
+    }
     .navbar.fixed-top .brand-logo {
-      width: 170px !important;
-      max-height: 54px !important;
+      width: clamp(200px, 36vw, 380px) !important;
+      max-height: 44px !important;
       object-fit: contain !important;
-      border-radius: 10px !important;
+      border-radius: 0 !important;
     }
     body { padding-top: 78px !important; }
     .hero-form-only {
@@ -1386,7 +1415,13 @@
         height: 60px !important;
       }
       .navbar.fixed-top { padding: 4px 0 !important; }
-      .navbar.fixed-top .brand-logo { width: 148px !important; max-height: 48px !important; }
+      .navbar.fixed-top .brand-logo-wrap {
+        padding: 7px 14px !important;
+      }
+      .navbar.fixed-top .brand-logo {
+        width: min(100%, 268px) !important;
+        max-height: 38px !important;
+      }
       body { padding-top: 68px !important; }
       .hero-form-only { padding-top: 7px !important; }
     }
@@ -2185,7 +2220,9 @@
 
   <nav class="navbar fixed-top navbar-light">
     <div class="container">
-      <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Moltres+Infotech+Logo+in+Vibrant+Colours.png" alt="Moltres Infotech">
+      <a class="brand-logo-wrap" href="/" aria-label="Moltres Infotech home">
+        <img class="brand-logo" src="https://s3.ap-south-1.amazonaws.com/moltresinnovations.com/Moltres+Infotech+Logo+in+Vibrant+Colours.png" alt="Moltres Infotech">
+      </a>
     </div>
   </nav>
 
