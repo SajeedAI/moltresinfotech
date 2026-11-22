@@ -85,6 +85,10 @@ def index(request):
     )
 
 
+def terms_and_conditions(request):
+    return render(request, "appone/terms_and_conditions.html")
+
+
 @require_http_methods(["POST"])
 def submit_lead(request):
     """Forward Book Demo form to moltres-institute.com CRM webhook."""

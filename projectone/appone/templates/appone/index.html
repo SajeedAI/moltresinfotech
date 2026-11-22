@@ -1130,6 +1130,35 @@
     .hero-form-card-wide .form-submit-row .form-helper {
       color: #a7b4c5 !important;
     }
+    .form-legal-links {
+      margin-top: 8px;
+      margin-bottom: 0;
+      font-size: .76rem;
+      line-height: 1.4;
+    }
+    .form-legal-links a {
+      color: #5eead4;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .form-legal-links a:hover { color: #99f6e4; }
+    .form-legal-links .form-legal-sep {
+      margin: 0 .4rem;
+      color: #6b7a8c;
+    }
+    .footer-legal-links {
+      margin-top: 10px;
+      font-size: .76rem;
+    }
+    .footer-legal-links a {
+      color: var(--sea);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer-legal-links .footer-legal-sep {
+      margin: 0 .45rem;
+      color: var(--muted);
+    }
     .hero-form-card-wide .form-heading-icon {
       background: #183c3b !important;
       color: #5eead4 !important;
@@ -2147,10 +2176,10 @@
                     </label>
                   </div>
                   <div class="industry-option">
-                    <label class="industry-option-label" for="industryFitness">
-                      <input id="industryFitness" class="industry-option-input" name="application" type="radio" value="Fitness Application"{% if prefill.selected_application == "Fitness Application" %} checked{% endif %}>
+                    <label class="industry-option-label" for="industryCarCare">
+                      <input id="industryCarCare" class="industry-option-input" name="application" type="radio" value="CarCare Application"{% if prefill.selected_application == "CarCare Application" %} checked{% endif %}>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
-                      <span class="industry-option-text">Fitness Application</span>
+                      <span class="industry-option-text">CarCare Application</span>
                     </label>
                   </div>
                   <div class="industry-option">
@@ -2179,7 +2208,14 @@
               </fieldset>
             </div>
             <div class="col-12 form-submit-row">
-              <div class="form-helper"><i class="bi bi-shield-check me-1"></i>Your details will be used to respond to your enquiry.</div>
+              <div>
+                <div class="form-helper"><i class="bi bi-shield-check me-1"></i>Your details will be used to respond to your enquiry.</div>
+                <p class="form-legal-links">
+                  <a href="/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
+                  <span class="form-legal-sep" aria-hidden="true">·</span>
+                  <a href="https://www.moltres-institute.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                </p>
+              </div>
               <div>
                 <button class="btn btn-red" type="submit">Book Demo <i class="bi bi-arrow-right ms-1"></i></button>
                 <p id="industryError" class="text-danger small mt-2 mb-0" role="alert" style="display:none">Please select an application.</p>
@@ -2757,6 +2793,11 @@
   </section>
 
   <footer class="text-center py-4">
+    <div class="footer-legal-links">
+      <a href="/terms-and-conditions/" target="_blank" rel="noopener noreferrer">Terms and Conditions</a>
+      <span class="footer-legal-sep" aria-hidden="true">·</span>
+      <a href="https://www.moltres-institute.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    </div>
     <div class="footer-copyright">© 2026 Moltres Innovations. All rights reserved.</div>
   </footer>
 
