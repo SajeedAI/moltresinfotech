@@ -625,6 +625,31 @@
     #businessEnquiryForm .favicon-automotive { color: #d97706; background: linear-gradient(155deg, #fffbeb, #fef3c7); border-color: rgba(217, 119, 6, .22); }
     #businessEnquiryForm .favicon-schools { color: #2563eb; background: linear-gradient(155deg, #eff6ff, #dbeafe); border-color: rgba(37, 99, 235, .2); }
     #businessEnquiryForm .favicon-carcare { color: #059669; background: linear-gradient(155deg, #ecfdf5, #d1fae5); border-color: rgba(5, 150, 105, .22); }
+    #businessEnquiryForm .favicon-carcare .carcare-foam-svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+    }
+    #businessEnquiryForm .favicon-carcare .foam-b {
+      fill: #2dd4bf;
+      opacity: 0.92;
+    }
+    #businessEnquiryForm .favicon-carcare .foam-car {
+      fill: #047857;
+    }
+    #businessEnquiryForm .favicon-carcare .foam-wheel {
+      fill: #ffffff;
+    }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-carcare .foam-b {
+      fill: #ecfdf5;
+      opacity: 1;
+    }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-carcare .foam-car {
+      fill: #ffffff;
+    }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-carcare .foam-wheel {
+      fill: rgba(255, 255, 255, 0.35);
+    }
     #businessEnquiryForm .favicon-studio { color: #db2777; background: linear-gradient(155deg, #fdf2f8, #fce7f3); border-color: rgba(219, 39, 119, .2); }
     #businessEnquiryForm .favicon-edtech-crm { color: #0e7490; background: linear-gradient(155deg, #ecfeff, #cffafe); border-color: rgba(14, 116, 144, .2); }
     #businessEnquiryForm .favicon-edtech-lms { color: #0891b2; background: linear-gradient(155deg, #f0f9ff, #e0f2fe); border-color: rgba(8, 145, 178, .22); }
@@ -2438,7 +2463,16 @@
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryCarCare">
                       <input id="industryCarCare" class="industry-option-input" name="application" type="radio" value="CarCare Application"{% if prefill.selected_application == "CarCare Application" %} checked{% endif %}>
-                      <span class="industry-option-favicon favicon-carcare" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
+                      <span class="industry-option-favicon favicon-carcare" aria-hidden="true">
+                        <svg class="carcare-foam-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <circle class="foam-b" cx="18.4" cy="5.6" r="2.35"></circle>
+                          <circle class="foam-b" cx="21.1" cy="9.1" r="1.65"></circle>
+                          <circle class="foam-b" cx="15.7" cy="8.3" r="1.35"></circle>
+                          <path class="foam-car" d="M3.4 15.4c0-.85.65-1.45 1.45-1.45h1.15l1.05-3.15c.3-.8 1.05-1.3 1.85-1.3h7.4c.8 0 1.5.5 1.85 1.3l1.05 3.15h1.2c.8 0 1.45.6 1.45 1.45V16.8h-1.25v1.75c0 .4-.3.75-.75.75h-.75c-.4 0-.75-.35-.75-.75V16.8H7.65v1.75c0 .4-.3.75-.75.75h-.75c-.4 0-.75-.35-.75-.75V16.8H3.4v-1.4Z"></path>
+                          <circle class="foam-wheel" cx="7.45" cy="17" r="1.3"></circle>
+                          <circle class="foam-wheel" cx="16.55" cy="17" r="1.3"></circle>
+                        </svg>
+                      </span>
                       <span class="industry-option-text">CarCare Application</span>
                       <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
