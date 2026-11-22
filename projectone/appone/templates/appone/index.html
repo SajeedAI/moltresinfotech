@@ -292,32 +292,35 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      max-width: 100%;
-      padding: 9px 26px;
+      width: fit-content;
+      max-width: calc(100% - 8px);
+      padding: 5px 14px;
       text-decoration: none;
       border-radius: 999px;
-      background: linear-gradient(180deg, #0c1218 0%, #030508 100%);
-      border: 2px solid #178f88;
+      background: #05080b;
+      border: 1.5px solid rgba(32, 178, 170, 0.55);
       box-shadow:
-        0 0 0 1px rgba(32, 178, 170, 0.12),
-        0 10px 28px rgba(10, 30, 40, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        0 4px 18px rgba(10, 30, 40, 0.08),
+        0 0 20px rgba(32, 178, 170, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      line-height: 0;
     }
     .brand-logo-wrap:hover,
     .brand-logo-wrap:focus-visible {
-      border-color: #20b2aa;
+      border-color: rgba(32, 178, 170, 0.85);
       box-shadow:
-        0 0 0 1px rgba(32, 178, 170, 0.2),
-        0 12px 30px rgba(32, 178, 170, 0.12),
+        0 6px 22px rgba(32, 178, 170, 0.14),
+        0 0 24px rgba(32, 178, 170, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.06);
       outline: none;
     }
     .brand-logo {
-      width: clamp(210px, 38vw, 400px);
-      height: auto;
-      max-height: 46px;
-      object-fit: contain;
       display: block;
+      width: 178px;
+      height: 38px;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: center center;
       border-radius: 0;
     }
 
@@ -1393,12 +1396,13 @@
       align-items: center !important;
     }
     .navbar.fixed-top .brand-logo-wrap {
-      padding: 8px 22px !important;
+      padding: 5px 14px !important;
     }
     .navbar.fixed-top .brand-logo {
-      width: clamp(200px, 36vw, 380px) !important;
-      max-height: 44px !important;
-      object-fit: contain !important;
+      width: 178px !important;
+      height: 38px !important;
+      object-fit: cover !important;
+      object-position: center center !important;
       border-radius: 0 !important;
     }
     body { padding-top: 78px !important; }
@@ -1416,11 +1420,11 @@
       }
       .navbar.fixed-top { padding: 4px 0 !important; }
       .navbar.fixed-top .brand-logo-wrap {
-        padding: 7px 14px !important;
+        padding: 4px 11px !important;
       }
       .navbar.fixed-top .brand-logo {
-        width: min(100%, 268px) !important;
-        max-height: 38px !important;
+        width: 158px !important;
+        height: 34px !important;
       }
       body { padding-top: 68px !important; }
       .hero-form-only { padding-top: 7px !important; }
