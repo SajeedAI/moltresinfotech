@@ -655,7 +655,7 @@
     .hero-form-only { padding-top: 92px !important; padding-bottom: 12px !important; min-height: auto !important; }
     .section { padding-top: 42px; padding-bottom: 42px; }
     #software.section { padding-top: 8px !important; }
-    .hero-form-card-wide { padding-top: 18px; padding-bottom: 18px; background: #f0fbf9; border: 1px solid #ccefeb; box-shadow: 0 18px 48px rgba(32,178,170,.13); }
+    .hero-form-card-wide { padding-top: 18px; padding-bottom: 18px; background: #ffffff; border: 1px solid #ccefeb; box-shadow: 0 18px 48px rgba(32,178,170,.13); }
     .form-card-heading { padding-bottom: 7px; margin-bottom: 8px; border-bottom-color: #ccefeb !important; }
     .hero-form-card-wide .form-card-heading h2 { color: #178f88 !important; }
     .hero-form-card-wide .form-heading-icon { background: #d9f5f1 !important; color: #178f88 !important; box-shadow: 0 6px 16px rgba(32,178,170,.12) !important; }
@@ -1108,27 +1108,28 @@
 
 
 
-    /* Dark theme scoped ONLY to the demo enquiry form section */
+    /* Book Demo form: white card theme (overrides earlier blocks) */
     .hero-form-card-wide {
-      background: linear-gradient(145deg, #111827 0%, #0b1220 100%) !important;
-      border: 1px solid #293548 !important;
-      box-shadow: 0 22px 60px rgba(0, 0, 0, .24) !important;
-      color: #f3f4f6 !important;
+      background: #ffffff !important;
+      border: 1px solid #ccefeb !important;
+      box-shadow: 0 18px 48px rgba(32,178,170,.13) !important;
+      color: var(--ink) !important;
     }
     .hero-form-card-wide .form-card-heading,
     .hero-form-card-wide .form-submit-row {
-      border-color: #2b3748 !important;
+      border-color: #ccefeb !important;
     }
     .hero-form-card-wide .form-card-heading h2,
     .hero-form-card-wide .form-label,
-    .hero-form-card-wide legend,
-    .hero-form-card-wide .form-eyebrow {
-      color: #f3f4f6 !important;
+    .hero-form-card-wide legend {
+      color: #344054 !important;
     }
+    .hero-form-card-wide .form-card-heading h2 { color: #178f88 !important; }
+    .hero-form-card-wide .form-eyebrow { color: #118bd5 !important; }
     .hero-form-card-wide .form-card-heading p,
     .hero-form-card-wide .form-helper,
     .hero-form-card-wide .form-submit-row .form-helper {
-      color: #a7b4c5 !important;
+      color: #8a969e !important;
     }
     .footer-legal-links {
       margin-top: 10px;
@@ -1144,63 +1145,102 @@
       color: var(--muted);
     }
     .hero-form-card-wide .form-heading-icon {
-      background: #183c3b !important;
-      color: #5eead4 !important;
-      border: 1px solid #28635e !important;
-      box-shadow: none !important;
+      background: #d9f5f1 !important;
+      color: #178f88 !important;
+      border: 0 !important;
+      box-shadow: 0 6px 16px rgba(32,178,170,.12) !important;
     }
     .hero-form-card-wide .form-control,
     .hero-form-card-wide .demo-picker-trigger {
-      background: #182231 !important;
-      color: #f3f4f6 !important;
-      border: 1px solid #354357 !important;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,.16) !important;
+      background: #ffffff !important;
+      color: var(--ink) !important;
+      border: 1px solid #ccefeb !important;
+      box-shadow: 0 4px 12px rgba(32,178,170,.06) !important;
     }
     .hero-form-card-wide .form-control::placeholder {
-      color: #91a0b3 !important;
+      color: #8a969e !important;
       opacity: 1;
     }
     .hero-form-card-wide .form-control:focus,
     .hero-form-card-wide .demo-picker-trigger:focus-visible {
-      border-color: #2dd4bf !important;
-      box-shadow: 0 0 0 .2rem rgba(45,212,191,.16) !important;
+      border-color: #20b2aa !important;
+      box-shadow: 0 0 0 .2rem rgba(32,178,170,.14) !important;
       outline: none;
     }
-    .hero-form-card-wide .demo-picker-trigger.has-selection { color: #f3f4f6 !important; }
+    .hero-form-card-wide .demo-picker-trigger.has-selection { color: var(--ink) !important; }
     .hero-form-card-wide .demo-picker-trigger > .bi-chevron-down,
-    .hero-form-card-wide .field-leading-icon { color: #5eead4 !important; }
+    .hero-form-card-wide .field-leading-icon { color: #178f88 !important; }
     .hero-form-card-wide .industry-option-label {
-      background: #182231 !important;
-      color: #dbe5ef !important;
-      border: 1px solid #354357 !important;
-      box-shadow: none !important;
+      background: #ffffff !important;
+      color: #315e5a !important;
+      border: 1px solid #ccefeb !important;
+      box-shadow: 0 4px 12px rgba(32,178,170,.07) !important;
     }
     .hero-form-card-wide .industry-option-label:hover {
-      background: #202d3e !important;
-      border-color: #3c827b !important;
+      border-color: #8bd8d3 !important;
+      background: #ffffff !important;
     }
     .hero-form-card-wide .industry-option-label.is-selected {
-      background: #123b39 !important;
-      color: #99f6e4 !important;
-      border-color: #2dd4bf !important;
-      box-shadow: 0 0 0 1px rgba(45,212,191,.12) !important;
+      background: #dff7f3 !important;
+      color: #147c75 !important;
+      border-color: #20b2aa !important;
+      box-shadow: 0 0 0 2px rgba(32,178,170,.1) !important;
     }
     .hero-form-card-wide .industry-option .check-visual {
-      background: #111a27 !important;
-      border-color: #64748b !important;
+      background: #ffffff !important;
+      border-color: #cbdde5 !important;
     }
     .hero-form-card-wide .industry-option-label.is-selected .check-visual {
-      background: #14b8a6 !important;
-      border-color: #14b8a6 !important;
-      color: #071b1a !important;
-    }
-    .hero-form-card-wide .btn-red {
-      background: linear-gradient(105deg, #0d9488, #14b8a6) !important;
+      background: #20b2aa !important;
+      border-color: #20b2aa !important;
       color: #ffffff !important;
-      box-shadow: 0 10px 24px rgba(20,184,166,.2) !important;
     }
-    .hero-form-card-wide .btn-red:hover {
-      background: linear-gradient(105deg, #0f766e, #0d9488) !important;
+
+    /* Mobile: keep form stable while typing (no horizontal shift / iOS zoom) */
+    .hero-form-only,
+    .hero-form-only > .container,
+    #hero-enquiry,
+    #businessEnquiryForm {
+      max-width: 100%;
+    }
+    #businessEnquiryForm {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+    }
+    #businessEnquiryForm .row > [class*="col-"] {
+      min-width: 0;
+    }
+    #businessEnquiryForm .industry-option-text {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+    @media (max-width: 767.98px) {
+      .hero-form-only {
+        overflow-x: clip;
+        width: 100%;
+      }
+      .hero-form-only > .container {
+        max-width: 100%;
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+      }
+      .hero-form-card.hero-form-card-wide {
+        border-width: 1px !important;
+        border-radius: 18px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #businessEnquiryForm .form-control,
+      #businessEnquiryForm .demo-picker-trigger,
+      #businessEnquiryForm select.form-control {
+        font-size: 16px !important;
+        max-width: 100%;
+        touch-action: manipulation;
+      }
+      .hero-form-card-wide .industry-option-label:hover {
+        transform: none !important;
+      }
     }
 
 
@@ -1247,10 +1287,10 @@
     }
 
 
-    /* FINAL FIX: remove the unwanted white line above the dark Book Demo card */
+    /* FINAL FIX: remove the unwanted line above the Book Demo card */
     .hero-form-card,
     .hero-form-card-wide {
-      border: 1px solid #263548 !important;
+      border: 1px solid #ccefeb !important;
       outline: none !important;
     }
     .hero-form-card::before,
