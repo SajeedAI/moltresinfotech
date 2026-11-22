@@ -334,8 +334,13 @@
       font-size: 1.35rem;
     }
     .hero-form-card-wide .form-control { min-height: 38px; padding: 7px 11px; font-size: .88rem; border-radius: 999px; }
-    .industry-options-wide { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 7px 10px; }
-    .industry-options-wide .industry-option-label { min-height: 43px; padding: 7px 10px; font-size: .78rem; }
+    .industry-options-wide { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px 12px; }
+    .industry-options-wide .industry-option-label {
+      min-height: 56px;
+      padding: 10px 12px;
+      font-size: .8rem;
+      border-radius: 16px;
+    }
     .form-submit-row {
       display: flex; align-items: center; justify-content: space-between;
       gap: 12px; border-top: 1px solid #e7f1f0; padding-top: 12px; margin-top: 0;
@@ -486,11 +491,58 @@
       cursor: pointer;
     }
     .industry-option .check-visual,
-    .industry-option .industry-option-text {
+    .industry-option .industry-option-text,
+    .industry-option .industry-option-favicon {
       position: relative;
       z-index: 1;
       pointer-events: none;
     }
+    .industry-option-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .industry-option-label .check-visual {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    #businessEnquiryForm .industry-option-favicon {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      background: linear-gradient(155deg, #ffffff 0%, #eef9f7 100%);
+      border: 1px solid rgba(32, 178, 170, 0.2);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .95),
+        0 4px 12px rgba(32, 178, 170, .09);
+      color: #178f88;
+      transition: background .2s ease, color .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    #businessEnquiryForm .favicon-hospital { color: #0d9488; background: linear-gradient(155deg, #f0fdfa, #ccfbf1); border-color: rgba(13, 148, 136, .22); }
+    #businessEnquiryForm .favicon-realestate { color: #7c3aed; background: linear-gradient(155deg, #f5f3ff, #ede9fe); border-color: rgba(124, 58, 237, .2); }
+    #businessEnquiryForm .favicon-automotive { color: #d97706; background: linear-gradient(155deg, #fffbeb, #fef3c7); border-color: rgba(217, 119, 6, .22); }
+    #businessEnquiryForm .favicon-schools { color: #2563eb; background: linear-gradient(155deg, #eff6ff, #dbeafe); border-color: rgba(37, 99, 235, .2); }
+    #businessEnquiryForm .favicon-carcare { color: #059669; background: linear-gradient(155deg, #ecfdf5, #d1fae5); border-color: rgba(5, 150, 105, .22); }
+    #businessEnquiryForm .favicon-studio { color: #db2777; background: linear-gradient(155deg, #fdf2f8, #fce7f3); border-color: rgba(219, 39, 119, .2); }
+    #businessEnquiryForm .favicon-edtech-crm { color: #0e7490; background: linear-gradient(155deg, #ecfeff, #cffafe); border-color: rgba(14, 116, 144, .2); }
+    #businessEnquiryForm .favicon-edtech-lms { color: #0891b2; background: linear-gradient(155deg, #f0f9ff, #e0f2fe); border-color: rgba(8, 145, 178, .22); }
+    #businessEnquiryForm .industry-option-label.is-selected .industry-option-favicon {
+      color: #ffffff !important;
+      border-color: transparent !important;
+      box-shadow: 0 8px 18px rgba(32, 178, 170, .28), inset 0 1px 0 rgba(255, 255, 255, .25) !important;
+    }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-hospital { background: linear-gradient(145deg, #14b8a6, #0f766e) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-realestate { background: linear-gradient(145deg, #8b5cf6, #6d28d9) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-automotive { background: linear-gradient(145deg, #f59e0b, #d97706) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-schools { background: linear-gradient(145deg, #3b82f6, #2563eb) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-carcare { background: linear-gradient(145deg, #10b981, #059669) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-studio { background: linear-gradient(145deg, #ec4899, #db2777) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-edtech-crm { background: linear-gradient(145deg, #06b6d4, #0e7490) !important; }
+    #businessEnquiryForm .industry-option-label.is-selected .favicon-edtech-lms { background: linear-gradient(145deg, #38bdf8, #0891b2) !important; }
     .industry-option .check-visual {
       width: 19px; height: 19px; flex: 0 0 19px; border: 2px solid #cbd8d7;
       border-radius: 50%; display: grid; place-items: center; color: transparent;
@@ -1108,7 +1160,35 @@
 
 
 
-    /* Book Demo form: white card theme (overrides earlier blocks) */
+    /* Book Demo form: premium 2027 white card */
+    #hero-enquiry.hero-form-card-wide {
+      position: relative;
+      isolation: isolate;
+      background: linear-gradient(180deg, #ffffff 0%, #fafeff 100%) !important;
+      border: none !important;
+      border-radius: 28px !important;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, .9) inset,
+        0 28px 60px rgba(22, 51, 49, .09),
+        0 8px 24px rgba(32, 178, 170, .07) !important;
+    }
+    #hero-enquiry.hero-form-card-wide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(32, 178, 170, .55) 0%, rgba(255, 255, 255, .15) 42%, rgba(8, 139, 215, .4) 68%, rgba(32, 178, 170, .45) 100%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #hero-enquiry.hero-form-card-wide > * {
+      position: relative;
+      z-index: 1;
+    }
     .hero-form-card-wide {
       background: #ffffff !important;
       border: 1px solid #ccefeb !important;
@@ -1152,10 +1232,12 @@
     }
     .hero-form-card-wide .form-control,
     .hero-form-card-wide .demo-picker-trigger {
-      background: #ffffff !important;
+      background: linear-gradient(180deg, #ffffff 0%, #fafefe 100%) !important;
       color: var(--ink) !important;
-      border: 1px solid #ccefeb !important;
-      box-shadow: 0 4px 12px rgba(32,178,170,.06) !important;
+      border: 1px solid rgba(32, 178, 170, 0.28) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .92),
+        0 4px 14px rgba(32, 178, 170, .07) !important;
     }
     .hero-form-card-wide .form-control::placeholder {
       color: #8a969e !important;
@@ -1164,27 +1246,38 @@
     .hero-form-card-wide .form-control:focus,
     .hero-form-card-wide .demo-picker-trigger:focus-visible {
       border-color: #20b2aa !important;
-      box-shadow: 0 0 0 .2rem rgba(32,178,170,.14) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .95),
+        0 0 0 3px rgba(32, 178, 170, .14),
+        0 6px 18px rgba(32, 178, 170, .1) !important;
       outline: none;
     }
     .hero-form-card-wide .demo-picker-trigger.has-selection { color: var(--ink) !important; }
     .hero-form-card-wide .demo-picker-trigger > .bi-chevron-down,
     .hero-form-card-wide .field-leading-icon { color: #178f88 !important; }
     .hero-form-card-wide .industry-option-label {
-      background: #ffffff !important;
-      color: #315e5a !important;
-      border: 1px solid #ccefeb !important;
-      box-shadow: 0 4px 12px rgba(32,178,170,.07) !important;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fcfb 100%) !important;
+      color: #1e403c !important;
+      border: 1px solid rgba(32, 178, 170, 0.22) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .9),
+        0 4px 14px rgba(32, 178, 170, .06) !important;
     }
     .hero-form-card-wide .industry-option-label:hover {
-      border-color: #8bd8d3 !important;
+      border-color: rgba(32, 178, 170, 0.45) !important;
       background: #ffffff !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .95),
+        0 8px 20px rgba(32, 178, 170, .1) !important;
     }
     .hero-form-card-wide .industry-option-label.is-selected {
-      background: #dff7f3 !important;
-      color: #147c75 !important;
-      border-color: #20b2aa !important;
-      box-shadow: 0 0 0 2px rgba(32,178,170,.1) !important;
+      background: linear-gradient(180deg, #f0fdfc 0%, #e6faf7 100%) !important;
+      color: #0f5c56 !important;
+      border-color: rgba(32, 178, 170, 0.65) !important;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .85),
+        0 0 0 3px rgba(32, 178, 170, .12),
+        0 10px 22px rgba(32, 178, 170, .12) !important;
     }
     .hero-form-card-wide .industry-option .check-visual {
       background: #ffffff !important;
@@ -1241,6 +1334,18 @@
       .hero-form-card-wide .industry-option-label:hover {
         transform: none !important;
       }
+      #businessEnquiryForm .industry-option-favicon {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
+        font-size: 1.05rem;
+        border-radius: 11px;
+      }
+      .industry-options-wide .industry-option-label {
+        min-height: 52px;
+        padding: 9px 10px;
+        font-size: .76rem;
+      }
     }
 
 
@@ -1289,8 +1394,11 @@
 
     /* FINAL FIX: remove the unwanted line above the Book Demo card */
     .hero-form-card,
-    .hero-form-card-wide {
+    .hero-form-card-wide:not(#hero-enquiry) {
       border: 1px solid #ccefeb !important;
+      outline: none !important;
+    }
+    #hero-enquiry.hero-form-card-wide {
       outline: none !important;
     }
     .hero-form-card::before,
@@ -2174,57 +2282,65 @@
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryHospital">
                       <input id="industryHospital" class="industry-option-input" name="application" type="radio" required value="Hospitals & Clinics Application"{% if prefill.selected_application == "Hospitals & Clinics Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-hospital" aria-hidden="true"><i class="bi bi-hospital"></i></span>
                       <span class="industry-option-text">Hospitals &amp; Clinics Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryRealEstate">
                       <input id="industryRealEstate" class="industry-option-input" name="application" type="radio" value="Real Estate Application"{% if prefill.selected_application == "Real Estate Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-realestate" aria-hidden="true"><i class="bi bi-buildings"></i></span>
                       <span class="industry-option-text">Real Estate Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryAuto">
                       <input id="industryAuto" class="industry-option-input" name="application" type="radio" value="Automotive Application"{% if prefill.selected_application == "Automotive Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-automotive" aria-hidden="true"><i class="bi bi-car-front-fill"></i></span>
                       <span class="industry-option-text">Automotive Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEducation">
                       <input id="industryEducation" class="industry-option-input" name="application" type="radio" value="Schools & Colleges Application"{% if prefill.selected_application == "Schools & Colleges Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-schools" aria-hidden="true"><i class="bi bi-mortarboard-fill"></i></span>
                       <span class="industry-option-text">Schools &amp; Colleges Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryCarCare">
                       <input id="industryCarCare" class="industry-option-input" name="application" type="radio" value="CarCare Application"{% if prefill.selected_application == "CarCare Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-carcare" aria-hidden="true"><i class="bi bi-droplet-half"></i></span>
                       <span class="industry-option-text">CarCare Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryStudio">
                       <input id="industryStudio" class="industry-option-input" name="application" type="radio" value="Photo Studios Application"{% if prefill.selected_application == "Photo Studios Application" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-studio" aria-hidden="true"><i class="bi bi-camera-fill"></i></span>
                       <span class="industry-option-text">Photo Studios Application</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEdTechCRM">
                       <input id="industryEdTechCRM" class="industry-option-input" name="application" type="radio" value="EdTech CRM"{% if prefill.selected_application == "EdTech CRM" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-edtech-crm" aria-hidden="true"><i class="bi bi-person-lines-fill"></i></span>
                       <span class="industry-option-text">EdTech CRM</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                   <div class="industry-option">
                     <label class="industry-option-label" for="industryEdTechLMS">
                       <input id="industryEdTechLMS" class="industry-option-input" name="application" type="radio" value="EdTech LMS"{% if prefill.selected_application == "EdTech LMS" %} checked{% endif %}>
-                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
+                      <span class="industry-option-favicon favicon-edtech-lms" aria-hidden="true"><i class="bi bi-play-circle-fill"></i></span>
                       <span class="industry-option-text">EdTech LMS</span>
+                      <span class="check-visual" aria-hidden="true"><i class="bi bi-check-lg"></i></span>
                     </label>
                   </div>
                 </div>
